@@ -1,0 +1,14 @@
+[build.environment]
+  NODE_VERSION = "20"
+
+[build]
+  publish = ".vitepress/dist"
+  command = "pnpm build"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    cache-control = "max-age=31536000, immutable"
+
+
+
