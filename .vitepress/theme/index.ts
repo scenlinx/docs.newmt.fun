@@ -10,11 +10,11 @@ import {
   DocVideoLink,
   HomeUnderline,
   HomeFooter,
-  Twikoo
-} from './components'
-import backtotop from "./components/backtotop.vue" //返回顶部
+  Twikoo,
+  backtotop
+} from './types/index.js'
 import { Footer_Data, Twikoo_Data } from '../data'
-import './styles'
+import './styles/all.css'
 import 'viewerjs/dist/viewer.min.css'
 import 'virtual:group-icons.css'
 
