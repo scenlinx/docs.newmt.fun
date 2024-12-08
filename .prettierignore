@@ -1,20 +1,14 @@
-# See https://github.com/prettier/prettier/blob/main/docs/ignore.md
-
-# dependencies
-node_modules
-
-# compiled output
-dist
-dist-dev
-build
-cache
-.cache
-.temp
-.tmp
-
-# lock files
+package.json
+tsconfig.json
 pnpm-lock.yaml
-package-lock.json
-yarn.lock
 
-# user-specific files
+node_modules
+dist
+cache
+
+docs/fe/javascript/code
+docs/fe/es6/code
+
+docs/public/icons
+
+_redirects

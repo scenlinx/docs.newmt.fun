@@ -9,6 +9,28 @@ import MNavLinks from './components/MNavLinks.vue'
 
 import './styles/index.scss'
 
+if (typeof window !== 'undefined') {
+  /* 注销 PWA 服务 */
+  if (window.navigator && navigator.serviceWorker) {
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+      for (let registration of registrations) {
+        registration.unregister()
+      }
+    })
+  }
+
+  /* 删除浏览器中的缓存 */
+  if ('caches' in window) {
+    caches.keys().then(function (keyList) {
+      return Promise.all(
+        keyList.map(function (key) {
+          return caches.delete(key)
+        }),
+      )
+    })
+  }
+}
+
 let homePageStyle: HTMLStyleElement | undefined
 
 export default {
@@ -28,18 +50,14 @@ export default {
   enhanceApp({ app, router }: EnhanceAppContext) {
     createMediumZoomProvider(app, router)
 
-    app.provide('DEV', process.env.NODE_ENV === 'development')
-
     app.component('MNavLinks', MNavLinks)
+
+    app.provide('DEV', process.env.NODE_ENV === 'development')
 
     if (typeof window !== 'undefined') {
       watch(
         () => router.route.data.relativePath,
-        () =>
-          updateHomePageStyle(
-            /* /vitepress-nav-template/ 是为了兼容 GitHub Pages */
-            location.pathname === '/' || location.pathname === '/vitepress-nav-template/',
-          ),
+        () => updateHomePageStyle(location.pathname === '/'),
         { immediate: true },
       )
     }

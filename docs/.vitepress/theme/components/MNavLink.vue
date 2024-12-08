@@ -6,10 +6,16 @@ import { slugify } from '@mdit-vue/shared'
 import { NavLink } from '../types'
 
 const props = defineProps<{
+  noIcon?: NavLink['noIcon']
   icon?: NavLink['icon']
+  badge?: NavLink['badge']
   title?: NavLink['title']
   desc?: NavLink['desc']
   link: NavLink['link']
+}>()
+
+const emits = defineEmits<{
+  (event: 'nav-click', data: Partial<NavLink>): void
 }>()
 
 const formatTitle = computed(() => {
@@ -23,22 +29,44 @@ const svg = computed(() => {
   if (typeof props.icon === 'object') return props.icon.svg
   return ''
 })
+
+const formatBadge = computed(() => {
+  if (typeof props.badge === 'string') {
+    return { text: props.badge, type: 'info' }
+  }
+  return props.badge
+})
+
+const handleClick = () => emits('nav-click', props)
 </script>
 
 <template>
-  <a v-if="link" class="m-nav-link" :href="link" target="_blank" rel="noreferrer">
-    <article class="box">
+  <a
+    v-if="link"
+    class="m-nav-link"
+    :href="link"
+    target="_blank"
+    rel="noreferrer"
+    @click="handleClick"
+  >
+    <article class="box" :class="{ 'has-badge': formatBadge }">
       <div class="box-header">
-        <div v-if="svg" class="icon" v-html="svg"></div>
-        <div v-else-if="icon && typeof icon === 'string'" class="icon">
-          <img
-            :src="withBase(icon)"
-            :alt="title"
-            onerror="this.parentElement.style.display='none'"
-          />
-        </div>
-        <h5 v-if="title" :id="formatTitle" class="title">{{ title }}</h5>
+        <template v-if="!noIcon">
+          <div v-if="svg" class="icon" v-html="svg"></div>
+          <div v-else-if="icon && typeof icon === 'string'" class="icon">
+            <img
+              :src="withBase(icon)"
+              :alt="title"
+              loading="lazy"
+              onerror="this.parentElement.style.display='none'"
+            />
+          </div>
+        </template>
+        <h5 v-if="title" :id="formatTitle" class="title" :class="{ 'no-icon': noIcon }">
+          {{ title }}
+        </h5>
       </div>
+      <Badge v-if="formatBadge" class="badge" :type="formatBadge.type" :text="formatBadge.text" />
       <p v-if="desc" class="desc">{{ desc }}</p>
     </article>
   </a>
@@ -67,9 +95,13 @@ const svg = computed(() => {
   .box {
     display: flex;
     flex-direction: column;
+    position: relative;
     padding: var(--m-nav-box-gap);
     height: 100%;
     color: var(--vp-c-text-1);
+    &.has-badge {
+      padding-top: calc(var(--m-nav-box-gap) + 2px);
+    }
     &-header {
       display: flex;
       align-items: center;
@@ -102,9 +134,18 @@ const svg = computed(() => {
     flex-grow: 1;
     white-space: nowrap;
     text-overflow: ellipsis;
-    line-height: var(--m-nav-icon-box-size);
     font-size: 16px;
     font-weight: 600;
+    &:not(.no-icon) {
+      line-height: var(--m-nav-icon-box-size);
+    }
+  }
+
+  .badge {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    transform: scale(0.8);
   }
 
   .desc {

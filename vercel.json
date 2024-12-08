@@ -1,7 +1,21 @@
 {
-  "git": {
-    "deploymentEnabled": {
-      "gh-pages": false
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "docs/.vitepress/dist",
+        "buildCommand": "pnpm build"
+      }
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "headers": {
+        "Cache-Control": "max-age=31536000, immutable"
+      }
+    }
+  ]
 }
