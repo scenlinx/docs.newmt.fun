@@ -3,38 +3,24 @@ import type { DefaultTheme } from 'vitepress'
 // 导航栏设置
 export const nav: DefaultTheme.NavItem[] = [
   {
-    text: '文档记录',
-    link: '/notes/build-picture-bed',
-    activeMatch: '^/notes/'
+    text: '首页',
+    link: '/',
+    activeMatch: '^/'
   },
   {
-    text: '前端文档',
-    link: '/fe/linux/directory',
-    activeMatch: '^/fe/'
+    text: '副业学习',
+    link: '/moneys/',
+    activeMatch: '^/moneys/'
   },
   {
-    text: 'VMware ESXi',
-    link: '/esxi/install/guide',
-    activeMatch: '^/esxi/'
+    text: '码农专区',
+    link: '/it-serve/',
+    activeMatch: '^/it-serve/'
   },
   {
-    text: '把玩服务器',
-    link: '/vps/settings/ubuntu',
-    activeMatch: '^/vps/'
+    text: '玄学中医',
+    link: '/classics/',
+    activeMatch: '^/classics/'
   },
-  {
-    text: 'ASUS',
-    link: '/asus/flashing-prerequisites',
-    activeMatch: '^/asus/'
-  },
-  {
-    text: '流媒体观影',
-    link: '/streaming/netflix-guide',
-    activeMatch: '^/streaming/'
-  },
-  {
-    text: '服务推荐',
-    link: '/serve/sharing/account-sharing-guide',
-    activeMatch: '^/serve/'
-  }
+  { text: '网盘资源', link: 'https://pan.newmt.fun/' }
 ]
