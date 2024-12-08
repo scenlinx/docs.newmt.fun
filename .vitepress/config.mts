@@ -72,7 +72,7 @@ export default defineConfig({
     // GitHub编辑页面
     editLink: {
       pattern:
-        'https://github.com/Theo-Messi/Theo-Docs/edit/main/content/:path',
+        'https://github.com/scenlinx',
       text: '为此页提供修改建议'
     },
 

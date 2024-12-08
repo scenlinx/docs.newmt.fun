@@ -1,197 +1,41 @@
 import type { HeadConfig } from 'vitepress'
 
-// 导出head配置
 export const head: HeadConfig[] = [
+  // 样式与主题设置
   ['meta', { name: 'theme-color', content: '#ffffff' }],
   ['meta', { name: 'msapplication-TileColor', content: '#da532c' }],
-  [
-    'meta',
-    { name: 'msapplication-TileImage', content: '/ms-icon-144x144.png' }
-  ],
-  ['meta', { name: 'manifest', href: '/manifest.json' }],
-  [
-    'link',
-    { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' }
-  ],
-  ['link', { rel: 'manifest', href: '/site.webmanifest' }],
-  [
-    'link',
-    { rel: 'apple-touch-icon', sizes: '57x57', href: '/apple-icon-57x57.png' }
-  ],
-  [
-    'link',
-    { rel: 'apple-touch-icon', sizes: '60x60', href: '/apple-icon-60x60.png' }
-  ],
-  [
-    'link',
-    { rel: 'apple-touch-icon', sizes: '72x72', href: '/apple-icon-72x72.png' }
-  ],
-  [
-    'link',
-    { rel: 'apple-touch-icon', sizes: '76x76', href: '/apple-icon-76x76.png' }
-  ],
-  [
-    'link',
-    {
-      rel: 'apple-touch-icon',
-      sizes: '114x114',
-      href: '/apple-icon-114x114.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'apple-touch-icon',
-      sizes: '120x120',
-      href: '/apple-icon-120x120.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'apple-touch-icon',
-      sizes: '144x144',
-      href: '/apple-icon-144x144.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'apple-touch-icon',
-      sizes: '152x152',
-      href: '/apple-icon-152x152.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'apple-touch-icon',
-      sizes: '180x180',
-      href: '/apple-icon-180x180.png'
-    }
-  ],
-  [
-    'link',
-    { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
-  ],
-  [
-    'link',
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '16x16',
-      href: '/favicon-16x16.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '32x32',
-      href: '/favicon-32x32.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '36x36',
-      href: '/android-icon-36x36.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '48x48',
-      href: '/android-icon-48x48.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '72x72',
-      href: '/android-icon-72x72.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '96x96',
-      href: '/android-icon-96x96.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '144x144',
-      href: '/android-icon-144x144.png'
-    }
-  ],
-  [
-    'link',
-    {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '192x192',
-      href: '/android-icon-192x192.png'
-    }
-  ],
-  ['meta', { name: 'author', content: 'Theo-Messi' }],
-  ['meta', { name: 'copyright', content: 'Theo-Messi' }],
-  ['meta', { name: 'og:type', content: 'website' }],
-  ['meta', { name: 'og:locale', content: 'zh-CN' }],
-  ['meta', { name: 'og:site_name', content: 'Theo Docs' }],
-  ['meta', { name: 'og:title', content: 'Theo Docs' }],
-  ['meta', { name: 'og:url', content: 'https://doc.theojs.cn/' }],
-  ['meta', { name: 'og:image', content: 'https://doc.theojs.cn/avatar.png' }],
+  
+  // 网站图标配置
+  ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }],
+
+  // SEO 优化
   ['meta', { name: 'robots', content: 'index, follow' }],
   ['meta', { name: 'evisit-after', content: '1 day' }],
+  ['meta', { name: 'author', content: 'scenlinx' }],
+  ['meta', { name: 'copyright', content: 'scenlinx' }],
+  ['meta', { name: 'og:type', content: 'website' }],
+  ['meta', { name: 'og:locale', content: 'zh-CN' }],
+  ['meta', { name: 'og:site_name', content: '百万知识库' }],
+  ['meta', { name: 'og:title', content: '百万知识库' }],
+  ['meta', { name: 'og:url', content: 'https://docs.newmt.fun/' }],
+  ['meta', { name: 'og:image', content: 'https://docs.newmt.fun/logo/logo.png' }],
+  ['meta', { name: 'keywords', content: '副业赚钱, 流量卡, 网盘拉新, 网盘资源, 新媒体相关, 网站搭建' }],
   [
     'meta',
     {
       name: 'description',
-      content:
-        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
+      content: '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料'
     }
-  ],
-  ['meta', { name: 'format-detection', content: 'telephone=no' }],
-  [
-    'meta',
-    { name: 'google-site-verification', content: '16826854815998093032' }
   ],
   [
     'meta',
     {
       name: 'og:description',
-      content:
-        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
+      content: '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料'
     }
   ],
-  ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-  ['meta', { name: 'twitter:site', content: '@TheoMessi_' }],
-  ['meta', { name: 'twitter:title', content: 'Theo-Docs' }],
-  [
-    'meta',
-    {
-      name: 'twitter:description',
-      content:
-        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
-    }
-  ],
-  [
-    'meta',
-    { name: 'twitter:image', content: 'https://doc.theojs.cn/avatar.png' }
-  ],
+
+  // JSON-LD 结构化数据
   [
     'script',
     {
@@ -199,14 +43,10 @@ export const head: HeadConfig[] = [
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        url: 'https://doc.theojs.cn/',
-        name: 'Theo-Docs',
-        description:
-          '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。',
-        author: {
-          '@type': 'Person',
-          name: 'Theo-Messi'
-        }
+        url: 'https://docs.newmt.fun/',
+        name: '百万知识库',
+        description: '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料',
+        author: { '@type': 'Person', name: 'scenlinx' }
       })
     }
   ]
