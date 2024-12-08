@@ -61,7 +61,7 @@ export default defineConfig({
 
   themeConfig: {
     // logo
-    logo: { src: '/logo/logo.png', width: 24, height: 24 },
+    logo: { src: '/logo/avatar.png', width: 24, height: 24 },
 
     // 社交链接
     socialLinks,
