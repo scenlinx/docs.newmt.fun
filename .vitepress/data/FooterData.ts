@@ -9,7 +9,5 @@ export const Footer_Data: FooterData = {
   author: {
     name: 'scenlinx',
     link: 'https://github.com/scenlinx'
-  },
-  group: [
-  ]
+  }
 }
