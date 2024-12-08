@@ -2,9 +2,9 @@ import { basename } from 'node:path'
 import { defineConfig } from 'vitepress'
 import MarkdownPreview from 'vite-plugin-markdown-preview'
 
-import { head, nav, sidebar, algolia } from './configs'
+import { head, nav, sidebar } from './configs'
 
-const APP_BASE_PATH = basename(process.env.APP_BASE_PATH || '')
+const APP_BASE_PATH = basename(process.env.GITHUB_REPOSITORY || '')
 
 export default defineConfig({
   outDir: '../dist',
@@ -21,9 +21,6 @@ export default defineConfig({
   /* markdown 配置 */
   markdown: {
     lineNumbers: true,
-    image: {
-      lazyLoading: true,
-    },
   },
 
   /* 主题配置 */
@@ -41,7 +38,7 @@ export default defineConfig({
       label: '目录',
     },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/maomao1996' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/maomao1996/vitepress-nav-template' }],
 
     footer: {
       message: '如有转载或 CV 的请标注本站原文地址',
@@ -56,9 +53,6 @@ export default defineConfig({
       },
     },
 
-    /* Algolia DocSearch 配置 */
-    algolia,
-
     docFooter: {
       prev: '上一篇',
       next: '下一篇',
@@ -72,20 +66,15 @@ export default defineConfig({
 
     /*** 自定义配置 ***/
     visitor: {
-      badgeId: 'maomao1996.notes',
+      badgeId: 'maomao1996.vitepress-nav-template',
     },
 
     comment: {
-      repo: 'maomao1996/mm-notes',
-      repoId: 'MDEwOlJlcG9zaXRvcnkxNTc0ODc5Mjg=',
+      repo: 'maomao1996/vitepress-nav-template',
+      repoId: 'R_kgDOJC09Jg',
       category: 'Announcements',
-      categoryId: 'DIC_kwDOCWMTOM4CZ2rf',
+      categoryId: 'DIC_kwDOJC09Js4Cekn0',
     },
-  },
-
-  /* 生成站点地图 */
-  sitemap: {
-    hostname: 'https://notes.fe-mm.com/',
   },
 
   vite: {

@@ -2,7 +2,7 @@ import type { Router } from 'vitepress'
 import type { App, InjectionKey } from 'vue'
 import type { Zoom } from 'medium-zoom'
 
-import { inject, watch, nextTick } from 'vue'
+import { inject, watch } from 'vue'
 import mediumZoom from 'medium-zoom'
 
 declare module 'medium-zoom' {
@@ -31,7 +31,8 @@ export const createMediumZoomProvider = (app: App, router: Router) => {
 
   watch(
     () => router.route.path,
-    () => nextTick(() => zoom.refresh())
+    // 使用 nextTick 时在 dev 环境下第一次进入页面无法触发
+    () => setTimeout(() => zoom.refresh()),
   )
 }
 

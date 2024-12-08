@@ -9,7 +9,7 @@ const { visitor } = theme.value
 
 <template>
   <img
-    v-if="!DEV"
+    v-if="!DEV && visitor"
     class="visitor"
     :src="`https://visitor-badge.laobi.icu/badge?page_id=${visitor.badgeId}`"
     onerror="this.style.display='none'"
@@ -20,6 +20,7 @@ const { visitor } = theme.value
 .visitor {
   margin-left: 8px;
 }
+
 @media (min-width: 768px) and (max-width: 920px) {
   .visitor {
     display: none;

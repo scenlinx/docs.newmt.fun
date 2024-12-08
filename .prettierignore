@@ -1,14 +1,20 @@
-package.json
-tsconfig.json
-pnpm-lock.yaml
+# See https://github.com/prettier/prettier/blob/main/docs/ignore.md
 
+# dependencies
 node_modules
+
+# compiled output
 dist
+dist-dev
+build
 cache
+.cache
+.temp
+.tmp
 
-docs/fe/javascript/code
-docs/fe/es6/code
+# lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
 
-docs/public/icons
-
-_redirects
+# user-specific files

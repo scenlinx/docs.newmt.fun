@@ -6,13 +6,9 @@ import MNavLink from './MNavLink.vue'
 import type { NavLink } from '../types'
 
 const props = defineProps<{
-  tag?: string
   title: string
-  noIcon?: boolean
   items: NavLink[]
 }>()
-
-const component = computed(() => props.tag ?? 'h2')
 
 const formatTitle = computed(() => {
   return slugify(props.title)
@@ -20,16 +16,18 @@ const formatTitle = computed(() => {
 </script>
 
 <template>
-  <component :is="component" v-if="title" :id="formatTitle" tabindex="-1">
+  <h2 v-if="title" :id="formatTitle" tabindex="-1">
     {{ title }}
     <a class="header-anchor" :href="`#${formatTitle}`" aria-hidden="true"></a>
-  </component>
+  </h2>
   <div class="m-nav-links">
     <MNavLink
-      v-for="item in items"
-      :key="item.link"
-      :noIcon="noIcon"
-      v-bind="{ ...item, ...$attrs }"
+      v-for="{ icon, title, desc, link } in items"
+      :key="link"
+      :icon="icon"
+      :title="title"
+      :desc="desc"
+      :link="link"
     />
   </div>
 </template>
