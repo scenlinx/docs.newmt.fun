@@ -11,10 +11,10 @@ import {
   HomeUnderline,
   HomeFooter,
   Twikoo
-} from '@theojs/lumen'
+} from './components'
 import backtotop from "./components/backtotop.vue" //返回顶部
 import { Footer_Data, Twikoo_Data } from '../data'
-import '@theojs/lumen/theme'
+import './styles'
 import 'viewerjs/dist/viewer.min.css'
 import 'virtual:group-icons.css'
 
