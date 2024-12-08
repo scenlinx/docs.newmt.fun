@@ -39,7 +39,7 @@ const getMarkdownFiles = (dir, basePath = '', order = []) => {
       const filePath = path.join(currentDir, file);
       results.push({
         text: getTitleFromMarkdown(filePath),
-        link: `/${path.relative('docs', filePath).replace(/\\/g, '/')}`
+        link: `/${path.relative('content', filePath).replace(/\\/g, '/')}`
       });
     }
   };
