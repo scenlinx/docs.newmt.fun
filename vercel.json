@@ -5,7 +5,7 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "docs/.vitepress/dist",
+        "distDir": ".vitepress/dist",
         "buildCommand": "pnpm build"
       }
     }
