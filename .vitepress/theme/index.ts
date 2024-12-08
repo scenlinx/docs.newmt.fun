@@ -12,6 +12,7 @@ import {
   HomeFooter,
   Twikoo
 } from '@theojs/lumen'
+import backtotop from "./components/backtotop.vue" //返回顶部
 import { Footer_Data, Twikoo_Data } from '../data'
 import '@theojs/lumen/theme'
 import 'viewerjs/dist/viewer.min.css'
@@ -31,6 +32,7 @@ export default {
     app.component('Links', DocLinks)
     app.component('BoxCube', DocBoxCube)
     app.component('Vid', DocVideoLink)
+    app.component('backtotop', backtotop)
   },
   setup() {
     const route = useRoute()
