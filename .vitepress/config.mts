@@ -5,12 +5,12 @@ import { groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 // 导出默认配置
 export default defineConfig({
   // 站点名称
-  title: 'Theo Docs',
+  title: '百万知识库',
   // 站点语言
   lang: 'zh-CN',
   // 站点介绍
   description:
-    '网络技术,VPS,ESXi,OpenWrt,青龙面板,风水玄学,picgo,github,图床,梅林固件,华硕,fancyss,科学上网,clash,独角数卡,homebrew,git,docker,linux,markdown,甲骨文,谷歌云,防火墙,流媒体,京东,阿里云,YouTube,Premium,机场,流媒体,解锁,线路,科学上网,梯子,特殊服务,出国服务,奈飞,Netflix,迪士尼,YouTube,油管,hulu,FlyingBird,青云梯,HBO Max,Spotify,奈飞小铺,银河录像局',
+    '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料',
   // 网站头部
   head,
   //'force-dark'强制开启深色模式 false强制开启浅色模式
@@ -19,7 +19,7 @@ export default defineConfig({
   metaChunk: true,
 
   // 站点地图
-  sitemap: { hostname: 'https://doc.theojs.cn' },
+  sitemap: { hostname: 'https://docs.newmt.fun' },
 
   // markdown-it插件配置
   markdown,
@@ -61,7 +61,7 @@ export default defineConfig({
 
   themeConfig: {
     // logo
-    logo: { src: '/avatar.png', width: 24, height: 24 },
+    logo: { src: '/logo/logo.png', width: 24, height: 24 },
 
     // 社交链接
     socialLinks,
