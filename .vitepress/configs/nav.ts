@@ -13,6 +13,11 @@ export const nav: DefaultTheme.NavItem[] = [
     activeMatch: '^/moneys/'
   },
   {
+    text: '资源合集',
+    link: '/sources/',
+    activeMatch: '^/sources/'
+  },
+  {
     text: '码农专区',
     link: '/it-serve/',
     activeMatch: '^/it-serve/'
