@@ -22,8 +22,6 @@ export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
-      // 自定义新的插槽 'backtop-slot'
-      'backtop-slot': () => h(backtotop),
       'layout-bottom': () => h(HomeFooter, { Footer_Data }),
       'doc-after': () => h('div', [
         h(Twikoo, { Twikoo_Data }),  // Twikoo 插槽
