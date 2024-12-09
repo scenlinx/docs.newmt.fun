@@ -13,13 +13,14 @@ function readDir(base: string): SidebarItem[] {
     if (file.isDirectory()) {
       items.push({
         text: file.name,
-        base: `${base}/${file.name}`,
+        base: `${base}/${file.name}`, // 确保是相对路径
         items: readDir(resolve(base, file.name)) // 递归读取子目录
       })
     } else if (file.isFile() && file.name.endsWith('.md')) {
+      // 生成相对路径
       items.push({
         text: file.name.replace('.md', ''),
-        link: `${base}/${file.name.replace('.md', '')}`
+        link: `${base}/${file.name.replace('.md', '')}` // 使用相对路径
       })
     }
   })
@@ -36,10 +37,13 @@ const baseDirs = [
   '/moneys',
 ]
 
+// 通过 __dirname 获取相对路径
 baseDirs.forEach(baseDir => {
+  // 读取 content 目录的文件
+  const contentDir = resolve(__dirname, `./content${baseDir}`)
+  
   sidebar[baseDir] = {
     base: baseDir,
-    items: readDir(resolve(__dirname, `./content${baseDir}`)) // 假设文件在 docs 文件夹下
+    items: readDir(contentDir) // 读取相对路径内容
   }
 })
-
