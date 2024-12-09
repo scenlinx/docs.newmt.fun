@@ -27,64 +27,28 @@ const generateSidebar = (baseDir: string, folderName: string): SidebarItem => {
 }
 
 // 导出各个侧边栏配置
-export function Sidebar_notes(): SidebarItem[] {
-  return [
-    generateSidebar('./notes', '文档记录'),
-    generateSidebar('./notes/vitepress', 'VitePress 搭建记录')
-  ]
-}
 
 export function Sidebar_Asus(): SidebarItem[] {
   return [
-    generateSidebar('./asus', '梅林操作文档')
-  ]
-}
-
-export function Sidebar_FE(): SidebarItem[] {
-  return [
-    generateSidebar('./fe/linux', 'Linux 文档'),
-    generateSidebar('./fe/docker', 'Docker 文档'),
-    generateSidebar('./fe/git', 'Git 文档'),
-    generateSidebar('./fe/homebrew', 'HomeBrew 文档'),
-    generateSidebar('./fe/pnpm', 'pnpm 文档')
+    generateSidebar('./moneys', '梅林操作文档')
   ]
 }
 
 export function Sidebar_vps(): SidebarItem[] {
   return [
-    generateSidebar('./vps/settings', 'Debian/Ubuntu'),
-    generateSidebar('./vps/tools', '系统工具'),
-    generateSidebar('./vps/serve', '搭建服务'),
-    generateSidebar('./vps/oracle-cloud', 'Oracle Cloud 甲骨文云')
+    generateSidebar('./classics', 'Debian/Ubuntu'),
   ]
 }
 
 export function Sidebar_ESXi(): SidebarItem[] {
   return [
-    generateSidebar('./esxi/install', 'ESXi 8.0 部署指南'),
-    generateSidebar('./esxi/openwrt', 'OpenWrt/iStoreOS')
-  ]
-}
-
-export function Sidebar_streaming(): SidebarItem[] {
-  return [
-    generateSidebar('./streaming', 'Netflix 观看指南')
-  ]
-}
-
-export function Sidebar_serve(): SidebarItem[] {
-  return [
-    generateSidebar('./serve', '账号合租平台')
+    generateSidebar('./it-serve', 'ESXi 8.0 部署指南'),
   ]
 }
 
 // 侧边栏配置集合
 export const sidebar: DefaultTheme.SidebarMulti = {
-  '/vps/': { base: '/vps/', items: Sidebar_vps() },
-  '/asus/': { base: '/asus/', items: Sidebar_Asus() },
-  '/esxi/': { base: '/esxi/', items: Sidebar_ESXi() },
-  '/fe/': { base: '/fe/', items: Sidebar_FE() },
-  '/notes/': { base: '/notes/', items: Sidebar_notes() },
-  '/serve/': { base: '/serve/', items: Sidebar_serve() },
-  '/streaming/': { base: '/streaming/', items: Sidebar_streaming() }
+  '/classics/': { base: '/classics/', items: Sidebar_vps() },
+  '/moneys/': { base: '/moneys/', items: Sidebar_Asus() },
+  '/it-serve/': { base: '/it-serve/', items: Sidebar_ESXi() },
 }
