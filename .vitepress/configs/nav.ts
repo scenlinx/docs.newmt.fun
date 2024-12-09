@@ -27,6 +27,6 @@ export const nav: DefaultTheme.NavItem[] = [
     link: '/classics/',
     activeMatch: '^/classics/'
   },
-  { text: '网盘资源', link: 'https://pan.newmt.fun/' }
+  { text: '网盘资源', link: 'https://pan.newmt.fun/' },
   { text: '导航', link: 'https://nav.newmt.fun/' }
 ]
