@@ -3,11 +3,6 @@ import type { DefaultTheme } from 'vitepress'
 // 导航栏设置
 export const nav: DefaultTheme.NavItem[] = [
   {
-    text: '首页',
-    link: '/',
-    activeMatch: '^/'
-  },
-  {
     text: '副业学习',
     link: '/moneys/',
     activeMatch: '^/moneys/'
