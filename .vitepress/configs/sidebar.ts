@@ -1,60 +1,59 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
+import { DefaultTheme } from 'vitepress'
 
-// 读取 Markdown 文件中的标题或文件名
-const getTitleFromMarkdown = (filePath: string): string => {
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const titleMatch = content.match(/title:\s*(.+)/);  // 从文件中提取 title
-  return titleMatch ? titleMatch[1].trim() : path.basename(filePath, '.md'); // 如果没有 title，则使用文件名
-};
+type SidebarItem = DefaultTheme.SidebarItem
 
-// 递归获取所有 Markdown 文件，支持自定义排序
-const getMarkdownFiles = (dir: string, basePath: string = '', order: string[] = []): any[] => {
-  let results: any[] = [];
+// 递归获取目录中的所有 .md 文件
+function getMarkdownFiles(dir: string): SidebarItem[] {
+  const files = fs.readdirSync(dir)
+  let sidebarItems: SidebarItem[] = []
 
-  const listFiles = (currentDir: string) => {
-    const files = fs.readdirSync(currentDir);
-    const directories = files.filter(file => fs.statSync(path.join(currentDir, file)).isDirectory());
+  files.forEach((file) => {
+    const filePath = path.join(dir, file)
+    const stat = fs.statSync(filePath)
 
-    // 对文件夹进行排序
-    const sortedDirectories = order.length ?
-      directories.sort((a, b) => order.indexOf(a) - order.indexOf(b)) :  // 按照传入的顺序排序
-      directories.sort();  // 默认按字母排序
-
-    // 递归遍历子目录
-    sortedDirectories.forEach((dir) => {
-      const dirPath = path.join(currentDir, dir);
-      const subItems = getMarkdownFiles(dirPath, path.join(basePath, dir), order);  // 递归获取子文件夹中的 Markdown 文件
-      if (subItems.length > 0) {
-        results.push({
-          text: dir,
-          items: subItems,
-          collapsed: true // 默认文件夹折叠
-        });
-      }
-    });
-
-    // 处理 Markdown 文件
-    const markdownFiles = files.filter(file => file.endsWith('.md'));
-    for (const file of markdownFiles) {
-      const filePath = path.join(currentDir, file);
-      results.push({
-        text: getTitleFromMarkdown(filePath),
-        link: `/${path.relative('content', filePath).replace(/\\/g, '/')}`  // 生成 Markdown 文件的链接
-      });
+    // 如果是目录，递归获取子目录的 .md 文件
+    if (stat.isDirectory()) {
+      sidebarItems.push({
+        text: file,
+        base: `/${file}/`,
+        items: getMarkdownFiles(filePath), // 递归获取子目录中的 .md 文件
+      })
+    } else if (file.endsWith('.md')) {
+      // 如果是 .md 文件，生成相应的侧边栏项
+      const link = path.relative('.', filePath).replace(/\.md$/, '')
+      sidebarItems.push({
+        text: file.replace(/-/g, ' '), // 文件名转为文本
+        link,
+      })
     }
-  };
+  })
 
-  listFiles(dir);
-  return results;
-};
+  return sidebarItems
+}
 
-// 侧边栏配置，给每个目录指定不同的排序数组
-export const sidebarConfig = {
-  '/moneys/': getMarkdownFiles(path.join(__dirname, './moneys'), '', ['index', '副业赚钱', '流量卡', '网盘资源', '新媒体相关']),
-  '/it-serve/': getMarkdownFiles(path.join(__dirname, './it-serve'), '', ['index', '前端技术', '后端技术', '架构优化', '工具集']),
-  '/classics/': getMarkdownFiles(path.join(__dirname, './classics'), '', ['山', '医', '命', '相', '卜', '灵宠', '相关经典']),
-};
+// 自动构建侧边栏
+function generateSidebar(baseDir: string): DefaultTheme.SidebarMulti {
+  const sidebarConfig: DefaultTheme.SidebarMulti = {}
 
-// 导出 sidebar
-export const sidebar = sidebarConfig;
+  // 获取主目录中的子目录并为每个子目录生成侧边栏
+  const directories = fs.readdirSync(baseDir)
+
+  directories.forEach((dir) => {
+    const dirPath = path.join(baseDir, dir)
+    const stat = fs.statSync(dirPath)
+
+    if (stat.isDirectory()) {
+      sidebarConfig[`/${dir}/`] = {
+        base: `/${dir}/`,
+        items: getMarkdownFiles(dirPath),
+      }
+    }
+  })
+
+  return sidebarConfig
+}
+
+// 在 VitePress 配置中使用自动生成的侧边栏
+export const sidebar = generateSidebar(path.resolve(__dirname, 'docs'))
