@@ -1,0 +1,35 @@
+.m-nav-layout {
+  /* 覆盖全局的 vp-layout-max-width（仅当前页面使用） */
+  --vp-layout-max-width: 1660px;
+}
+
+.m-nav-layout .container {
+  max-width: var(--vp-layout-max-width) !important;
+}
+
+.m-nav-layout .content-container,
+.m-nav-layout .content {
+  max-width: 100% !important;
+}
+
+.m-nav-layout .aside {
+  padding-left: 0;
+  max-width: 224px;
+}
+
+/* custom-block */
+.m-nav-layout .custom-block .custom-block-title {
+  font-size: var(--vp-custom-block-font-size);
+}
+
+.m-nav-layout .custom-block ul {
+  margin: 8px 0;
+}
+
+.m-nav-layout .custom-block li {
+  margin: 0;
+}
+
+.m-nav-layout .vp-doc h2 {
+  margin-top: 24px;
+}
