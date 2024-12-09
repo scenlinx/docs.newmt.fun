@@ -8,11 +8,6 @@ export const nav: DefaultTheme.NavItem[] = [
     activeMatch: '^/'
   },
   {
-    text: '导航',
-    link: '/nav/',
-    activeMatch: '^/nav/'
-  },
-  {
     text: '副业学习',
     link: '/moneys/',
     activeMatch: '^/moneys/'
@@ -33,4 +28,5 @@ export const nav: DefaultTheme.NavItem[] = [
     activeMatch: '^/classics/'
   },
   { text: '网盘资源', link: 'https://pan.newmt.fun/' }
+  { text: '导航', link: 'https://nav.newmt.fun/' }
 ]
