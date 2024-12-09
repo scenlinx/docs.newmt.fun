@@ -1,4 +1,4 @@
-import type { FooterData } from '@theojs/lumen'
+import type { FooterData } from '../theme/types/index.js'
 
 export const Footer_Data: FooterData = {
   beian: {
