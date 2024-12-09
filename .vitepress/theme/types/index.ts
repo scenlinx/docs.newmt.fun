@@ -5,6 +5,7 @@ export { default as DocVideoLink } from '../components/DocVideoLink.vue'
 export { default as HomeFooter } from '../components/HomeFooter.vue'
 export { default as HomeUnderline } from '../components/HomeUnderline.vue'
 export { default as Twikoo } from '../components/DocTwikoo.vue'
+export { default as backtotop } from '../components/backtotop.vue'
 
 export { Icon } from '@iconify/vue'
 export * from './types'

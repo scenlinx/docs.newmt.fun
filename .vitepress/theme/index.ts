@@ -10,7 +10,8 @@ import {
   DocVideoLink,
   HomeUnderline,
   HomeFooter,
-  Twikoo
+  Twikoo,
+  backtotop
 } from './types/index.js'
 import { Footer_Data, Twikoo_Data } from '../data'
 import './styles/all.css'
@@ -21,16 +22,20 @@ export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
-      'layout-bottom': () => h(HomeFooter, { Footer_Data }),
+      'layout-bottom': () => h('div', [
+        h(HomeFooter, { Footer_Data }),  // HomeFooter
+        h(backtotop)                     // 返回顶部
+      ]),
       'doc-after': () => h(Twikoo, { Twikoo_Data }),
     })
-  },
+  },  
   enhanceApp: ({ app }) => {
     app.component('Home', HomeUnderline)
     app.component('Box', DocBox)
     app.component('Links', DocLinks)
     app.component('BoxCube', DocBoxCube)
     app.component('Vid', DocVideoLink)
+    app.component('BackTop', backtotop)
   },
   setup() {
     const route = useRoute()
