@@ -12,8 +12,9 @@
 import { onBeforeUnmount, onMounted, ref } from "vue";
 
 // 是否显示返回顶部
-const showBackTop = ref(true);
+const showBackTop = ref(false);  // 初始值设为 false
 
+// 滚动到顶部
 function scrollToTop() {
   window.scrollTo({
     top: 0,
@@ -21,7 +22,7 @@ function scrollToTop() {
   });
 }
 
-// 节流
+// 节流函数
 function throttle(fn, delay = 100) {
   let lastTime = 0;
   return function () {
@@ -32,15 +33,24 @@ function throttle(fn, delay = 100) {
     }
   };
 }
-const onScroll = throttle(
-  () => (showBackTop.value = Boolean(window.scrollY > 100))
-);
 
-// 监听滚动事件
-onMounted(() => window.addEventListener("scroll", onScroll));
+// 控制返回顶部按钮显示与否
+const onScroll = throttle(() => {
+  // 当滚动超过100px时显示返回顶部按钮
+  showBackTop.value = Boolean(window.scrollY > 100);
+});
 
-// 移除监听事件
-onBeforeUnmount(() => window.removeEventListener("scroll", onScroll));
+// 监听页面滚动事件
+onMounted(() => {
+  // 初始化时判断是否显示返回顶部按钮
+  showBackTop.value = window.scrollY > 100;
+  window.addEventListener("scroll", onScroll);
+});
+
+// 清理事件监听
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", onScroll);
+});
 </script>
 
 <style lang="css" scoped>
@@ -54,7 +64,6 @@ onBeforeUnmount(() => window.removeEventListener("scroll", onScroll));
   height: 50px;
   border-radius: 50%;
   background-color: #3eaf7c;
-  ;
   padding: 10px;
   box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.15);
 }
