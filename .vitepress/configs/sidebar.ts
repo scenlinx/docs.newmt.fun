@@ -51,21 +51,3 @@ async function getItems(path: string, order: string[]): Promise<DefaultTheme.Sid
 
   return groups;
 }
-
-async function addTopArticles(groups: DefaultTheme.SidebarItem[], path: string) {
-  let topArticleItems: DefaultTheme.SidebarItem[] = [];
-
-  const articles = await fg(`content/${path}/**/*.md`, { onlyFiles: true, objectMode: true });
-  
-  for (const article of articles) {
-    const articleFile = matter.read(article.path);
-    const { data } = articleFile;
-
-    if (data.isTop) {
-      topArticleItems.push({
-        text: data.title,
-        link: `/${article.path.replace('content/', '').replace('.md', '')}`,
-      });
-    }
-  }
-}
