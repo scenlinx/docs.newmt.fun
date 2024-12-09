@@ -4,8 +4,7 @@
     "build": "vitepress build",
     "preview": "vitepress preview",
     "format": "prettier --write .",
-    "format:cheak": "prettier --check .",
-    "vercel-build": "pnpm store prune && pnpm install && pnpm build"
+    "format:cheak": "prettier --check ."
   },
   "devDependencies": {
     "prettier": "3.4.1",
