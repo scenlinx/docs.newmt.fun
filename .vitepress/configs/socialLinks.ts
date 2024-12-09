@@ -3,7 +3,7 @@ import type { DefaultTheme } from 'vitepress'
 
 export const socialLinks: DefaultTheme.SocialLink[] = [
   {
-    icon: 'qq',
+    icon: 'wechat',
     link: 'https://github.com/scenlinx',
     ariaLabel: 'QQ'
   },
