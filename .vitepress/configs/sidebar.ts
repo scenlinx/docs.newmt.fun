@@ -30,19 +30,19 @@ const generateSidebar = (baseDir: string, folderName: string): SidebarItem => {
 
 export function Sidebar_Asus(): SidebarItem[] {
   return [
-    generateSidebar('./moneys', '梅林操作文档')
+    generateSidebar('./moneys')
   ]
 }
 
 export function Sidebar_vps(): SidebarItem[] {
   return [
-    generateSidebar('./classics', 'Debian/Ubuntu'),
+    generateSidebar('./classics'),
   ]
 }
 
 export function Sidebar_ESXi(): SidebarItem[] {
   return [
-    generateSidebar('./it-serve', 'ESXi 8.0 部署指南'),
+    generateSidebar('./it-serve'),
   ]
 }
 
