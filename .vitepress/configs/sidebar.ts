@@ -40,7 +40,7 @@ const getMarkdownFiles = (dir: string, basePath: string = '', order: string[] = 
       const filePath = path.join(currentDir, file);
       results.push({
         text: getTitleFromMarkdown(filePath),
-        link: `/${path.relative('docs', filePath).replace(/\\/g, '/')}`  // 生成 Markdown 文件的链接
+        link: `/${path.relative('content', filePath).replace(/\\/g, '/')}`  // 生成 Markdown 文件的链接
       });
     }
   };
@@ -51,9 +51,9 @@ const getMarkdownFiles = (dir: string, basePath: string = '', order: string[] = 
 
 // 侧边栏配置，给每个目录指定不同的排序数组
 export const sidebarConfig = {
-  '/moneys/': getMarkdownFiles(path.join(__dirname, '../moneys'), '', ['index', '副业赚钱', '流量卡', '网盘资源', '新媒体相关']),
-  '/it-serve/': getMarkdownFiles(path.join(__dirname, '../it-serve'), '', ['index', '前端技术', '后端技术', '架构优化', '工具集']),
-  '/classics/': getMarkdownFiles(path.join(__dirname, '../classics'), '', ['山', '医', '命', '相', '卜', '灵宠', '相关经典']),
+  '/moneys/': getMarkdownFiles(path.join(__dirname, './moneys'), '', ['index', '副业赚钱', '流量卡', '网盘资源', '新媒体相关']),
+  '/it-serve/': getMarkdownFiles(path.join(__dirname, './it-serve'), '', ['index', '前端技术', '后端技术', '架构优化', '工具集']),
+  '/classics/': getMarkdownFiles(path.join(__dirname, './classics'), '', ['山', '医', '命', '相', '卜', '灵宠', '相关经典']),
 };
 
 // 导出 sidebar
