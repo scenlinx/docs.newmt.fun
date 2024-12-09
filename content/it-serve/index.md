@@ -3,7 +3,73 @@ author: ''
 date: '2024-10-01'
 title: Markdown 入门使用
 ---
-# Markdown 入门使用
+
+<Box
+  :items="[
+    //iconify图标
+    { name: 'iconify', link: '#', icon: 'line-md:iconify1', color: '#1769AA' },
+    //图片
+    {
+      name: '支付宝',
+      link: 'https://i.theojs.cn/docs/202405201752089.jpg',
+      image: 'https://i.theojs.cn/logo/alipay.svg'
+    },
+    //深浅模式的图片
+    {
+      name: 'GitHub',
+      link: '#',
+      image: { light: 'https://i.theojs.cn/logo/github.svg', dark: 'https://i.theojs.cn/logo/github-dark.svg' }
+    },
+    //标签
+    { name: 'Vue', link: '#', icon: 'vscode-icons:file-type-vue', tag: 'vuejs' }
+  ]"
+/>
+
+---
+
+<Links
+  :items="[
+    //iconify图标
+    { name: 'iconify', link: '#', icon: 'line-md:iconify1', color: '#1769AA' },
+    //图片
+    {
+      name: '支付宝',
+      link: 'https://i.theojs.cn/docs/202405201752089.jpg',
+      image: 'https://i.theojs.cn/logo/alipay.svg'
+    },
+    //深浅模式的图片
+    {
+      name: 'GitHub',
+      link: '#',
+      image: { light: 'https://i.theojs.cn/logo/github.svg', dark: 'https://i.theojs.cn/logo/github-dark.svg' }
+    },
+    // 不使用图标 + 描述
+    { name: 'Google', link: 'https://www.google.com', desc: '全球最大的搜索引擎' }
+  ]"
+/>
+
+---
+
+<BoxCube
+  :items="[
+    //iconify图标
+    { name: 'iconify', link: '#', icon: 'line-md:iconify1', color: '#1769AA' },
+    //图片
+    {
+      name: '支付宝',
+      link: 'https://i.theojs.cn/docs/202405201752089.jpg',
+      image: 'https://i.theojs.cn/logo/alipay.svg'
+    },
+    //深浅模式的图片
+    {
+      name: 'GitHub',
+      link: '#',
+      image: { light: 'https://i.theojs.cn/logo/github.svg', dark: 'https://i.theojs.cn/logo/github-dark.svg' }
+    },
+    //描述
+    { name: 'Vue.js', link: '#', icon: 'devicon:vuejs', desc: 'v3.4.31' }
+  ]"
+/>
 
 ## 待办列表
 
@@ -11,25 +77,20 @@ title: Markdown 入门使用
 - [ ] 事项 2
 - [x] 事项 3
 
-### 字体
+## 字体
 
 **输入**
 
 ```
 _斜体文本_
-
 **粗体文本**
-
 **_粗斜体文本_**
-
 ```
 
 **输出**
 
 _斜体文本_  
-
 **粗体文本**  
-
 **_粗斜体文本_**
 
 ## 删除线
@@ -126,6 +187,54 @@ _斜体文本_
   allowfullscreen="true"
 ></iframe>
 
+### 或者使用组件
+
+**输入**
+
+```vue
+YouTube 视频
+<Vid id="dQw4w9WgXcQ" />
+<!-- 或者 -->
+<Vid to="youtube" id="dQw4w9WgXcQ" />
+
+Bilibili 视频
+<Vid to="bilibili" id="1205847484" />
+
+腾讯视频
+<Vid to="tencent" id="y0035f2sc4s" />
+
+优酷视频
+<Vid to="youku" id="XNTE5NTc3NjIwMA==" />
+
+vimeo 视频
+<Vid to="vimeo" id="76979871" />
+
+西瓜视频
+<Vid to="xigua" id="7421926380926927399" />
+```
+
+**输出**
+
+YouTube 视频
+<Vid id="dQw4w9WgXcQ" />
+
+<!-- 或者 -->
+<Vid to="youtube" id="dQw4w9WgXcQ" />
+
+Bilibili 视频
+<Vid to="bilibili" id="1205847484" />
+
+腾讯视频
+<Vid to="tencent" id="y0035f2sc4s" />
+
+优酷视频
+<Vid to="youku" id="XNTE5NTc3NjIwMA==" />
+
+vimeo 视频
+<Vid to="vimeo" id="76979871" />
+
+西瓜视频
+<Vid to="xigua" id="7421926380926927399" />
 
 ## 音乐
 
@@ -153,7 +262,7 @@ _斜体文本_
   marginheight="0"
   width="330"
   height="86"
-  src="//music.qq.com/outchain/player?type=2&id=393697&auto=1&height=66"
+  src="//music.163.com/outchain/player?type=2&id=393697&auto=1&height=66"
 >
 </iframe>
 
@@ -612,6 +721,15 @@ export default config
 
 :::
 
+## 导入代码片段
+
+**输入**
+
+```md
+<<< @/code/cs.ts
+<<< @/code/cs.ts{2}
+```
+
 ## 徽章
 
 **输入**
@@ -653,10 +771,8 @@ const members = [
     avatar: '/index/home.png',
     name: 'scenlinx',
     title: 'Author',
-    links: [
-      { icon: 'github', link: 'https://github.com/scenlinx' },
-    ]
-  },
+    links: [{ icon: 'github', link: 'https://github.com/scenlinx' }]
+  }
 ]
 </script>
 
@@ -681,3 +797,45 @@ const members = [
 </script>
 
 <VPTeamMembers size="small" :members="members" />
+
+## 图片浅色与深色模式
+
+**输入**
+
+```md
+<!-- 浅色模式 -->
+
+![浅色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-w7jYJD-PBaozaH5WdubTPnBdi-XcQ4N96w&usqp=CAU){.light-only}
+
+<!-- 深色模式 -->
+
+![深色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCHxR2C_q8ugOMQzSmMovD3ni-z1QqTopSjg&usqp=CAU){.dark-only}
+```
+
+```md
+<!-- 深色模式 -->
+
+![深色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCHxR2C_q8ugOMQzSmMovD3ni-z1QqTopSjg&usqp=CAU#dark)
+
+<!-- 浅色模式 -->
+
+![浅色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-w7jYJD-PBaozaH5WdubTPnBdi-XcQ4N96w&usqp=CAU#light)
+```
+
+**输出**
+
+<!-- 浅色模式 -->
+
+![浅色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-w7jYJD-PBaozaH5WdubTPnBdi-XcQ4N96w&usqp=CAU){.light-only}
+
+<!-- 深色模式 -->
+
+![深色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCHxR2C_q8ugOMQzSmMovD3ni-z1QqTopSjg&usqp=CAU){.dark-only}
+
+<!-- 深色模式 -->
+
+![深色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCHxR2C_q8ugOMQzSmMovD3ni-z1QqTopSjg&usqp=CAU#dark)
+
+<!-- 浅色模式 -->
+
+![浅色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-w7jYJD-PBaozaH5WdubTPnBdi-XcQ4N96w&usqp=CAU#light)
