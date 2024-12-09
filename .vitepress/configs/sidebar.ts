@@ -15,36 +15,48 @@ async function getItems(path: string, order: string[]): Promise<DefaultTheme.Sid
   const groupCollapsedSize = 2;
   const titleCollapsedSize = 20;
 
+  // 获取所有目录并排序
   const directories = await fg(`content/${path}/*`, { onlyDirectories: true, objectMode: true });
-  
   directories.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
 
+  // 并行处理目录中的所有文章
   for (const { name: groupName } of directories) {
-    let items: DefaultTheme.SidebarItem[] = [];
+    const items: DefaultTheme.SidebarItem[] = [];
     const articles = await fg(`content/${path}/${groupName}/*`, { onlyFiles: true, objectMode: true });
-    
-    articles.sort((a, b) => {
-      const aFile = matter.read(a.path);
-      const bFile = matter.read(b.path);
-      const aDate = new Date(aFile.data.date);
-      const bDate = new Date(bFile.data.date);
+
+    // 并行读取文件的元数据，优化性能
+    const articleFiles = await Promise.all(articles.map(async (article) => {
+      try {
+        const articleFile = matter.read(article.path);
+        return { article, data: articleFile.data };
+      } catch (error) {
+        console.error(`Error reading file ${article.path}: ${error.message}`);
+        return null;  // 处理错误，跳过这个文件
+      }
+    }));
+
+    // 过滤掉错误的文件
+    const validArticles = articleFiles.filter((file) => file !== null);
+
+    // 按日期排序
+    validArticles.sort((a, b) => {
+      const aDate = new Date(a.data.date);
+      const bDate = new Date(b.data.date);
       return bDate.getTime() - aDate.getTime(); // 最近的日期排在最前面
     });
 
-    for (const article of articles) {
-      const articleFile = matter.read(article.path);
-      const { data } = articleFile;
-
+    // 生成侧边栏项
+    validArticles.forEach(({ article, data }) => {
       items.push({
         text: data.title,
         link: `/${path}/${groupName}/${article.name.replace('.md', '')}`,
       });
       total += 1;
-    }
+    });
 
     groups.push({
       text: `${groupName.substring(groupName.indexOf('-') + 1)}`,
-      items: items,
+      items,
       collapsed: items.length < groupCollapsedSize || total > titleCollapsedSize,
     });
   }
