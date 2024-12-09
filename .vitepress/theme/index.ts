@@ -22,13 +22,10 @@ export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
-      'layout-bottom': () => h('div', [
-        h(HomeFooter, { Footer_Data }),  // HomeFooter
-        h(backtotop)                     // 返回顶部
-      ]),
+      'layout-bottom': () => h(HomeFooter, { Footer_Data }),
       'doc-after': () => h(Twikoo, { Twikoo_Data }),
     })
-  },  
+  },
   enhanceApp: ({ app }) => {
     app.component('Home', HomeUnderline)
     app.component('Box', DocBox)
