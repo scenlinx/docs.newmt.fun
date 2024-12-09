@@ -5,6 +5,6 @@ export const socialLinks: DefaultTheme.SocialLink[] = [
   {
     icon: 'qq',
     link: 'https://github.com/scenlinx',
-    ariaLabel: 'Github'
+    ariaLabel: 'QQ'
   },
 ]
