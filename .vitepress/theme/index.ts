@@ -10,8 +10,7 @@ import {
   DocVideoLink,
   HomeUnderline,
   HomeFooter,
-  Twikoo,
-  backtotop
+  Twikoo
 } from './types/index.js'
 import { Footer_Data, Twikoo_Data } from '../data'
 import './styles/all.css'
@@ -32,7 +31,6 @@ export default {
     app.component('Links', DocLinks)
     app.component('BoxCube', DocBoxCube)
     app.component('Vid', DocVideoLink)
-    app.component('backtotop', backtotop)
   },
   setup() {
     const route = useRoute()
