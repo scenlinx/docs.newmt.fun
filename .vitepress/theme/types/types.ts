@@ -53,40 +53,6 @@ export interface BoxCubeItem {
 }
 
 /**
- * DocAsideLogo 接口
- */
-export interface AsideItem {
-  /** 链接地址。 */
-  link: string
-  /** 图标地址。 */
-  icon: string
-  /** 名称。 */
-  name?: string
-  /** 活动名称。 */
-  activity?: string
-  /** 隐藏信息 1。 */
-  hide1?: string
-  /** 信息 1。 */
-  info1?: string
-  /** 隐藏信息 2。 */
-  hide2?: string
-  /** 信息 2。 */
-  info2?: string
-}
-
-/**
- * Announcement 接口
- */
-export interface Prelink {
-  /** 链接的 URL。 */
-  link: string
-  /** 链接的目标。 */
-  target?: string
-  /** 链接的标题。 */
-  title: string
-}
-
-/**
  * Twikoo 配置数据类型接口。
  */
 export interface TwikooData {
