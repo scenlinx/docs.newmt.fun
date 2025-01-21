@@ -53,14 +53,6 @@ export interface BoxCubeItem {
 }
 
 /**
- * Twikoo 配置数据类型接口。
- */
-export interface TwikooData {
-  /** Twikoo 的环境 ID。 */
-  envId: string
-}
-
-/**
  * HomeFooter 接口
  */
 export interface FooterData {
