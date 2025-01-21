@@ -22,7 +22,6 @@ export default {
     return h(DefaultTheme.Layout, null, {
       'layout-bottom': () => h(HomeFooter, { Footer_Data }),
       'doc-after': () => h('div', [
-        h(Twikoo, { Twikoo_Data }),  // Twikoo 插槽
         h(backtotop)  // 返回顶部按钮插槽
       ])
     })
