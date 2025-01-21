@@ -60,21 +60,11 @@ export default defineConfig({
   },
 
   themeConfig: {
-    // logo
-    logo: { src: '/logo/avatar.png', width: 24, height: 24 },
-
     // 社交链接
     socialLinks,
 
     // false去除网站标题 只显示logo
     // siteTitle: false,
-
-    // GitHub编辑页面
-    editLink: {
-      pattern:
-        'https://github.com/scenlinx',
-      text: '为此页提供修改建议'
-    },
 
     // 目录设置
     outline: 'deep', // 索引级别
