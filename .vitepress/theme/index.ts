@@ -4,10 +4,6 @@ import { h } from 'vue'
 
 import imageViewer from 'vitepress-plugin-image-viewer'
 import {
-  DocBox,
-  DocLinks,
-  DocBoxCube,
-  DocVideoLink,
   HomeFooter,
   backtotop
 } from './types/index.js'
@@ -27,10 +23,6 @@ export default {
     })
   },
   enhanceApp: ({ app }) => {
-    app.component('Box', DocBox)
-    app.component('Links', DocLinks)
-    app.component('BoxCube', DocBoxCube)
-    app.component('Vid', DocVideoLink)
     app.component('BackTop', backtotop)  // 注册 backtotop 组件
   },
   setup() {
