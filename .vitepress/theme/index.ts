@@ -12,7 +12,6 @@ import {
   backtotop
 } from './types/index.js'
 import { Footer_Data } from '../data'
-import './styles/all.css'
 import 'viewerjs/dist/viewer.min.css'
 import 'virtual:group-icons.css'
 
