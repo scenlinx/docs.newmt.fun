@@ -8,9 +8,6 @@ hero:
   name: 百万知识库
   text: 知识 & 技能 & 财富
   tagline: 探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料
-  image:
-    src: logo/home.png
-    alt: home
 
   actions:
     - theme: brand
