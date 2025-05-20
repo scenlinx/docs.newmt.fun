@@ -24,23 +24,13 @@ async function getItems(path: string, order: string[]): Promise<DefaultTheme.Sid
     const items: DefaultTheme.SidebarItem[] = [];
     const articles = await fg(`content/${path}/${groupName}/*`, { onlyFiles: true, objectMode: true });
 
-    const articleFiles = await Promise.all(articles.map(async (article) => {
-      const articleFile = matter.read(article.path);
-      return { article, data: articleFile.data };
-    }));
-
-    articleFiles.sort((a, b) => {
-      const aDate = new Date(a.data.date);
-      const bDate = new Date(b.data.date);
-      return bDate.getTime() - aDate.getTime(); // 排序：最近的文章排在最前
-    });
-
-    articleFiles.forEach(({ article, data }) => {
+    for (const article of articles) {
+      const { data } = matter.read(article.path);
       items.push({
         text: data.title,
         link: `/${path}/${groupName}/${article.name.replace('.md', '')}`,
       });
-    });
+    }
 
     groups.push({
       text: `${groupName.substring(groupName.indexOf('-') + 1)}`,
