@@ -86,15 +86,15 @@ features:
 
 
   - icon:
-      src: logo/svg/focus.svg
+      src: /logo/svg/focus.svg
     title: 保持专注
     details: “简单比复杂更难，你必须努力让你的想法变得清晰明了，让它变得简单。一旦你做到了简单，你就能搬动大山。” -- 乔布斯
   - icon:
-      src: logo/svg/insight.svg
+      src: /logo/svg/insight.svg
     title: 善于洞察
     details: “我既没有突出的理解力，也没有过人的机智。只在觉察那些稍纵即逝的事物并对其进行精细观察的能力上，我可能在普通人之上。” -- 达尔文
   - icon:
-      src: logo/svg/learning.svg
+      src: /logo/svg/learning.svg
     title: 持续学习
     details: “学习是我们能够掌控的少数事情之一，它能赋予我们力量，让我们在人生的道路上不断前行。” -- 沃伦・巴菲特
 
