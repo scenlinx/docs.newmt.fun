@@ -1,167 +1,171 @@
 <script setup lang="ts">
-import { FooterData, Icon } from '../types'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 
-// 使用 defineProps 定义属性
-const props = defineProps<{ Footer_Data: FooterData }>()
-const footer = props.Footer_Data
+/**
+ * 组件的 props 类型定义。
+ *
+ * @typedef {Object} Props
+ * @property {Object} Footer_Data - 页脚数据。
+ * @property {Object} [beian] - 备案信息（可选）。
+ * @property {string} [beian.icp] - ICP 备案号。
+ * @property {string} [beian.police] - 公安备案号。
+ * @property {Object} [author] - 作者信息（可选）。
+ * @property {string} [author.name] - 作者姓名。
+ * @property {string} [author.time] - 发布时间。
+ * @property {string} [author.link] - 作者链接。
+ */
+const props = defineProps<{
+  Footer_Data: {
+    beian?: {
+      icp?: string
+      police?: string
+    }
+    author?: {
+      name?: string
+      time?: string
+      link?: string
+    }
+  }
+}>()
+
+/**
+ * 当前打开的 section 索引，`null` 表示没有 section 被打开。
+ *
+ * @type {Ref<number | null>}
+ */
+const openSectionIndex = ref<number | null>(null)
+
+/**
+ * 当前窗口宽度。
+ *
+ * @type {Ref<number | null>}
+ */
+const windowWidth = ref<number | null>(null)
+
+/**
+ * 切换 section 的显示状态。
+ *
+ * @param {number} index - 要切换的 section 的索引。
+ */
+const toggleSection = (index: number) => {
+  openSectionIndex.value = openSectionIndex.value === index ? null : index
+}
+
+/**
+ * 更新当前窗口宽度。
+ */
+const updateWindowWidth = () => {
+  windowWidth.value = window.innerWidth
+}
+
+// 组件挂载时添加 resize 事件监听器
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    windowWidth.value = window.innerWidth
+    window.addEventListener('resize', updateWindowWidth)
+  }
+})
+
+// 组件卸载时移除 resize 事件监听器
+onUnmounted(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('resize', updateWindowWidth)
+  }
+})
+
+/**
+ * 计算当前窗口是否为大屏幕，宽度大于 768px 时为大屏幕。
+ *
+ * @type {ComputedRef<boolean>}
+ */
+const isLargeScreen = computed(() => windowWidth.value > 768)
 </script>
 
 <template>
-  <footer class="footer">
-    <div class="list-container" v-if="footer.group">
-      <div class="list-item" v-for="(section, index) in footer.group || []" :key="section.title + index">
-        <div class="list-title">
-          <template v-if="section.icon">
-            <Icon :icon="section.icon" class="iconify" :style="{ color: section.style }" />&nbsp;&nbsp;</template
-          >{{ section.title }}
-        </div>
-        <ul class="list-links">
-          <li v-for="(link, idx) in section.links" :key="link.name + idx">
-            <template v-if="link.icon"> <Icon :icon="link.icon" :style="{ color: link.style }" />&nbsp; </template>
-            <a
-              :name="link.name"
-              :title="link.name"
-              :href="link.href"
-              rel="noopener"
-              :target="link.target || section.target || '_blank'"
-            >
-              {{ link.name }}
-              <Icon
-                v-if="(link.target || section.target || '_blank') === '_blank'"
-                icon="heroicons-outline:arrow-sm-up"
-                style="color: var(--vp-c-text-3); transform: rotate(45deg); font-size: 1em"
-              />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <footer class="ba">
 
-    <div class="footer-info">
-      <div v-if="footer.beian?.icp || footer.beian?.police" class="info-item">
-        <span v-if="footer.beian?.icp">
-          <Icon
-            v-if="footer.beian?.showIcon"
-            :icon="footer.beian.icpIcon || 'fluent:globe-shield-48-filled'"
-            class="info-icon"
-          />&nbsp;
-          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" title="ICP备案">
-            {{ footer.beian.icp }}
-          </a>
-        </span>
-        <span class="info-spacing"></span>
-        <span v-if="footer.beian?.police">
-          <Icon
-            v-if="footer.beian?.showIcon"
-            :icon="footer.beian.policeIcon || 'fluent:shield-checkmark-48-filled'"
-            class="info-icon"
-          />&nbsp;
-          <a target="_blank" rel="noopener" href="https://beian.mps.gov.cn/" title="公安备案">
-            {{ footer.beian.police }}
-          </a>
-        </span>
-      </div>
-      <span class="info-spacing-copyright"></span>
-      <div v-if="footer.author?.name" class="info-item">
-        <span>
-          <Icon icon="ri:copyright-line" class="info-icon" style="font-size: 1em" />&nbsp;{{
-            new Date().getFullYear()
-          }}
-          <a target="_blank" rel="noopener" title="GitHub" :href="footer.author?.link">{{ footer.author?.name }}</a
-          >.&nbsp;All Rights Reserved.
-        </span>
-      </div>
+    <!-- 底部信息栏 -->
+    <div
+      class="flex"
+      v-if="props.Footer_Data.beian?.icp || props.Footer_Data.beian?.police"
+    >
+      <span v-if="props.Footer_Data.beian?.icp">
+        <i class="fas fa-earth-americas"></i>
+        <a
+          target="_blank"
+          rel="noopener"
+          href="https://beian.miit.gov.cn/"
+          title="ICP备案"
+        >
+          {{ props.Footer_Data.beian.icp }}
+        </a>
+      </span>
+      <span v-if="props.Footer_Data.beian?.police">
+        <i class="fas fa-shield"></i>
+        <a
+          target="_blank"
+          rel="noopener"
+          href="https://beian.mps.gov.cn/"
+          title="公安备案"
+        >
+          {{ props.Footer_Data.beian.police }}
+        </a>
+      </span>
+    </div>
+    <div class="flex" v-if="props.Footer_Data.author?.name">
+      <span>
+        Copyright © 
+        {{ props.Footer_Data.author?.time }} -
+        {{ new Date().getFullYear() }}
+        <a
+          target="_blank"
+          rel="noopener"
+          title="GitHub"
+          :href="props.Footer_Data.author?.link"
+          >{{ props.Footer_Data.author?.name }}</a
+        >
+        . All Rights Reserved
+      </span>
     </div>
   </footer>
 </template>
 
-<style scoped>
-.footer {
-  background: var(--vp-c-bg-alt);
-  font-size: 0.75rem;
+<style lang="scss" scoped>
+footer {
   width: 100%;
+
+  a {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    &:hover {
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted;
+      color: var(--vp-c-brand-1);
+    }
+  }
+
+  .has-sidebar ~ & {
+    display: none;
+  }
 }
 
-.footer a {
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+span {
+  margin-left: 1rem;
 }
 
-.footer a:hover {
-  -webkit-text-decoration: underline solid;
-  text-decoration: underline solid;
-  text-underline-offset: 4px;
-  color: var(--vp-c-brand-1);
+i {
+  margin: 0 0.25rem;
 }
 
-.has-sidebar ~ .footer {
-  display: none;
-}
-
-.list-container {
-  margin: 1.25rem 10% 1.25rem 18%;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.list-item {
-  flex-grow: 0.15;
-}
-
-.list-title {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.list-links {
-  margin: 0 0.5rem;
-  line-height: 1.7rem;
-  opacity: 0.9;
-}
-
-.iconify {
-  position: relative;
-  display: inline-block;
-  margin: 0 0 -0.125rem -0.125rem;
-  font-size: 1.2em;
-}
-
-.footer-info {
+.ba {
+  background: var(--vp-c-bg-alt);
+  font-size: 0.8rem;
   text-align: center;
-  margin: 1.25rem 0 1.25rem 0;
+  margin: 0 auto;
 }
 
-.info-item {
+.flex {
   display: inline-block;
+  margin: 1.25rem 0;
 }
 
-.info-spacing {
-  margin-left: 1rem;
-}
-
-.info-spacing-copyright {
-  margin-left: 1rem;
-}
-
-.info-icon {
-  position: relative;
-  display: inline-block;
-  margin: -0.2em 0em;
-  font-size: 1.2em;
-}
-
-@media (max-width: 768px) {
-  .list-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .list-title {
-    font-size: 0.875rem;
-  }
-
-  .info-spacing-copyright {
-    margin-left: -1rem;
-  }
-}
 </style>

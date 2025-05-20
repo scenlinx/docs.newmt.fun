@@ -1,16 +1,28 @@
 {
   "version": 2,
-  "buildCommand": "pnpm build",
-  "outputDirectory": ".vitepress/dist",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": ".vitepress/dist",
+        "buildCommand": "pnpm build"
+      }
+    }
+  ],
   "routes": [
     {
       "src": "/assets/(.*)",
       "headers": {
         "Cache-Control": "max-age=31536000, immutable"
       }
+    },
+    {
+      "src": "^/doc.newmt.fun/(.*)",
+      "status": 301,
+      "headers": {
+        "Location": "https://docs.newmt.fun/$1"
+      }
     }
-  ],
-  "env": {
-    "NODE_VERSION": "22"
-  }
+  ]
 }

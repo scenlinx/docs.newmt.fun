@@ -1,27 +1,52 @@
 ---
 author: ''
 date: '2024-10-01'
+head:
+- - meta
+  - content: Markdown 入门使用
+    name: description
 title: Markdown 入门使用
+---
+
+<BoxCube
+  :items="[
+    //使用自定义图标+副标题
+    {
+      name: 'Node.js',
+      link: '',
+      icon: 'https://i.theojs.cn/logo/nodejs.svg',
+      desc: 'v20.15.0'
+    },
+    //使用自定义图标+深浅模式+副标题
+    {
+      name: 'Github',
+      link: '',
+      light: 'https://i.theojs.cn/logo/github.svg',
+      dark: 'https://i.theojs.cn/logo/github-dark.svg',
+      desc: 'v20.15.0'
+    }
+  ]"
+/>
+
 ---
 
 <Box
   :items="[
-    //iconify图标
-    { name: 'iconify', link: '#', icon: 'line-md:iconify1', color: '#1769AA' },
-    //图片
-    {
-      name: '支付宝',
-      link: 'https://i.theojs.cn/docs/202405201752089.jpg',
-      image: 'https://i.theojs.cn/logo/alipay.svg'
-    },
-    //深浅模式的图片
+    //使用自定义图标 + 标签
     {
       name: 'GitHub',
-      link: '#',
-      image: { light: 'https://i.theojs.cn/logo/github.svg', dark: 'https://i.theojs.cn/logo/github-dark.svg' }
+      link: '',
+      icon: 'https://i.theojs.cn/logo/github.svg',
+      tag: 'Github'
     },
-    //标签
-    { name: 'Vue', link: '#', icon: 'vscode-icons:file-type-vue', tag: 'vuejs' }
+    //使用自定义图标 + 深浅模式 + 标签
+    {
+      name: 'GitHub',
+      link: '',
+      light: 'https://i.theojs.cn/logo/github.svg',
+      dark: 'https://i.theojs.cn/logo/github-dark.svg',
+      tag: 'Github'
+    }
   ]"
 />
 
@@ -29,45 +54,24 @@ title: Markdown 入门使用
 
 <Links
   :items="[
-    //iconify图标
-    { name: 'iconify', link: '#', icon: 'line-md:iconify1', color: '#1769AA' },
-    //图片
+    {
+      name: '微信支付',
+      link: 'https://pay.weixin.qq.com',
+      icon: 'fab fa-weixin',
+      color: '#2ca83c'
+    },
     {
       name: '支付宝',
-      link: 'https://i.theojs.cn/docs/202405201752089.jpg',
-      image: 'https://i.theojs.cn/logo/alipay.svg'
+      link: 'https://www.alipay.com',
+      icon: 'https://i.theojs.cn/logo/github.svg'
     },
-    //深浅模式的图片
-    {
-      name: 'GitHub',
-      link: '#',
-      image: { light: 'https://i.theojs.cn/logo/github.svg', dark: 'https://i.theojs.cn/logo/github-dark.svg' }
-    },
-    // 不使用图标 + 描述
-    { name: 'Google', link: 'https://www.google.com', desc: '全球最大的搜索引擎' }
-  ]"
-/>
-
----
-
-<BoxCube
-  :items="[
-    //iconify图标
-    { name: 'iconify', link: '#', icon: 'line-md:iconify1', color: '#1769AA' },
-    //图片
     {
       name: '支付宝',
-      link: 'https://i.theojs.cn/docs/202405201752089.jpg',
-      image: 'https://i.theojs.cn/logo/alipay.svg'
+      link: 'https://www.alipay.com',
+      light: 'https://i.theojs.cn/logo/github.svg',
+      dark: 'https://i.theojs.cn/logo/github-dark.svg'
     },
-    //深浅模式的图片
-    {
-      name: 'GitHub',
-      link: '#',
-      image: { light: 'https://i.theojs.cn/logo/github.svg', dark: 'https://i.theojs.cn/logo/github-dark.svg' }
-    },
-    //描述
-    { name: 'Vue.js', link: '#', icon: 'devicon:vuejs', desc: 'v3.4.31' }
+    { name: '支付宝', link: 'https://www.alipay.com' }
   ]"
 />
 
@@ -83,14 +87,19 @@ title: Markdown 入门使用
 
 ```
 _斜体文本_
+
 **粗体文本**
+
 **_粗斜体文本_**
+
 ```
 
 **输出**
 
 _斜体文本_  
+
 **粗体文本**  
+
 **_粗斜体文本_**
 
 ## 删除线
@@ -192,49 +201,18 @@ _斜体文本_
 **输入**
 
 ```vue
-YouTube 视频
-<Vid id="dQw4w9WgXcQ" />
-<!-- 或者 -->
-<Vid to="youtube" id="dQw4w9WgXcQ" />
-
-Bilibili 视频
-<Vid to="bilibili" id="1205847484" />
-
-腾讯视频
-<Vid to="tencent" id="y0035f2sc4s" />
-
-优酷视频
-<Vid to="youku" id="XNTE5NTc3NjIwMA==" />
-
-vimeo 视频
-<Vid to="vimeo" id="76979871" />
-
-西瓜视频
-<Vid to="xigua" id="7421926380926927399" />
+<VideoLink
+  href="//player.bilibili.com/player.html?isOutside=true&aid=1205847484&bvid=BV1if421Q7mL&cid=1584505931&p=1"
+  name="【MV】HELP!! - 可波·卡娜埃露"
+/>
 ```
 
 **输出**
 
-YouTube 视频
-<Vid id="dQw4w9WgXcQ" />
-
-<!-- 或者 -->
-<Vid to="youtube" id="dQw4w9WgXcQ" />
-
-Bilibili 视频
-<Vid to="bilibili" id="1205847484" />
-
-腾讯视频
-<Vid to="tencent" id="y0035f2sc4s" />
-
-优酷视频
-<Vid to="youku" id="XNTE5NTc3NjIwMA==" />
-
-vimeo 视频
-<Vid to="vimeo" id="76979871" />
-
-西瓜视频
-<Vid to="xigua" id="7421926380926927399" />
+<VideoLink
+  href="//player.bilibili.com/player.html?isOutside=true&aid=1205847484&bvid=BV1if421Q7mL&cid=1584505931&p=1"
+  name="【MV】HELP!! - 可波·卡娜埃露"
+/>
 
 ## 音乐
 
@@ -726,9 +704,14 @@ export default config
 **输入**
 
 ```md
-<<< @/code/cs.ts
-<<< @/code/cs.ts{2}
+<<< @/public/code/cs.ts
+<<< @/public/code/cs.ts{2}
 ```
+
+**输出**
+
+<<< @/public/code/cs.ts
+<<< @/public/code/cs.ts{2}
 
 ## 徽章
 
@@ -768,10 +751,10 @@ import { VPTeamMembers } from 'vitepress/theme'
 
 const members = [
   {
-    avatar: '/index/home.png',
-    name: 'scenlinx',
+    avatar: '/biglogo.png',
+    name: 'Theo',
     title: 'Author',
-    links: [{ icon: 'github', link: 'https://github.com/scenlinx' }]
+    links: [{ icon: 'github', link: 'https://github.com/Theo-Messi' }]
   }
 ]
 </script>
@@ -797,45 +780,3 @@ const members = [
 </script>
 
 <VPTeamMembers size="small" :members="members" />
-
-## 图片浅色与深色模式
-
-**输入**
-
-```md
-<!-- 浅色模式 -->
-
-![浅色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-w7jYJD-PBaozaH5WdubTPnBdi-XcQ4N96w&usqp=CAU){.light-only}
-
-<!-- 深色模式 -->
-
-![深色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCHxR2C_q8ugOMQzSmMovD3ni-z1QqTopSjg&usqp=CAU){.dark-only}
-```
-
-```md
-<!-- 深色模式 -->
-
-![深色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCHxR2C_q8ugOMQzSmMovD3ni-z1QqTopSjg&usqp=CAU#dark)
-
-<!-- 浅色模式 -->
-
-![浅色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-w7jYJD-PBaozaH5WdubTPnBdi-XcQ4N96w&usqp=CAU#light)
-```
-
-**输出**
-
-<!-- 浅色模式 -->
-
-![浅色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-w7jYJD-PBaozaH5WdubTPnBdi-XcQ4N96w&usqp=CAU){.light-only}
-
-<!-- 深色模式 -->
-
-![深色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCHxR2C_q8ugOMQzSmMovD3ni-z1QqTopSjg&usqp=CAU){.dark-only}
-
-<!-- 深色模式 -->
-
-![深色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCHxR2C_q8ugOMQzSmMovD3ni-z1QqTopSjg&usqp=CAU#dark)
-
-<!-- 浅色模式 -->
-
-![浅色模式](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-w7jYJD-PBaozaH5WdubTPnBdi-XcQ4N96w&usqp=CAU#light)

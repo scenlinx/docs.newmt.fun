@@ -1,25 +1,34 @@
 import type { DefaultTheme } from 'vitepress'
 
 // 导航栏设置
-export const nav: DefaultTheme.NavItem[] = [
+export const nav: DefaultTheme.Config['nav'] = [
   {
-    text: '副业学习',
-    link: '/moneys/',
-    activeMatch: '^/moneys/'
+    text: '首页',
+    link: '/',
+    activeMatch: '^/'
   },
   {
-    text: '资源合集',
-    link: '/sources/',
+    text: '资源分享',
+    link: '/sources/index',
     activeMatch: '^/sources/'
   },
   {
-    text: '四海闲谈',
-    items: [
-      { text: '码农专区', link: '/it-serve/index', activeMatch: '^/it-serve/' },
-      { text: '玄学中医', link: '/classics/index', activeMatch: '^/classics/' },
-    ],
-    activeMatch: '/it-serve/'
+    text: '副业学习',
+    link: '/moneys/副业学习/sim',
+    activeMatch: '^/moneys/'
   },
-  { text: '网盘资源', link: 'https://pan.newmt.fun/' },
-  { text: '导航', link: 'https://nav.newmt.fun/' }
+  {
+    text: '文档记录',
+    link: '/categories/index',
+    activeMatch: '^/categories/'
+  },
+  {
+    text: '杂七杂八',
+    items: [
+      { text: '国学中医', link: '/others/classics/index', activeMatch: '/others/classics/' },
+      { text: '码农服务', link: '/others/it-serve/流媒体观影/Netflix-guide', activeMatch: '/others/it-serve/' },
+    ],
+    activeMatch: '^/others/'
+  },
+  { text: '网盘资源', link: 'https://pan.newmt.fun/' }
 ]

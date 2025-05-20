@@ -2,40 +2,50 @@
 layout: home
 
 title: 百万知识库
-titleTemplate: 探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料
+titleTemplate: 一个分享每日热门网盘资源的中转站
 
 hero:
   name: 百万知识库
-  text: 知识 & 技能 & 财富
-  tagline: 探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料
-
+  text: 知识 & 资源 & 网盘
+  tagline: 分享最新优质资源，包含各类影视资源、课程教程、软件游戏、考公考研、考证考编、幼小初高、学习资源等
+  image:
+    src: /biglogo.png
+    alt: Logo
   actions:
     - theme: brand
+      text: 百万导航
+      link: https://nav.newmt.fun
+    - theme: alt
+      text: 百万教程
+      link: https://www.newmt.fun/
+    - theme: brand
       text: 副业学习
-      link: /moneys/
+      link: /moneys/副业学习/sim
     - theme: alt
       text: 玄学中医
-      link: /classics/
-    - theme: brand
-      text: 百万短剧
-      link: https://juso.newmt.fun
-    - theme: alt
-      text: 网盘资源
-      link: https://pan.newmt.fun/
+      link: /others/classics/
+
 
 features:
-  - icon:
-      src: logo/svg/focus.svg
-    title: 保持专注
-    details: “简单比复杂更难，你必须努力让你的想法变得清晰明了，让它变得简单。一旦你做到了简单，你就能搬动大山。” -- 乔布斯
-  - icon:
-      src: logo/svg/insight.svg
-    title: 善于洞察
-    details: “我既没有突出的理解力，也没有过人的机智。只在觉察那些稍纵即逝的事物并对其进行精细观察的能力上，我可能在普通人之上。” -- 达尔文
-  - icon:
-      src: logo/svg/knowledge.svg
-    title: 乐于分享
-    details: 关于分享，有形的物品越分越少，无形的知识越分越多。在记录与分享的过程中, 梳理所学, 交流所得, 必有所获。
+  - title: '<span style="display: inline-flex; align-items: center;"><img src="img/netflix.svg" style="height:27px; margin-right:0.5rem;"/>流媒体观影</span>'
+    details: Netflix 、Disney+ 、Spotify会员 和 YouTube各平台使用指南
+    link: /others/it-serve/流媒体观影/Netflix-guide
+    linkText: 查看更多
+
+  - title: '<span style="display: inline-flex; align-items: center;"><img src="img/youtube.svg" style="height:27px; margin-right:0.5rem;"/>合租平台</span>'
+    details: 稳定好用的 Netflix 合租平台推荐
+    link: /others/it-serve/账号合租平台/Account-sharing-guide
+    linkText: 查看更多
+
+  - title: '<span style="display: inline-flex; align-items: center;"><img src="img/airplane.svg" style="height:27px; margin-right:0.5rem;"/>优质线路</span>'
+    details: 全专线IPLC，不限速，不限设备数量，超稳晚高峰，流媒体全解锁！全节点解锁chatgpt！
+    link: /others/it-serve/优质机场/qingyunti
+    linkText: 查看更多
+
+  - title: '<span style="display: inline-flex; align-items: center;"><img src="img/filefolder.svg" style="height:27px; margin-right:0.5rem;"/>网盘资源</span>'
+    details: 热门资源/电视剧/电影/综艺/动漫/大陆/日本/韩国/欧美
+    link: https://pan.newmt.fun/
+    linkText: 查看更多
 
 ---
 

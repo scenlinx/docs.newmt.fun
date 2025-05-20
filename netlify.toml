@@ -9,3 +9,9 @@ command = "pnpm build"
 for = "/assets/*"
 [headers.values]
 cache-control = "max-age=31536000, immutable"
+
+[[redirects]]
+from = "https://doc.newmt.fun/*"
+to = "https://docs.newmt.fun/:splat"
+status = 301
+force = true

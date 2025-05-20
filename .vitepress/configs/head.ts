@@ -1,41 +1,51 @@
 import type { HeadConfig } from 'vitepress'
 
+// 导出head配置
 export const head: HeadConfig[] = [
-  // 样式与主题设置
   ['meta', { name: 'theme-color', content: '#ffffff' }],
-  ['meta', { name: 'msapplication-TileColor', content: '#da532c' }],
-  
-  // 网站图标配置
-  ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }],
-
-  // SEO 优化
-  ['meta', { name: 'robots', content: 'index, follow' }],
-  ['meta', { name: 'evisit-after', content: '1 day' }],
-  ['meta', { name: 'author', content: 'scenlinx' }],
-  ['meta', { name: 'copyright', content: 'scenlinx' }],
+  [
+    'link',
+    { rel: 'apple-touch-icon', sizes: '48x48', href: '/apple-touch-icon.png' }
+  ],
+  [
+    'link',
+    { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }
+  ],
+  [
+    'link',
+    { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }
+  ],
+  ['meta', { name: 'author', content: '百万知识库' }],
+  ['meta', { name: 'copyright', content: '百万知识库' }],
   ['meta', { name: 'og:type', content: 'website' }],
   ['meta', { name: 'og:locale', content: 'zh-CN' }],
   ['meta', { name: 'og:site_name', content: '百万知识库' }],
   ['meta', { name: 'og:title', content: '百万知识库' }],
   ['meta', { name: 'og:url', content: 'https://docs.newmt.fun/' }],
-  ['meta', { name: 'og:image', content: 'https://docs.newmt.fun/logo/logo.png' }],
-  ['meta', { name: 'keywords', content: '副业赚钱, 流量卡, 网盘拉新, 网盘资源, 新媒体相关, 网站搭建' }],
+  ['meta', { name: 'og:image', content: 'https://docs.newmt.fun/sidelogo.png' }],
+  ['meta', { name: 'robots', content: 'index, follow' }],
+  ['meta', { name: 'evisit-after', content: '1 day' }],
   [
     'meta',
     {
       name: 'description',
-      content: '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料'
+      content:
+        '分享最新优质资源，包含各类影视资源、课程教程、软件游戏、考公考研、考证考编、幼小初高、学习资源等'
     }
+  ],
+  ['meta', { name: 'format-detection', content: 'telephone=no' }],
+  [
+    'meta',
+    { name: 'google-site-verification', content: '1UZ494BTZTo2f-VijC69XdHQgZ_EIbNDm3WkgRg4uKI' }
   ],
   [
     'meta',
     {
       name: 'og:description',
-      content: '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料'
+      content:
+        '分享最新优质资源，包含各类影视资源、课程教程、软件游戏、考公考研、考证考编、幼小初高、学习资源等'
     }
   ],
-
-  // JSON-LD 结构化数据
   [
     'script',
     {
@@ -45,8 +55,12 @@ export const head: HeadConfig[] = [
         '@type': 'WebSite',
         url: 'https://docs.newmt.fun/',
         name: '百万知识库',
-        description: '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料',
-        author: { '@type': 'Person', name: 'scenlinx' }
+        description:
+          '分享最新优质资源，包含各类影视资源、课程教程、软件游戏、考公考研、考证考编、幼小初高、学习资源等',
+        author: {
+          '@type': 'Person',
+          name: 'scenlinx'
+        }
       })
     }
   ]

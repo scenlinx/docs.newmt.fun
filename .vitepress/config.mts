@@ -10,7 +10,7 @@ export default defineConfig({
   lang: 'zh-CN',
   // 站点介绍
   description:
-    '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料',
+    '分享,最新优质资源,网盘,影视资源,课程教程,软件游戏,考公考研,考证考编,幼小初高,学习资源等',
   // 网站头部
   head,
   //'force-dark'强制开启深色模式 false强制开启浅色模式
@@ -60,6 +60,9 @@ export default defineConfig({
   },
 
   themeConfig: {
+    // logo
+    logo: { src: '/sidelogo.png', width: 24, height: 24 },
+
     // 社交链接
     socialLinks,
 
@@ -112,15 +115,6 @@ export default defineConfig({
     search: {
       provider: 'algolia',
       options: algolia
-    },
-
-    // 404
-    notFound: {
-      title: '找不到页面',
-      quote: '页面不见了，也许它去找寻新的冒险了！',
-      linkLabel: '返回首页重新探索',
-      linkText: '返回首页',
-      code: '404'
     }
   }
 })
