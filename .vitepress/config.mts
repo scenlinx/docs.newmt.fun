@@ -18,7 +18,7 @@ const baseUrl = 'https://ai.wantr.cn'
 // 导出默认配置
 export default defineConfig({
   // 站点名称
-  title: 'DOCS.NEWMT',
+  title: 'DOCS.NewMT',
   // 站点语言
   lang: 'zh-Hans',
   // 站点介绍

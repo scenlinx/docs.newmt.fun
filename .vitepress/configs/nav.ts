@@ -38,7 +38,7 @@ export const nav: DefaultTheme.NavItem[] = [
     link: 'https://pan.newmt.fun/' 
   },
   { 
-    text: '<iconify-icon class="i-mr" icon="heroicons:map-solid" style="color:#28a745"></iconify-icon>导航', 
+    text: '<iconify-icon class="i-mr" icon="heroicons:map-solid" style="color:#28a745"></iconify-icon>百万导航', 
     link: 'https://nav.newmt.fun/' 
   }
 ]
