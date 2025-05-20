@@ -5,6 +5,7 @@ PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 [build]
 publish = ".vitepress/dist"
 command = "pnpm build"
+command = "NODE_OPTIONS=--max_old_space_size=4096 pnpm build"
 
 [[headers]]
 for = "/assets/*"
