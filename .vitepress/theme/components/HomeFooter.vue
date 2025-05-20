@@ -1,171 +1,242 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { FooterData, Icon, isExternal } from '../types'
+import { ref, onMounted } from 'vue'
 
-/**
- * 组件的 props 类型定义。
- *
- * @typedef {Object} Props
- * @property {Object} Footer_Data - 页脚数据。
- * @property {Object} [beian] - 备案信息（可选）。
- * @property {string} [beian.icp] - ICP 备案号。
- * @property {string} [beian.police] - 公安备案号。
- * @property {Object} [author] - 作者信息（可选）。
- * @property {string} [author.name] - 作者姓名。
- * @property {string} [author.time] - 发布时间。
- * @property {string} [author.link] - 作者链接。
- */
-const props = defineProps<{
-  Footer_Data: {
-    beian?: {
-      icp?: string
-      police?: string
-    }
-    author?: {
-      name?: string
-      time?: string
-      link?: string
-    }
-  }
-}>()
+// 使用 defineProps 定义属性
+const props = defineProps<{ Footer_Data: FooterData }>()
+const footer = props.Footer_Data
 
-/**
- * 当前打开的 section 索引，`null` 表示没有 section 被打开。
- *
- * @type {Ref<number | null>}
- */
-const openSectionIndex = ref<number | null>(null)
+// 获取当前年份
+const Year = ref('')
 
-/**
- * 当前窗口宽度。
- *
- * @type {Ref<number | null>}
- */
-const windowWidth = ref<number | null>(null)
-
-/**
- * 切换 section 的显示状态。
- *
- * @param {number} index - 要切换的 section 的索引。
- */
-const toggleSection = (index: number) => {
-  openSectionIndex.value = openSectionIndex.value === index ? null : index
-}
-
-/**
- * 更新当前窗口宽度。
- */
-const updateWindowWidth = () => {
-  windowWidth.value = window.innerWidth
-}
-
-// 组件挂载时添加 resize 事件监听器
 onMounted(() => {
-  if (typeof window !== 'undefined') {
-    windowWidth.value = window.innerWidth
-    window.addEventListener('resize', updateWindowWidth)
-  }
+  Year.value = new Date().getFullYear().toString()
 })
-
-// 组件卸载时移除 resize 事件监听器
-onUnmounted(() => {
-  if (typeof window !== 'undefined') {
-    window.removeEventListener('resize', updateWindowWidth)
-  }
-})
-
-/**
- * 计算当前窗口是否为大屏幕，宽度大于 768px 时为大屏幕。
- *
- * @type {ComputedRef<boolean>}
- */
-const isLargeScreen = computed(() => windowWidth.value > 768)
 </script>
 
 <template>
-  <footer class="ba">
-
-    <!-- 底部信息栏 -->
-    <div
-      class="flex"
-      v-if="props.Footer_Data.beian?.icp || props.Footer_Data.beian?.police"
-    >
-      <span v-if="props.Footer_Data.beian?.icp">
-        <i class="fas fa-earth-americas"></i>
-        <a
-          target="_blank"
-          rel="noopener"
-          href="https://beian.miit.gov.cn/"
-          title="ICP备案"
+  <footer class="footer">
+    <div v-if="footer.group" class="list-container">
+      <div
+        v-for="(section, index) in footer.group || []"
+        :key="section.title + index"
+      >
+        <span class="list-title">
+          <template v-if="section.icon">
+            <Icon
+              class="iconify"
+              :icon="section.icon"
+              :color="section.color"
+              :ssr="true"
+              :inline="true"
+              :aria-label="section.alt"
+              width="14"
+              height="14"
+            />&nbsp;
+          </template>
+          {{ section.title }}
+        </span>
+        <div
+          v-for="(link, idx) in section.links"
+          :key="link.name + idx"
+          class="list-links"
         >
-          {{ props.Footer_Data.beian.icp }}
-        </a>
-      </span>
-      <span v-if="props.Footer_Data.beian?.police">
-        <i class="fas fa-shield"></i>
-        <a
-          target="_blank"
-          rel="noopener"
-          href="https://beian.mps.gov.cn/"
-          title="公安备案"
-        >
-          {{ props.Footer_Data.beian.police }}
-        </a>
-      </span>
+          <template v-if="link.icon">
+            <Icon
+              :icon="link.icon"
+              :color="link.color"
+              :ssr="true"
+              :inline="true"
+              :aria-label="link.alt"
+              width="14"
+              height="14"
+            />&nbsp;</template
+          >
+          <a
+            :name="link.name"
+            :href="link.link"
+            :target="isExternal(link.link) ? '_blank' : '_self'"
+            rel="noreferrer"
+            :aria-describedby="link.name ? link.name : null"
+            >{{ link.name
+            }}<Icon
+              v-if="isExternal(link.link)"
+              class="external-link-icon"
+              icon="basil:arrow-up-outline"
+              :ssr="true"
+              :inline="true"
+              aria-label="External Link Icon"
+              width="14"
+              height="14"
+            />
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="flex" v-if="props.Footer_Data.author?.name">
-      <span>
-        Copyright © 
-        {{ props.Footer_Data.author?.time }} -
-        {{ new Date().getFullYear() }}
-        <a
-          target="_blank"
-          rel="noopener"
-          title="GitHub"
-          :href="props.Footer_Data.author?.link"
-          >{{ props.Footer_Data.author?.name }}</a
-        >
-        . All Rights Reserved
+
+    <div class="footer-info">
+      <span v-if="footer.beian?.icp || footer.beian?.police" class="info-item">
+        <p v-if="footer.beian?.icp" class="footer-infotext">
+          <Icon
+            v-if="footer.beian?.showIcon"
+            class="info-icon"
+            :aria-label="footer.beian.icpalt"
+            :icon="footer.beian.icpIcon || 'fluent:globe-shield-48-filled'"
+            :ssr="true"
+            :inline="true"
+            width="12"
+            height="12"
+          />&nbsp;<a
+            href="https://beian.miit.gov.cn/"
+            title="ICP备案"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {{ footer.beian.icp }}
+          </a>
+        </p>
+        <span class="info-spacing"></span>
+        <p v-if="footer.beian?.police" class="footer-infotext">
+          <Icon
+            v-if="footer.beian?.showIcon"
+            class="info-icon"
+            :aria-label="footer.beian.policealt"
+            :icon="
+              footer.beian.policeIcon || 'fluent:shield-checkmark-48-filled'
+            "
+            :ssr="true"
+            :inline="true"
+            width="12"
+            height="12"
+          />&nbsp;<a
+            href="https://beian.mps.gov.cn/"
+            title="公安备案"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {{ footer.beian.police }}
+          </a>
+        </p>
+      </span>
+
+      <span class="info-spacing-copyright"></span>
+
+      <span v-if="footer.author?.name" class="info-item">
+        <p class="footer-infotext">
+          <Icon
+            class="info-icon"
+            :aria-label="footer.author.alt"
+            icon="ri:copyright-line"
+            :ssr="true"
+            :inline="true"
+            width="12"
+            height="12"
+          />&nbsp;{{ Year }}
+          <a
+            title="GitHub"
+            target="_blank"
+            rel="noreferrer"
+            :href="footer.author?.link"
+            itemprop="author"
+            >{{ footer.author?.name }}</a
+          >.&nbsp;All Rights Reserved.
+        </p>
       </span>
     </div>
   </footer>
 </template>
 
-<style lang="scss" scoped>
-footer {
+<style scoped>
+.footer {
+  background: var(--HomeFooter-bg);
   width: 100%;
-
-  a {
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    &:hover {
-      -webkit-text-decoration: underline dotted;
-      text-decoration: underline dotted;
-      color: var(--vp-c-brand-1);
-    }
-  }
-
-  .has-sidebar ~ & {
-    display: none;
-  }
 }
 
-span {
-  margin-left: 1rem;
+.footer a {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-i {
-  margin: 0 0.25rem;
+.footer a:hover {
+  color: var(--HomeFooter-link-hover);
+  -webkit-text-decoration: underline solid;
+  text-decoration: underline solid;
+  text-underline-offset: 4px;
 }
 
-.ba {
-  background: var(--vp-c-bg-alt);
-  font-size: 0.8rem;
-  text-align: center;
-  margin: 0 auto;
+.has-sidebar ~ .footer {
+  display: none;
 }
 
-.flex {
+.list-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1.25em auto;
+  max-width: 75%;
+}
+
+.list-title {
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+}
+
+.list-links {
+  opacity: 0.9;
+  font-size: 0.75em;
+  line-height: 2.4;
+  letter-spacing: 0.025em;
+}
+
+.iconify {
   display: inline-block;
-  margin: 1.25rem 0;
+  flex-shrink: 0;
 }
 
+.footer-info {
+  margin: 0.875em 0;
+  text-align: center;
+}
+
+.footer-infotext {
+  display: inline-block;
+  margin: 0;
+  font-size: 0.75em;
+}
+
+.info-item {
+  display: inline-block;
+  letter-spacing: 0.025em;
+}
+
+.info-spacing,
+.info-spacing-copyright {
+  margin-left: 1em;
+}
+
+.info-icon {
+  display: inline-block;
+}
+
+.external-link-icon {
+  position: absolute;
+  top: 0;
+  flex-shrink: 0;
+  transform: rotate(45deg);
+  color: var(--vp-c-text-3);
+}
+
+@media (max-width: 768px) {
+  .list-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 1.25em;
+    justify-items: center;
+  }
+
+  .info-spacing-copyright {
+    margin-left: -1em;
+  }
+}
 </style>

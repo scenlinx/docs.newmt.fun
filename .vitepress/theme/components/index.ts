@@ -1,6 +1,0 @@
-export { default as DocBox } from './DocBox.vue'
-export { default as DocLinks } from './DocLinks.vue'
-export { default as DocBoxCube } from './DocBoxCube.vue'
-export { default as DocVideoLink } from './DocVideoLink.vue'
-export { default as HomeFooter } from './HomeFooter.vue'
-export { default as Twikoo } from './DocTwikoo.vue'

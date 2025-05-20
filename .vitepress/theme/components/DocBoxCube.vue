@@ -1,69 +1,101 @@
 <script setup lang="ts">
-// 定义项目项类型
-interface Item {
-  icon: string // 图标的 URL 或类名。
-  name: string // 项目的名称。
-  link: string // 项目的链接。
-  desc?: string // 项目的描述（可选）。
-  color?: string // 图标的颜色（可选）。
-  light?: string // 浅色模式下的图标 URL（可选）。
-  dark?: string // 深色模式下的图标 URL（可选）。
-}
+import { BoxCubeItem, Icon, isExternal } from '../types'
 
-// 使用 defineProps 定义属性
-const props = defineProps<{ items: Item[] }>()
-
-/**
- * 判断给定的 URL 是否为图像文件。
- *
- * @param {string} url - 要检查的 URL。
- * @returns {boolean} - 如果 URL 是图像文件，则返回 `true`，否则返回 `false`。
- */
-const isImage = (url: string): boolean => /\.(png|jpe?g|gif|svg|webp|bmp|tif?f|tiff|ico|avif)(\?.*)?$/.test(url)
-
-/**
- * 判断给定的链接是否是外部链接。
- *
- * @param {string} link - 要判断的链接。
- * @returns {boolean} - 如果链接是外部链接，则返回 `true`，否则返回 `false`。
- */
-const isExternalLink = (link: string): boolean => /^https?:\/\//.test(link)
+const props = defineProps<{ items: BoxCubeItem[] }>()
 </script>
 
 <template>
-  <!-- 渲染包含多个链接项的容器 -->
   <div class="container">
-    <!-- 遍历 `props.items` 数组，渲染每个项目 -->
     <a
-      v-for="(item, index) in props.items"
-      :key="item.name + index"
+      v-for="(boxcube, index) in props.items"
+      :key="boxcube.link + index"
       class="link"
-      :href="item.link"
-      :title="item.name"
-      :target="isExternalLink(item.link) ? '_blank' : '_self'"
-      rel="noopener"
+      :href="boxcube.link"
+      :target="isExternal(boxcube.link) ? '_blank' : '_self'"
+      rel="noreferrer"
     >
-      <!-- 如果图标是图片，显示图片 -->
-      <span v-if="isImage(item.icon)">
-        <img :src="item.icon" alt="icon" class="img" />
-      </span>
-      <!-- 如果图标不是图片，显示 Font Awesome 图标 -->
-      <span v-else class="icon">
-        <i :class="item.icon + ' fa-2xl'" :style="{ color: item.color }"></i>
-      </span>
-      <!-- 显示浅色模式下的图标 -->
-      <img v-if="item.light" :src="item.light" alt="icon" class="img light-only" />
-      <!-- 显示深色模式下的图标 -->
-      <img v-if="item.dark" :src="item.dark" alt="icon" class="img dark-only" />
-      <!-- 显示项目名称 -->
-      <span class="name">{{ item.name }}</span>
-      <!-- 显示项目描述 -->
-      <span class="desc">{{ item.desc }}</span>
+      <template v-if="boxcube.icon">
+        <Icon
+          v-if="typeof boxcube.icon === 'object'"
+          class="iconify light-only"
+          :icon="boxcube.icon.light"
+          :color="
+            typeof boxcube.color === 'object'
+              ? boxcube.color.light
+              : boxcube.color
+          "
+          :ssr="true"
+          :inline="true"
+          :aria-label="boxcube.alt"
+          width="38"
+          height="38"
+        />
+        <Icon
+          v-if="typeof boxcube.icon === 'object'"
+          class="iconify dark-only"
+          :icon="boxcube.icon.dark"
+          :color="
+            typeof boxcube.color === 'object'
+              ? boxcube.color.dark
+              : boxcube.color
+          "
+          :ssr="true"
+          :inline="true"
+          :aria-label="boxcube.alt"
+          width="38"
+          height="38"
+        />
+        <Icon
+          v-else
+          class="iconify"
+          :icon="boxcube.icon"
+          :color="typeof boxcube.color === 'string' ? boxcube.color : ''"
+          :ssr="true"
+          :inline="true"
+          :aria-label="boxcube.alt"
+          width="38"
+          height="38"
+        />
+      </template>
+      <template v-else-if="boxcube.image">
+        <img
+          v-if="typeof boxcube.image === 'object'"
+          class="light-only"
+          :src="boxcube.image.light"
+          :alt="boxcube.alt"
+          loading="lazy"
+          decoding="async"
+          width="38"
+          height="38"
+        />
+        <img
+          v-if="typeof boxcube.image === 'object'"
+          class="dark-only"
+          :src="boxcube.image.dark"
+          :alt="boxcube.alt"
+          loading="lazy"
+          decoding="async"
+          width="38"
+          height="38"
+        />
+        <img
+          v-else
+          :src="boxcube.image"
+          :alt="boxcube.alt"
+          loading="lazy"
+          decoding="async"
+          width="38"
+          height="38"
+        />
+      </template>
+      <span class="name">{{ boxcube.name }}</span>
+      <p v-if="boxcube.desc" class="desc">{{ boxcube.desc }}</p>
+      <p v-if="boxcube.tag" class="tag">{{ boxcube.tag }}</p>
     </a>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 /**
  * 处理不同模式下的图标显示：暗色模式下隐藏浅色图标，浅色模式下隐藏暗色图标。
  */
@@ -75,59 +107,118 @@ const isExternalLink = (link: string): boolean => /^https?:\/\//.test(link)
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.5em;
+}
+
+.container > a {
+  flex: 1 1 calc(20% - 0.5em);
+  width: 8em;
+  max-width: calc(20% - 0.5em);
+  height: 8em;
 }
 
 .link {
-  width: 8.2rem;
-  height: 8.2rem;
-  border: 1px solid var(--vp-c-bg-alt);
-  background-color: var(--vp-c-bg-alt);
-  border-radius: 0.8rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid var(--Boxcube-border);
+  border-radius: 0.8em;
+  background-color: var(--Boxcube-bg);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-text-decoration: none !important;
+  text-decoration: none !important;
+}
 
-  &:hover {
-    border-color: var(--vp-c-brand-1);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+.link:hover {
+  transform: var(--Boxcube-transform-hover);
+  box-shadow: var(--Boxcube-boxshadow-hover);
+  border-color: var(--Boxcube-border-hover);
+  background-color: var(--Boxcube-bg-hover);
+}
 
-  @media (max-width: 1024px) {
-    flex: 1 1 calc(25% - 0.5rem);
-    max-width: calc(25% - 0.5rem);
-  }
+.link:active {
+  transform: var(--Boxcube-transform-active);
+}
 
-  @media (max-width: 768px) {
-    flex: 1 1 calc(33.33% - 0.5rem);
-    max-width: calc(33.33% - 0.5rem);
-  }
+.link::after {
+  display: none !important;
+}
 
-  .icon {
-    margin-top: -1rem;
-    font-size: 1.2rem;
-    color: var(--vp-c-text-1);
+@media (max-width: 1024px) {
+  .container > a {
+    flex: 1 1 calc(25% - 0.5em);
+    max-width: calc(25% - 0.5em);
   }
+}
 
-  .img {
-    width: 2.5rem;
-    margin-top: -1rem;
+@media (max-width: 768px) {
+  .container > a {
+    flex: 1 1 calc(33.33% - 0.5em);
+    max-width: calc(33.33% - 0.5em);
   }
+}
 
-  .name {
-    position: absolute;
-    font-size: 0.87rem;
-    bottom: 1.25rem;
+@media (max-width: 480px) {
+  .container > a {
+    flex: 1 1 calc(50% - 0.5em);
+    max-width: calc(50% - 0.5em);
   }
+}
 
-  .desc {
-    position: absolute;
-    font-size: 0.75rem;
-    bottom: 0.15rem;
-    color: var(--vp-c-text-3);
-  }
+.iconify {
+  flex-shrink: 0;
+  color: var(--iconify-defaultcolor);
+}
+
+.name,
+.desc {
+  transform: translateY(0.5em);
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name {
+  color: var(--Boxcube-name);
+  font-weight: 500;
+  font-size: 0.875em;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+
+.desc {
+  margin: 0;
+  color: var(--Boxcube-desc);
+  font-size: 0.75em;
+  line-height: 1.5;
+}
+
+.tag {
+  display: flex;
+  position: absolute;
+  top: 0.5em;
+  right: -3.75em;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(25deg);
+  z-index: 1;
+  margin: 0;
+  border-radius: 0.7em;
+  background-color: var(--Boxcube-tag-bg);
+  padding: 0.25em 0.5em;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--Boxcube-tag);
+  font-weight: 500;
+  font-size: 0.625em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 </style>

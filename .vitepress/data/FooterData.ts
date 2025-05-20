@@ -1,12 +1,13 @@
-export const Footer_Data = {
+import type { FooterData } from '../theme/types/index.js'
+
+export const Footer_Data: FooterData = {
   beian: {
     icp: '',
-    police: ''
+    police: '',
+    showIcon: true
   },
   author: {
     name: 'scenlinx',
-    link: 'https://github.com/scenlinx',
-    time: 2022
-  },
-  group: []
+    link: 'https://github.com/scenlinx'
+  }
 }

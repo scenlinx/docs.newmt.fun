@@ -1,71 +1,92 @@
 <script setup lang="ts">
-// 定义链接项类型
-interface Item {
-  link: string // 链接项的链接地址。
-  icon: string // 链接项的图标地址或类名。
-  name: string // 链接项的名称。
-  tag?: string // 链接项的标签（可选）。
-  light?: string // 浅色模式下的图标 URL（可选）。
-  dark?: string // 深色模式下的图标 URL（可选）。
-  color?: string // 图标的颜色（可选）。
-}
+import { BoxItem, Icon, isExternal } from '../types'
 
-// 使用 defineProps 定义属性
-const props = defineProps<{ items: Item[] }>()
-
-/**
- * 检查给定的 URL 是否为图片链接。
- *
- * @param {string} url - 要检查的 URL。
- * @returns {boolean} - 如果 URL 是图片链接，则返回 `true`，否则返回 `false`。
- */
-const isImage = (url: string): boolean => /\.(png|jpe?g|gif|svg|webp|bmp|tif?f|tiff|ico|avif)(\?.*)?$/.test(url)
-
-/**
- * 判断给定的链接是否是外部链接。
- *
- * @param {string} link - 要判断的链接。
- * @returns {boolean} - 如果链接是外部链接，则返回 `true`，否则返回 `false`。
- */
-const isExternalLink = (link: string): boolean => /^https?:\/\//.test(link)
+const props = defineProps<{ items: BoxItem[] }>()
 </script>
 
 <template>
-  <!-- 渲染盒子容器，包含多个链接项 -->
-  <div class="box-container">
-    <!-- 遍历 `props.items` 数组并渲染每个链接项 -->
+  <div class="container">
     <a
-      v-for="item in props.items"
-      :key="item.link"
-      :href="item.link"
-      :title="item.name"
-      class="box"
-      :target="isExternalLink(item.link) ? '_blank' : '_self'"
-      rel="noopener"
+      v-for="(box, index) in props.items"
+      :key="box.link + index"
+      class="link"
+      :href="box.link"
+      :target="isExternal(box.link) ? '_blank' : '_self'"
+      rel="noreferrer"
     >
-      <div class="box-content">
-        <!-- 如果有标签，则显示标签 -->
-        <span v-if="item.tag" class="tag">{{ item.tag }}</span>
-        <!-- 如果图标是图片，则显示图片 -->
-        <span v-if="isImage(item.icon)">
-          <img :src="item.icon" alt="icon" class="icon-container" />
-        </span>
-        <!-- 如果图标不是图片，则显示 Font Awesome 图标 -->
-        <span v-else class="icon">
-          <i :class="item.icon + ' fa-2xl'" :style="{ color: item.color }"></i>
-        </span>
-        <!-- 如果有浅色模式图标，则显示 -->
-        <img v-if="item.light" :src="item.light" alt="icon" class="icon-container light-only" />
-        <!-- 如果有深色模式图标，则显示 -->
-        <img v-if="item.dark" :src="item.dark" alt="icon" class="icon-container dark-only" />
-        <!-- 显示名称 -->
-        <p class="name">{{ item.name }}</p>
-      </div>
+      <template v-if="box.icon">
+        <Icon
+          v-if="typeof box.icon === 'object'"
+          class="iconify light-only"
+          :icon="box.icon.light"
+          :color="typeof box.color === 'object' ? box.color.light : box.color"
+          :ssr="true"
+          :inline="true"
+          :aria-label="box.alt"
+          width="38"
+          height="38"
+        />
+        <Icon
+          v-if="typeof box.icon === 'object'"
+          class="iconify dark-only"
+          :icon="box.icon.dark"
+          :color="typeof box.color === 'object' ? box.color.dark : box.color"
+          :ssr="true"
+          :inline="true"
+          :aria-label="box.alt"
+          width="38"
+          height="38"
+        />
+        <Icon
+          v-else
+          class="iconify"
+          :icon="box.icon"
+          :color="typeof box.color === 'string' ? box.color : ''"
+          :ssr="true"
+          :inline="true"
+          :aria-label="box.alt"
+          width="38"
+          height="38"
+        />
+      </template>
+      <template v-else-if="box.image">
+        <img
+          v-if="typeof box.image === 'object'"
+          class="light-only"
+          :src="box.image.light"
+          :alt="box.alt"
+          loading="lazy"
+          decoding="async"
+          width="38"
+          height="38"
+        />
+        <img
+          v-if="typeof box.image === 'object'"
+          class="dark-only"
+          :src="box.image.dark"
+          :alt="box.alt"
+          loading="lazy"
+          decoding="async"
+          width="38"
+          height="38"
+        />
+        <img
+          v-else
+          :src="box.image"
+          :alt="box.alt"
+          loading="lazy"
+          decoding="async"
+          width="38"
+          height="38"
+        />
+      </template>
+      <span class="name">{{ box.name }}</span>
+      <p v-if="box.tag" class="tag">{{ box.tag }}</p>
     </a>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 /**
  * 处理不同模式下的图标显示：暗色模式下隐藏浅色图标，浅色模式下隐藏暗色图标。
  */
@@ -74,89 +95,85 @@ const isExternalLink = (link: string): boolean => /^https?:\/\//.test(link)
   display: none;
 }
 
-.box-container {
+.container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.5em;
 }
 
-.box {
+.link {
+  display: flex;
   position: relative;
-  border: 1px solid var(--vp-c-bg-alt);
-  background-color: var(--vp-c-bg-alt);
-  padding: 0.8rem 1.6rem;
-  border-radius: 0.8rem;
-  width: 14rem;
-  height: 3.5rem;
-  display: flex;
-  text-decoration: none !important;
+  align-items: center;
+  gap: 1em;
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid var(--Box-border);
+  border-radius: 0.8em;
+  background-color: var(--Box-bg);
+  padding: 0 1.6em;
+  width: 14em;
+  height: 3.5em;
+  text-decoration: none !important;
+}
 
-  &:hover {
-    border-color: var(--vp-c-brand-1);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+.link:hover {
+  transform: var(--Box-transform-hover);
+  box-shadow: var(--Box-boxshadow-hover);
+  border-color: var(--Box-border-hover);
+  background-color: var(--Box-bg-hover);
+}
 
-  @media (max-width: 1024px) {
-    flex: 1 1 calc(50% - 0.5rem);
-    max-width: calc(50% - 0.5rem);
-  }
+.link:active {
+  transform: var(--Box-transform-active);
+}
 
-  @media (max-width: 768px) {
-    flex: 1 1 calc(50% - 0.5rem);
-    max-width: calc(50% - 0.5rem);
+.link::after {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .link {
+    flex: 1 1 calc(50% - 0.5em);
+    max-width: calc(50% - 0.5em);
   }
 }
 
-.box-content {
-  font-size: 0.9rem;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  overflow: hidden;
-  white-space: nowrap;
+@media (max-width: 768px) {
+  .link {
+    flex: 1 1 calc(50% - 0.5em);
+    max-width: calc(50% - 0.5em);
+  }
 }
 
 .tag {
+  display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
-  background-color: var(--vp-c-brand-3);
-  color: var(--vp-c-brand-text);
-  font-size: 0.625rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0 0.7rem 0 0.7rem;
   z-index: 1;
+  margin: 0;
+  border-radius: 0 0.7em 0 0.7em;
+  background-color: var(--Box-tag-bg);
+  padding: 0.25em 0.5em;
+  pointer-events: none;
+  color: var(--Box-tag);
+  font-weight: 500;
+  font-size: 0.625em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-.icon-container {
-  height: 2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.icon {
-  display: inline-block;
-  height: 2em;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  color: var(--vp-c-text-1);
+.iconify {
+  flex-shrink: 0;
+  color: var(--iconify-defaultcolor);
 }
 
 .name {
-  margin-left: 1rem;
-  font-size: 0.875rem;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
   overflow: hidden;
+  color: var(--Box-name);
+  font-weight: 500;
+  font-size: 0.875em;
+  letter-spacing: 0.05em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

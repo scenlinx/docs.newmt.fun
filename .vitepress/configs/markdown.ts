@@ -1,12 +1,15 @@
-import { UserConfig } from 'vitepress'
-import { footnote } from '@mdit/plugin-footnote'
-import { tasklist } from '@mdit/plugin-tasklist'
-import { imgSize } from '@mdit/plugin-img-size'
-import { figure } from '@mdit/plugin-figure'
-import { table } from './index.ts'
+import type { MarkdownOptions } from 'vitepress'
+
 import { groupIconMdPlugin } from 'vitepress-plugin-group-icons'
 
-export const markdown: UserConfig['markdown'] = {
+import { figure } from '@mdit/plugin-figure'
+import { footnote } from '@mdit/plugin-footnote'
+import { imgSize, obsidianImgSize } from '@mdit/plugin-img-size'
+import { tasklist } from '@mdit/plugin-tasklist'
+
+import { table } from './index.ts'
+
+export const markdown: MarkdownOptions = {
   theme: { light: 'one-light', dark: 'dracula-soft' },
   image: { lazyLoading: true },
   container: {
@@ -24,11 +27,8 @@ export const markdown: UserConfig['markdown'] = {
     md.use(footnote)
     md.use(tasklist)
     md.use(imgSize)
-    md.use(groupIconMdPlugin)
-    md.use(figure, {
-      figcaption: 'alt',
-      copyAttrs: '^class$',
-      lazy: true
-    })
+    md.use(obsidianImgSize)
+    md.use(groupIconMdPlugin, { titleBar: { includeSnippet: true } })
+    md.use(figure)
   }
 }

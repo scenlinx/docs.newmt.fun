@@ -3,65 +3,91 @@ import type { HeadConfig } from 'vitepress'
 // 导出head配置
 export const head: HeadConfig[] = [
   ['meta', { name: 'theme-color', content: '#ffffff' }],
+  ['meta', { name: 'msapplication-TileColor', content: '#da532c' }],
   [
     'link',
-    { rel: 'apple-touch-icon', sizes: '48x48', href: '/apple-touch-icon.png' }
+    { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' }
   ],
   [
     'link',
-    { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon-96x96.png',
+      sizes: '96x96'
+    }
   ],
+  ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+  ['link', { rel: 'shortcut icon', href: '/favicon.ico' }],
   [
     'link',
-    { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }
+    { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
   ],
-  ['meta', { name: 'author', content: '百万知识库' }],
-  ['meta', { name: 'copyright', content: '百万知识库' }],
-  ['meta', { name: 'og:type', content: 'website' }],
-  ['meta', { name: 'og:locale', content: 'zh-CN' }],
-  ['meta', { name: 'og:site_name', content: '百万知识库' }],
-  ['meta', { name: 'og:title', content: '百万知识库' }],
-  ['meta', { name: 'og:url', content: 'https://docs.newmt.fun/' }],
-  ['meta', { name: 'og:image', content: 'https://docs.newmt.fun/sidelogo.png' }],
-  ['meta', { name: 'robots', content: 'index, follow' }],
-  ['meta', { name: 'evisit-after', content: '1 day' }],
+  ['meta', { name: 'apple-mobile-web-app-title', content: 'AI-Wantr-Docs' }],
+  ['link', { rel: 'manifest', href: '/site.webmanifest' }],
+  ['meta', { name: 'author', content: 'Scenlinx' }],
+  ['meta', { name: 'copyright', content: 'Scenlinx' }],
+  ['meta', { property: 'og:type', content: 'website' }],
+  ['meta', { property: 'og:locale', content: 'zh-Hans' }],
+  ['meta', { property: 'og:site_name', content: 'AI.Wantr知识分享' }],
+  ['meta', { property: 'og:title', content: 'AI.Wantr知识分享' }],
+  ['meta', { property: 'og:url', content: 'https://ai.wantr.cn/' }],
+  [
+    'meta',
+    {
+      property: 'og:image',
+      content: '/logo/AI-Wantr-Docs-og.webp'
+    }
+  ],
+  [
+    'meta',
+    {
+      property: 'og:description',
+      content:
+        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
+    }
+  ],
   [
     'meta',
     {
       name: 'description',
       content:
-        '分享最新优质资源，包含各类影视资源、课程教程、软件游戏、考公考研、考证考编、幼小初高、学习资源等'
+        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
     }
   ],
   ['meta', { name: 'format-detection', content: 'telephone=no' }],
-  [
-    'meta',
-    { name: 'google-site-verification', content: '1UZ494BTZTo2f-VijC69XdHQgZ_EIbNDm3WkgRg4uKI' }
-  ],
+  ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+  ['meta', { name: 'twitter:site', content: '@Scenlinx' }],
+  ['meta', { name: 'twitter:title', content: 'AI-Wantr-Docs' }],
   [
     'meta',
     {
-      name: 'og:description',
+      name: 'twitter:description',
       content:
-        '分享最新优质资源，包含各类影视资源、课程教程、软件游戏、考公考研、考证考编、幼小初高、学习资源等'
+        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
     }
   ],
   [
-    'script',
+    'meta',
     {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        url: 'https://docs.newmt.fun/',
-        name: '百万知识库',
-        description:
-          '分享最新优质资源，包含各类影视资源、课程教程、软件游戏、考公考研、考证考编、幼小初高、学习资源等',
-        author: {
-          '@type': 'Person',
-          name: 'scenlinx'
-        }
-      })
+      name: 'twitter:image',
+      content: '/logo/AI-Wantr-Docs-og.webp'
+    }
+  ],
+  [
+    'meta',
+    {
+      name: 'keywords',
+      content:
+        '流媒体, Netflix, Disney+, HBO Max, Spotify, YouTube, 解锁, 流媒体观影, 奈飞, 青云梯, 奈飞小铺, 银河录像局'
+    }
+  ],
+
+  [
+    'meta',
+    {
+      name: 'google-site-verification',
+      content: 'bOXLe1lrqePxxyksBSbMgqbELMkTX9Q_FkyEuVwTobI'
     }
   ]
 ]
