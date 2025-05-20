@@ -11,14 +11,14 @@ title: Markdown 入门使用
     //图片
     {
       name: '支付宝',
-      link: 'https://i.theojs.cn/docs/202405201752089.jpg',
-      image: 'https://i.theojs.cn/logo/alipay.svg'
+      link: '/docs/202405201752089.jpg',
+      image: '/logo/alipay.svg'
     },
     //深浅模式的图片
     {
       name: 'GitHub',
       link: '#',
-      image: { light: 'https://i.theojs.cn/logo/github.svg', dark: 'https://i.theojs.cn/logo/github-dark.svg' }
+      image: { light: '/logo/github.svg', dark: '/logo/github-dark.svg' }
     },
     //标签
     { name: 'Vue', link: '#', icon: 'vscode-icons:file-type-vue', tag: 'vuejs' }
@@ -34,14 +34,14 @@ title: Markdown 入门使用
     //图片
     {
       name: '支付宝',
-      link: 'https://i.theojs.cn/docs/202405201752089.jpg',
-      image: 'https://i.theojs.cn/logo/alipay.svg'
+      link: '/docs/202405201752089.jpg',
+      image: '/logo/alipay.svg'
     },
     //深浅模式的图片
     {
       name: 'GitHub',
       link: '#',
-      image: { light: 'https://i.theojs.cn/logo/github.svg', dark: 'https://i.theojs.cn/logo/github-dark.svg' }
+      image: { light: '/logo/github.svg', dark: '/logo/github-dark.svg' }
     },
     // 不使用图标 + 描述
     { name: 'Google', link: 'https://www.google.com', desc: '全球最大的搜索引擎' }
@@ -57,14 +57,14 @@ title: Markdown 入门使用
     //图片
     {
       name: '支付宝',
-      link: 'https://i.theojs.cn/docs/202405201752089.jpg',
-      image: 'https://i.theojs.cn/logo/alipay.svg'
+      link: '/docs/202405201752089.jpg',
+      image: '/logo/alipay.svg'
     },
     //深浅模式的图片
     {
       name: 'GitHub',
       link: '#',
-      image: { light: 'https://i.theojs.cn/logo/github.svg', dark: 'https://i.theojs.cn/logo/github-dark.svg' }
+      image: { light: '/logo/github.svg', dark: '/logo/github-dark.svg' }
     },
     //描述
     { name: 'Vue.js', link: '#', icon: 'devicon:vuejs', desc: 'v3.4.31' }
