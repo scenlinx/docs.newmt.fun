@@ -2,12 +2,12 @@
 layout: home
 
 title: 百万知识库
-titleTemplate: 探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料
+titleTemplate: ✨ 集成 Vue 功能组件和主题美化的 VitePress 插件
 
 hero:
   name: 百万知识库
   text: 知识 & 技能 & 财富
-  tagline: 探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料
+  tagline: ✨ 集成 Vue 功能组件和主题美化的 VitePress 插件
 
   image:
     src: '/logo/home.png'
