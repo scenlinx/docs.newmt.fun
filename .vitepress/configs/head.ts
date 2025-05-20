@@ -23,20 +23,20 @@ export const head: HeadConfig[] = [
     'link',
     { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
   ],
-  ['meta', { name: 'apple-mobile-web-app-title', content: 'Theo-Docs' }],
+  ['meta', { name: 'apple-mobile-web-app-title', content: 'AI-Wantr-Docs' }],
   ['link', { rel: 'manifest', href: '/site.webmanifest' }],
-  ['meta', { name: 'author', content: 'Theo' }],
-  ['meta', { name: 'copyright', content: 'Theo' }],
+  ['meta', { name: 'author', content: 'Scenlinx' }],
+  ['meta', { name: 'copyright', content: 'Scenlinx' }],
   ['meta', { property: 'og:type', content: 'website' }],
   ['meta', { property: 'og:locale', content: 'zh-Hans' }],
-  ['meta', { property: 'og:site_name', content: 'Theo Docs' }],
-  ['meta', { property: 'og:title', content: 'Theo Docs' }],
-  ['meta', { property: 'og:url', content: 'https://doc.theojs.cn/' }],
+  ['meta', { property: 'og:site_name', content: 'AI.Wantr知识分享' }],
+  ['meta', { property: 'og:title', content: 'AI.Wantr知识分享' }],
+  ['meta', { property: 'og:url', content: 'https://ai.wantr.cn/' }],
   [
     'meta',
     {
       property: 'og:image',
-      content: 'https://i.theojs.cn/logo/Theo-Docs-og.webp'
+      content: '/logo/AI-Wantr-Docs-og.webp'
     }
   ],
   [
@@ -57,8 +57,8 @@ export const head: HeadConfig[] = [
   ],
   ['meta', { name: 'format-detection', content: 'telephone=no' }],
   ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-  ['meta', { name: 'twitter:site', content: '@TheoMessi_' }],
-  ['meta', { name: 'twitter:title', content: 'Theo-Docs' }],
+  ['meta', { name: 'twitter:site', content: '@Scenlinx' }],
+  ['meta', { name: 'twitter:title', content: 'AI-Wantr-Docs' }],
   [
     'meta',
     {
@@ -71,7 +71,7 @@ export const head: HeadConfig[] = [
     'meta',
     {
       name: 'twitter:image',
-      content: 'https://i.theojs.cn/logo/Theo-Docs-og.webp'
+      content: '/logo/AI-Wantr-Docs-og.webp'
     }
   ],
   [

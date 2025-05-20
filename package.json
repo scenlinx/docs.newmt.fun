@@ -29,7 +29,6 @@
     "@mdit/plugin-footnote": "^0.18.0",
     "@mdit/plugin-img-size": "^0.18.1",
     "@mdit/plugin-tasklist": "^0.18.0",
-    "@theojs/lumen": "^5.4.3",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "commitizen": "^4.3.1",
     "cz-vinyl": "^2.5.4",
@@ -45,7 +44,11 @@
     "vitepress-plugin-group-icons": "^1.5.5",
     "vitepress-plugin-image-viewer": "^1.1.6",
     "vitepress-plugin-llms": "^1.2.0",
-    "vue": "^3.5.14"
+    "vue": "^3.5.14",
+    "@iconify/vue": "^5.0.0",
+    "bumpp": "^10.1.1",
+    "iconify-icon": "^3.0.0",
+    "typescript": "^5.8.3"
   },
   "packageManager": "pnpm@10.11.0"
 }
