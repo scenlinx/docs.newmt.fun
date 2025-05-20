@@ -1,5 +1,6 @@
 ---
 title: 主题配置文件
+order: 2  # 新增的排序字段
 head:
   - - meta
     - name: description
