@@ -4,11 +4,8 @@ import type { DefaultTheme } from 'vitepress'
 export const nav: DefaultTheme.NavItem[] = [
   {
     text: '<iconify-icon class="i-mr" icon="heroicons:rocket-launch-solid" style="color:#20c997"></iconify-icon>快速开始',
-    link: '/guide/getting-started'
-  },
-  {
-    text: '<iconify-icon class="i-mr" icon="heroicons:wrench-screwdriver-solid" style="color:#3498db"></iconify-icon>配置',
-    link: '/guide/theme'
+    link: '/guide/getting-started',
+    activeMatch: '^/guide/'
   },
   {
     text: '副业学习',
