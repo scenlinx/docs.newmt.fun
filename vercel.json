@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm build",
+  "outputDirectory": ".vitepress/dist",
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "headers": {
+        "Cache-Control": "max-age=31536000, immutable"
+      }
+    }
+  ],
+  "env": {
+    "NODE_VERSION": "22"
+  }
+}
