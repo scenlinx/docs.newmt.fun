@@ -32,12 +32,6 @@ hero:
     dateText: '活动截止日期'
     link: https://ai.wantr.cn/flyingbird
 
-  # prelink:
-  #   copy: true
-  #   install: 'pnpm add @scenlinx'
-  #   title: '<iconify-icon class="i-mr" icon="fa6-solid:bolt" style="color:#63E6BE"></iconify-icon> 快速开始'
-  #   content: '<span class="promo-text">pnpm add @scenlinx</span>'
-
   actions:
     - theme: brand
       text: 快速开始
@@ -94,9 +88,3 @@ features:
 ---
 
 <Home />
-<style>
-  :root {
-    --vp-home-hero-image-background-image: none !important;
-  }
-</style>
-
