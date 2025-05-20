@@ -9,6 +9,14 @@ hero:
   text: 知识 & 技能 & 财富
   tagline: 探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料
 
+  image:
+    src: '/logo/home.png'
+    alt: '@scenlinx'
+    loading: eager
+    fetchpriority: high
+    width: 320
+    height: 320
+
   actions:
     - theme: brand
       text: 副业学习
