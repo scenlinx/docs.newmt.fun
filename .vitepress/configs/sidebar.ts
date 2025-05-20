@@ -6,6 +6,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = await generateSidebar();
 
 async function generateSidebar(): Promise<DefaultTheme.Config['sidebar']> {
   return {
+    '/guide/': await getItems("guide", []),
     '/moneys/': await getItems("moneys", []),
     '/classics/': await getItems("classics", ['山', '医', '命', '相', '卜', '灵宠', '相关经典']),
     '/it-serve/': await getItems("it-serve", []),

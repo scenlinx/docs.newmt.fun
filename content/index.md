@@ -84,7 +84,7 @@ features:
     details: 轻松集成 Iconify 图标库，提供上千种矢量图标，支持多种平台，丰富站点的视觉表现和交互体验。
     link: '/guide/theme#图标支持'
 
-features:
+
   - icon:
       src: logo/svg/focus.svg
     title: 保持专注
