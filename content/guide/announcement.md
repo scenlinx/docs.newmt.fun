@@ -1,5 +1,6 @@
 ---
 title: 首页公告栏
+order: 3  # 新增的排序字段
 head:
   - - meta
     - name: description

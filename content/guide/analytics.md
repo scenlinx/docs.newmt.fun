@@ -1,5 +1,6 @@
 ---
 title: 站点统计
+order: 8  # 新增的排序字段
 head:
   - - meta
     - name: description

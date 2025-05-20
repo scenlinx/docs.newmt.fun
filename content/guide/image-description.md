@@ -1,5 +1,6 @@
 ---
 title: 图片描述
+order: 1  # 新增的排序字段
 head:
   - - meta
     - name: description

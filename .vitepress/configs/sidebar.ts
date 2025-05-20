@@ -15,39 +15,39 @@ async function generateSidebar(): Promise<DefaultTheme.Config['sidebar']> {
 }
 
 async function getItems(path: string, order: string[]): Promise<DefaultTheme.SidebarItem[]> {
-  // 1. 处理顶层MD文件
+  // 1. 处理顶层MD文件（添加order排序）
   const rootFiles = await fg(`content/${path}/*.md`, { objectMode: true });
-  const rootItems = rootFiles.map(file => {
+  const rootItems = (await Promise.all(rootFiles.map(async file => {
     const { data } = matter.read(file.path);
-    return {
-      text: data.title,
-      link: `/${path}/${file.name.replace('.md', '')}`,
-    };
-  });
+    return { file, data, order: data.order || Infinity };
+  })))
+  .sort((a, b) => a.order - b.order) // 新增：按order字段排序
+  .map(({ file, data }) => ({
+    text: data.title,
+    link: `/${path}/${file.name.replace('.md', '')}`,
+  }));
 
-  // 2. 处理分组文件夹
+  // 2. 处理分组文件夹（添加order排序）
   let groups: DefaultTheme.SidebarItem[] = [];
   const directories = await fg(`content/${path}/*`, { onlyDirectories: true, objectMode: true });
-
-  // 保留原有的排序逻辑
   directories.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
 
   for (const { name: groupName } of directories) {
-    const items: DefaultTheme.SidebarItem[] = [];
     const articles = await fg(`content/${path}/${groupName}/*.md`, { objectMode: true });
-
-    for (const article of articles) {
+    const items = (await Promise.all(articles.map(async article => {
       const { data } = matter.read(article.path);
-      items.push({
-        text: data.title,
-        link: `/${path}/${groupName}/${article.name.replace('.md', '')}`,
-      });
-    }
+      return { article, data, order: data.order || Infinity };
+    })))
+    .sort((a, b) => a.order - b.order) // 新增：按order字段排序
+    .map(({ article, data }) => ({
+      text: data.title,
+      link: `/${path}/${groupName}/${article.name.replace('.md', '')}`,
+    }));
 
     if (items.length > 0) {
       groups.push({
         text: groupName.includes('-') 
-          ? groupName.substring(groupName.indexOf('-') + 1)  // 移除序号前缀
+          ? groupName.substring(groupName.indexOf('-') + 1)
           : groupName,
         items,
         collapsed: items.length < 2,
@@ -55,6 +55,5 @@ async function getItems(path: string, order: string[]): Promise<DefaultTheme.Sid
     }
   }
 
-  // 合并结果：顶层文件在前，分组在后
   return [...rootItems, ...groups];
 }

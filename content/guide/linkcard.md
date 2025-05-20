@@ -1,5 +1,6 @@
 ---
 title: 链接卡片
+order: 6  # 新增的排序字段
 head:
   - - meta
     - name: description

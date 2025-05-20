@@ -1,5 +1,6 @@
 ---
 title: 首页下划线
+order: 4  # 新增的排序字段
 head:
   - - meta
     - name: description

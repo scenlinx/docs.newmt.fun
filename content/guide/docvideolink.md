@@ -1,5 +1,6 @@
 ---
 title: 视频组件
+order: 5  # 新增的排序字段
 head:
   - - meta
     - name: description
