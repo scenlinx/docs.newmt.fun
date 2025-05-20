@@ -97,6 +97,14 @@ features:
       src: /logo/svg/learning.svg
     title: 持续学习
     details: “学习是我们能够掌控的少数事情之一，它能赋予我们力量，让我们在人生的道路上不断前行。” -- 沃伦・巴菲特
+  - icon:
+      src: /logo/svg/knowledge.svg
+    title: 乐于分享
+    details: 关于分享，有形的物品越分越少，无形的知识越分越多。在记录与分享的过程中, 梳理所学, 交流所得, 必有所获。
+  - icon:
+      src: /logo/svg/knowledge.svg
+    title: 乐于分享
+    details: 关于分享，有形的物品越分越少，无形的知识越分越多。在记录与分享的过程中, 梳理所学, 交流所得, 必有所获。
 
 ---
 
