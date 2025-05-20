@@ -1,6 +1,6 @@
 import type { UserConfig } from 'vitepress'
 
-const baseUrl = 'https://ai.wantr.cn'
+const baseUrl = 'https://doc.theojs.cn'
 
 export const transformPageData: UserConfig['transformPageData'] = (
   pageData
@@ -26,12 +26,12 @@ export const transformPageData: UserConfig['transformPageData'] = (
         inLanguage: 'zh-Hans',
         author: {
           '@type': 'Person',
-          name: 'Scenlinx',
+          name: 'Theo',
           url: baseUrl
         },
         publisher: {
           '@type': 'Organization',
-          name: 'Scenlinx',
+          name: 'Theo',
           logo: {
             '@type': 'ImageObject',
             url: baseUrl + '/avatar.webp'
@@ -39,7 +39,7 @@ export const transformPageData: UserConfig['transformPageData'] = (
         },
         description:
           '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。',
-        name: 'AI-Wantr-Docs'
+        name: 'Theo-Docs'
       }
     : {
         '@context': 'https://schema.org',
@@ -48,12 +48,12 @@ export const transformPageData: UserConfig['transformPageData'] = (
         inLanguage: 'zh-Hans',
         author: {
           '@type': 'Person',
-          name: 'Scenlinx',
+          name: 'Theo',
           url: baseUrl
         },
         publisher: {
           '@type': 'Organization',
-          name: 'Scenlinx',
+          name: 'Theo',
           logo: {
             '@type': 'ImageObject',
             url: baseUrl + '/avatar.webp'

@@ -1,10 +1,28 @@
 import type { DefaultTheme } from 'vitepress'
+
 // 社交链接设置
 
 export const socialLinks: DefaultTheme.SocialLink[] = [
   {
-    icon: 'wechat',
-    link: 'https://wechat.newmt.fun',
-    ariaLabel: 'WeChat'
+    icon: 'github',
+    link: 'https://github.com/Theo-Messi/Theo-Docs',
+    ariaLabel: 'Github'
   },
+  {
+    icon: 'gmail',
+    link: 'mailto:fanxiaobin422@gmail.com',
+    ariaLabel: 'Gmail'
+  },
+  {
+    icon: 'telegram',
+    link: 'https://t.me/Theo_Messi',
+    ariaLabel: 'Telegram'
+  },
+  {
+    icon: {
+      svg: '<iconify-icon icon="twemoji:red-heart" style="font-size:1.2em" alt="Github Sponsors"></iconify-icon>'
+    },
+    link: 'https://i.theojs.cn/sponsor.webp',
+    ariaLabel: 'Github Sponsors'
+  }
 ]

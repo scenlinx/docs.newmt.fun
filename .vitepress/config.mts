@@ -13,12 +13,12 @@ import {
   transformPageData
 } from './configs'
 
-const baseUrl = 'https://ai.wantr.cn'
+const baseUrl = 'https://doc.theojs.cn'
 
 // 导出默认配置
 export default defineConfig({
   // 站点名称
-  title: 'AI.Wantr',
+  title: 'Theo Docs',
   // 站点语言
   lang: 'zh-Hans',
   // 站点介绍
@@ -81,7 +81,7 @@ export default defineConfig({
   themeConfig: {
     // logo
     logo: {
-      src: '/logo/avatar-mini.webp',
+      src: 'https://i.theojs.cn/logo/avatar-mini.webp',
       width: 24,
       height: 24,
       alt: 'avatar'
@@ -92,6 +92,13 @@ export default defineConfig({
 
     // false去除网站标题 只显示logo
     // siteTitle: false,
+
+    // GitHub编辑页面
+    editLink: {
+      pattern:
+        'https://github.com/Theo-Messi/Theo-Docs/edit/main/content/:path',
+      text: '为此页提供修改建议'
+    },
 
     // 目录设置
     outline: 'deep', // 索引级别

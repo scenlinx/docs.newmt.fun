@@ -7,6 +7,7 @@ import { h } from 'vue'
 
 import {
   Announcement,
+  DocAsideLogo,
   DocBox,
   DocBoxCube,
   DocLinks,
@@ -14,12 +15,12 @@ import {
   DocVideoLink,
   HomeFooter,
   HomeUnderline,
-  backtotop,
+  ShareButton,
   umamiAnalytics
-} from './types/index.js'
-import './styles/all.css'
+} from '@theojs/lumen'
+import '@theojs/lumen/theme'
 
-import { Footer_Data } from '../data'
+import { Aside_Data, Footer_Data } from '../data'
 
 import 'viewerjs/dist/viewer.min.css'
 import 'virtual:group-icons.css'
@@ -29,24 +30,24 @@ export default {
   Layout() {
     return h(DefaultTheme.Layout, null, {
       'home-hero-info-before': () => h(Announcement),
+      'aside-ads-before': () => h(DocAsideLogo, { Aside_Data }),
       'layout-bottom': () => h(HomeFooter, { Footer_Data }),
-      'doc-after': () => h('div', [
-        h(backtotop)
-      ])
+      'aside-outline-before': () => h(ShareButton)
     })
   },
   enhanceApp: ({ app }) => {
-    umamiAnalytics({
-      id: 'ede95de6-e37d-4364-b1cb-bc4af35b5318',
-      src: 'https://ai.wantr.cn/script.js'
-    })
+    if ((import.meta as any).env.PROD) {
+      umamiAnalytics({
+        id: (import.meta as any).env.VITE_UMAMI_ID,
+        src: (import.meta as any).env.VITE_UMAMI_SRC
+      })
+    }
     app.component('Home', HomeUnderline)
     app.component('Pill', DocPill)
     app.component('Box', DocBox)
     app.component('Links', DocLinks)
     app.component('BoxCube', DocBoxCube)
     app.component('Vid', DocVideoLink)
-    app.component('BackTop', backtotop)
   },
   setup() {
     const route = useRoute()
