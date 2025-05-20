@@ -1,5 +1,6 @@
 ---
 title: 快速开始
+order: 1  # 新增的排序字段
 head:
   - - meta
     - name: description
