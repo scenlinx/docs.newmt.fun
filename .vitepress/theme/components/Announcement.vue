@@ -40,7 +40,7 @@ const prelink = usePrelink()
   border: 1px solid var(--Announcement-border);
   border-radius: 0.8em;
   background-color: var(--Announcement-bg);
-  padding: 0.3em 1.5em;
+  padding: 1em 1.5em;
 }
 
 .prelink:hover {
