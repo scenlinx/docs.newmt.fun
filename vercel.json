@@ -10,29 +10,22 @@
       }
     },
     {
-      "src": "/(?i)llms.md",
-      "dest": "/llms.txt",
-      "status": 301
+      "src": "/llms.md",
+      "status": 301,
+      "headers": {
+        "Location": "/llms.txt"
+      }
     },
     {
-      "src": "/(?i)llms-full.md",
-      "dest": "/llms-full.txt",
-      "status": 301
-    },
-    {
-      "src": "/(?i)logo.webp",
-      "dest": "/logo.webp",
-      "status": 301
-    },
-    {
-      "src": "/.*",
-      "dest": "/index.html",
-      "status": 200
+      "src": "/llms-full.md",
+      "status": 301,
+      "headers": {
+        "Location": "/llms-full.txt"
+      }
     }
   ],
   "env": {
     "NODE_VERSION": "22",
-    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1",
-    "NODE_OPTIONS": "--max_old_space_size=4096"
+    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
   }
 }
