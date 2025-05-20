@@ -45,6 +45,8 @@
     "vitepress-plugin-image-viewer": "^1.1.6",
     "vitepress-plugin-llms": "^1.2.0",
     "vue": "^3.5.14",
+    "fast-glob": "^3.3.3",
+    "gray-matter": "^4.0.3",
     "@iconify/vue": "^5.0.0",
     "bumpp": "^10.1.1",
     "iconify-icon": "^3.0.0",
