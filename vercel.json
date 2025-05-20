@@ -11,21 +11,18 @@
     },
     {
       "src": "/llms.md",
-      "status": 301,
-      "headers": {
-        "Location": "/llms.txt"
-      }
+      "dest": "/llms.txt",
+      "status": 301
     },
     {
       "src": "/llms-full.md",
-      "status": 301,
-      "headers": {
-        "Location": "/llms-full.txt"
-      }
+      "dest": "/llms-full.txt",
+      "status": 301
     }
   ],
   "env": {
     "NODE_VERSION": "22",
-    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
+    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1",
+    "NODE_OPTIONS": "--max_old_space_size=4096"
   }
 }
