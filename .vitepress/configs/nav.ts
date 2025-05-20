@@ -8,23 +8,37 @@ export const nav: DefaultTheme.NavItem[] = [
     activeMatch: '^/guide/'
   },
   {
-    text: '副业学习',
+    text: '<iconify-icon class="i-mr" icon="heroicons:currency-dollar-solid" style="color:#20c997"></iconify-icon>副业学习',
     link: '/moneys/',
     activeMatch: '^/moneys/'
   },
   {
-    text: '资源合集',
+    text: '<iconify-icon class="i-mr" icon="heroicons:archive-box-solid" style="color:#20c997"></iconify-icon>资源合集',
     link: '/sources/',
     activeMatch: '^/sources/'
   },
   {
-    text: '四海闲谈',
+    text: '<iconify-icon class="i-mr" icon="heroicons:chat-bubble-left-ellipsis-solid" style="color:#20c997"></iconify-icon>四海闲谈',
     items: [
-      { text: '码农专区', link: '/it-serve/index', activeMatch: '^/it-serve/' },
-      { text: '玄学中医', link: '/classics/index', activeMatch: '^/classics/' },
+      { 
+        text: '<iconify-icon class="i-mr" icon="heroicons:code-bracket-solid" style="color:#20c997"></iconify-icon>码农专区', 
+        link: '/it-serve/index', 
+        activeMatch: '^/it-serve/' 
+      },
+      { 
+        text: '<iconify-icon class="i-mr" icon="heroicons:sparkles-solid" style="color:#20c997"></iconify-icon>玄学中医', 
+        link: '/classics/index', 
+        activeMatch: '^/classics/' 
+      },
     ],
-    activeMatch: '/it-serve/'
+    activeMatch: '^/it-serve/'
   },
-  { text: '网盘资源', link: 'https://pan.newmt.fun/' },
-  { text: '导航', link: 'https://nav.newmt.fun/' }
+  { 
+    text: '<iconify-icon class="i-mr" icon="heroicons:cloud-arrow-down-solid" style="color:#20c997"></iconify-icon>网盘资源', 
+    link: 'https://pan.newmt.fun/' 
+  },
+  { 
+    text: '<iconify-icon class="i-mr" icon="heroicons:map-solid" style="color:#20c997"></iconify-icon>导航', 
+    link: 'https://nav.newmt.fun/' 
+  }
 ]
