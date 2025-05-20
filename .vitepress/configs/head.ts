@@ -1,53 +1,93 @@
 import type { HeadConfig } from 'vitepress'
 
+// 导出head配置
 export const head: HeadConfig[] = [
-  // 样式与主题设置
   ['meta', { name: 'theme-color', content: '#ffffff' }],
   ['meta', { name: 'msapplication-TileColor', content: '#da532c' }],
-  
-  // 网站图标配置
-  ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }],
-
-  // SEO 优化
-  ['meta', { name: 'robots', content: 'index, follow' }],
-  ['meta', { name: 'evisit-after', content: '1 day' }],
-  ['meta', { name: 'author', content: 'scenlinx' }],
-  ['meta', { name: 'copyright', content: 'scenlinx' }],
-  ['meta', { name: 'og:type', content: 'website' }],
-  ['meta', { name: 'og:locale', content: 'zh-CN' }],
-  ['meta', { name: 'og:site_name', content: '百万知识库' }],
-  ['meta', { name: 'og:title', content: '百万知识库' }],
-  ['meta', { name: 'og:url', content: 'https://docs.newmt.fun/' }],
-  ['meta', { name: 'og:image', content: 'https://docs.newmt.fun/logo/logo.png' }],
-  ['meta', { name: 'keywords', content: '副业赚钱, 流量卡, 网盘拉新, 网盘资源, 新媒体相关, 网站搭建' }],
+  [
+    'link',
+    { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' }
+  ],
+  [
+    'link',
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon-96x96.png',
+      sizes: '96x96'
+    }
+  ],
+  ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+  ['link', { rel: 'shortcut icon', href: '/favicon.ico' }],
+  [
+    'link',
+    { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
+  ],
+  ['meta', { name: 'apple-mobile-web-app-title', content: 'AI-Wantr-Docs' }],
+  ['link', { rel: 'manifest', href: '/site.webmanifest' }],
+  ['meta', { name: 'author', content: 'Scenlinx' }],
+  ['meta', { name: 'copyright', content: 'Scenlinx' }],
+  ['meta', { property: 'og:type', content: 'website' }],
+  ['meta', { property: 'og:locale', content: 'zh-Hans' }],
+  ['meta', { property: 'og:site_name', content: 'AI.Wantr知识分享' }],
+  ['meta', { property: 'og:title', content: 'AI.Wantr知识分享' }],
+  ['meta', { property: 'og:url', content: 'https://ai.wantr.cn/' }],
+  [
+    'meta',
+    {
+      property: 'og:image',
+      content: '/logo/AI-Wantr-Docs-og.webp'
+    }
+  ],
+  [
+    'meta',
+    {
+      property: 'og:description',
+      content:
+        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
+    }
+  ],
   [
     'meta',
     {
       name: 'description',
-      content: '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料'
+      content:
+        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
+    }
+  ],
+  ['meta', { name: 'format-detection', content: 'telephone=no' }],
+  ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+  ['meta', { name: 'twitter:site', content: '@Scenlinx' }],
+  ['meta', { name: 'twitter:title', content: 'AI-Wantr-Docs' }],
+  [
+    'meta',
+    {
+      name: 'twitter:description',
+      content:
+        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
     }
   ],
   [
     'meta',
     {
-      name: 'og:description',
-      content: '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料'
+      name: 'twitter:image',
+      content: '/logo/AI-Wantr-Docs-og.webp'
+    }
+  ],
+  [
+    'meta',
+    {
+      name: 'keywords',
+      content:
+        '流媒体, Netflix, Disney+, HBO Max, Spotify, YouTube, 解锁, 流媒体观影, 奈飞, 青云梯, 奈飞小铺, 银河录像局'
     }
   ],
 
-  // JSON-LD 结构化数据
   [
-    'script',
+    'meta',
     {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        url: 'https://docs.newmt.fun/',
-        name: '百万知识库',
-        description: '探索副业赚钱的最新行业玩法，流量卡代理和网盘拉新的技巧，网站搭建与新媒体相关的学习资料',
-        author: { '@type': 'Person', name: 'scenlinx' }
-      })
+      name: 'google-site-verification',
+      content: 'bOXLe1lrqePxxyksBSbMgqbELMkTX9Q_FkyEuVwTobI'
     }
   ]
 ]

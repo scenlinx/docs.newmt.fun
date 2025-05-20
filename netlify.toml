@@ -1,5 +1,6 @@
 [build.environment]
 NODE_VERSION = "22"
+PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
 [build]
 publish = ".vitepress/dist"
@@ -8,4 +9,16 @@ command = "pnpm build"
 [[headers]]
 for = "/assets/*"
 [headers.values]
-cache-control = "max-age=31536000, immutable"
+cache-control = '''
+    max-age=31536000,
+    immutable'''
+
+[[redirects]]
+from = "/llms.md"
+status = 301
+to = "/llms.txt"
+
+[[redirects]]
+from = "/llms-full.md"
+status = 301
+to = "/llms-full.txt"

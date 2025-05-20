@@ -1,44 +1,45 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { VideoProps, getVideoConfig } from '../types'
+
+import { VideoProps, getVideo } from '../types'
 
 const props = defineProps<VideoProps>()
 
-// 使用 getVideoConfig 来计算视频配置
-const videoConfig = computed(() => getVideoConfig(props))
+const Config = computed(() => getVideo(props))
 </script>
 
 <template>
-  <div class="video-container">
+  <figure class="video-container">
     <iframe
-      loading="lazy"
-      v-bind="{
-        src: typeof videoConfig.src === 'function' ? videoConfig.src(props.id) : videoConfig.src,
-        title: videoConfig.title,
-        allow:
-          'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen;',
-        allowfullscreen: true
-      }"
       class="video-iframe"
+      loading="lazy"
+      :title="Config.title"
+      :src="
+        typeof Config.src === 'function' ? Config.src(props.id) : Config.src
+      "
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen;"
+      allowfullscreen
     />
-  </div>
+  </figure>
 </template>
 
 <style scoped>
 .video-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 0.5rem;
+  border-radius: 0.75em;
+  padding: 0.75em 0.5em;
+  overflow: hidden;
 }
 
 .video-iframe {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 0.5em;
   aspect-ratio: 16 / 9;
   width: 100%;
   max-width: 100%;
   height: auto;
-  border-radius: 0.5rem;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border: none;
 }
 </style>

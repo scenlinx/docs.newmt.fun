@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LinkItem, isExternalLink, Icon } from '../types'
+import { Icon, LinkItem, isExternal } from '../types'
 
 const props = defineProps<{ items: LinkItem[] }>()
 </script>
@@ -9,31 +9,91 @@ const props = defineProps<{ items: LinkItem[] }>()
     <a
       v-for="(link, index) in props.items"
       :key="link.link + index"
-      :href="link.link"
-      :title="link.name"
-      :target="isExternalLink(link.link) ? '_blank' : '_self'"
       class="link"
-      rel="noopener"
+      :href="link.link"
+      :target="isExternal(link.link) ? '_blank' : '_self'"
+      rel="noreferrer"
     >
       <template v-if="link.icon">
-        <Icon :icon="link.icon" class="iconify" :style="{ color: link.color }" />
+        <Icon
+          v-if="typeof link.icon === 'object'"
+          class="iconify light-only"
+          :icon="link.icon.light"
+          :color="
+            typeof link.color === 'object' ? link.color.light : link.color
+          "
+          :ssr="true"
+          :inline="true"
+          :aria-label="link.alt"
+          width="32"
+          height="32"
+        />
+        <Icon
+          v-if="typeof link.icon === 'object'"
+          class="iconify dark-only"
+          :icon="link.icon.dark"
+          :color="typeof link.color === 'object' ? link.color.dark : link.color"
+          :ssr="true"
+          :inline="true"
+          :aria-label="link.alt"
+          width="32"
+          height="32"
+        />
+        <Icon
+          v-else
+          class="iconify"
+          :icon="link.icon"
+          :color="typeof link.color === 'string' ? link.color : ''"
+          :ssr="true"
+          :inline="true"
+          :aria-label="link.alt"
+          width="32"
+          height="32"
+        />
       </template>
       <template v-else-if="link.image">
-        <img v-if="typeof link.image === 'object'" :src="link.image.light" alt="Icon" class="icon light-only" />
-        <img v-if="typeof link.image === 'object'" :src="link.image.dark" alt="Icon" class="icon dark-only" />
-        <img v-else :src="link.image" alt="Icon" class="icon" />
+        <img
+          v-if="typeof link.image === 'object'"
+          class="light-only"
+          :src="link.image.light"
+          :alt="link.alt"
+          loading="lazy"
+          decoding="async"
+          width="32"
+          height="32"
+        />
+        <img
+          v-if="typeof link.image === 'object'"
+          class="dark-only"
+          :src="link.image.dark"
+          :alt="link.name"
+          loading="lazy"
+          decoding="async"
+          width="32"
+          height="32"
+        />
+        <img
+          v-else
+          :src="link.image"
+          :alt="link.alt"
+          loading="lazy"
+          decoding="async"
+          width="32"
+          height="32"
+        />
       </template>
       <template v-else>
         <Icon
           class="default-icon"
+          aria-label="external link icon"
           icon="fa6-solid:arrow-up-right-from-square"
-          style="color: var(--vp-c-brand-1)"
-          alt="Icon"
+          width="24"
+          height="24"
         />
       </template>
       <div class="text-content">
         <span class="name">{{ link.name }}</span>
-        <span v-if="link.desc" class="desc">{{ link.desc }}</span>
+        <p v-if="link.desc" class="desc">{{ link.desc }}</p>
       </div>
     </a>
   </div>
@@ -47,71 +107,74 @@ const props = defineProps<{ items: LinkItem[] }>()
 
 .container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
 .link {
-  width: 100%;
-  height: 5rem;
-  border: 1px solid var(--vp-c-bg-alt);
-  background-color: var(--vp-c-bg-alt);
-  border-radius: 0.8rem;
-  padding: 0 2rem;
   display: flex;
   align-items: center;
-  position: relative;
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid var(--Links-border);
+  border-radius: 0.8em;
+  background-color: var(--Links-bg);
+  padding: 1em;
   text-decoration: none !important;
 }
 
 .link:hover {
-  border-color: var(--vp-c-brand-1);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: var(--Links-transform-hover);
+  box-shadow: var(--Links-boxshadow-hover);
+  border-color: var(--Links-border-hover);
+  background-color: var(--Links-bg-hover);
 }
 
-.icon,
+.link:active {
+  transform: var(--Links-transform-active);
+}
+
+.link::after {
+  display: none !important;
+}
+
 .iconify {
-  width: 2.5rem;
-  font-size: 2.5em;
-  color: var(--vp-c-text-1);
   flex-shrink: 0; /* 禁止图标在 flex 布局中因空间不足被压缩。 */
+  color: var(--iconify-defaultcolor);
 }
 
 .default-icon {
-  width: 2rem;
-  font-size: 1.5em;
   flex-shrink: 0; /* 禁止图标在 flex 布局中因空间不足被压缩。 */
+  margin: 0 0.25em 0 0.2em;
 }
 
 .text-content {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-left: 1rem;
+  margin-left: 1em;
   overflow: hidden;
 }
 
 .name,
 .desc {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   max-width: 100%;
 }
 
 .name {
-  font-size: 0.875rem;
-  font-weight: 600;
+  overflow: hidden;
+  color: var(--Links-name);
+  font-weight: 500;
+  font-size: 0.875em;
   line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .desc {
-  font-size: 0.75rem;
-  color: var(--vp-c-text-2);
-  font-weight: 500;
-  margin-top: 0.25rem;
-  line-height: 1.4;
+  margin: 0.25em 0 0 0;
+  color: var(--Links-desc);
+  font-size: 0.75em;
+  line-height: 1.5;
 }
 </style>

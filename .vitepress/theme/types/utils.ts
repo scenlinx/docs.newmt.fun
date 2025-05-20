@@ -1,117 +1,174 @@
-import { ref, onMounted } from 'vue'
-import { VideoProps } from './types'
+import { useData, useRouter } from 'vitepress'
+
+import {
+  ComputedRef,
+  computed,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  ref
+} from 'vue'
+
+import type { Prelink, VideoProps } from './types'
 
 /**
- * 检查链接是否为外部链接。
+ * 提取 frontmatter 中 hero 配置的 `prelink` 属性。
  *
- * @param link - 要判断的链接字符串。
- * @returns 如果链接是外部链接，则返回 `true`，否则返回 `false`。
+ * @returns 一个包含 `Prelink` 对象或 `undefined` 的计算属性。
  */
-export const isExternalLink = (link: string): boolean => /^https?:\/\//.test(link)
-
-/**
- * 创建一个视频播放状态的 ref 以及切换播放状态的函数。
- *
- * @returns 包含 `isVideoOpen` 状态和 `toggleVideo` 切换函数的常量数组。
- */
-export const useVideoToggle = () => {
-  const isVideoOpen = ref(false)
-
-  const toggleVideo = () => {
-    isVideoOpen.value = !isVideoOpen.value
-  }
-
-  return [isVideoOpen, toggleVideo] as const
+export const usePrelink = (): ComputedRef<Prelink | undefined> => {
+  const { frontmatter } = useData()
+  return computed(() => frontmatter.value.hero?.prelink)
 }
 
 /**
- * 将指定的 DOM 元素移动到目标位置。
+ * 判断链接是否为外部链接（以协议或 `//` 开头）。
  *
- * 当组件挂载时，将 `.VPHero .text` 内部的内容替换为 `#hero-text` 的内容。
+ * @param link - 要检测的链接字符串。
+ * @returns 如果为外部链接返回 `true`，否则返回 `false`。
  */
-export const moveDomElements = () => {
-  onMounted(() => {
-    const targetElement = document.querySelector('.VPHero .text') as HTMLElement | null
-    const sourceElement = document.querySelector('#hero-text') as HTMLElement | null
+export const isExternal = (link: string): boolean =>
+  /^(?:[a-z]+:|\/\/)/i.test(link)
 
-    if (targetElement && sourceElement) {
-      targetElement.innerHTML = ''
-      targetElement.appendChild(sourceElement)
+/** 将 `#hero-text` 的 DOM 节点插入至 `.VPHero .text` 中，并在组件卸载时还原。 */
+export const moveDomElements = (): void => {
+  let sourceElement: Element | null = null
+  let placeholder: Comment | null = null
+
+  onMounted(() => {
+    const target = document.querySelector('.VPHero .text')
+    sourceElement = document.querySelector('#hero-text')
+
+    if (target && sourceElement) {
+      placeholder = document.createComment('hero-text-placeholder')
+      sourceElement.before(placeholder)
+      target.innerHTML = ''
+      target.appendChild(sourceElement)
     }
+  })
+
+  onUnmounted(() => {
+    placeholder?.parentNode?.replaceChild(sourceElement, placeholder)
   })
 }
 
 /**
- * 视频平台配置
- * 每个平台包含以下属性：
- * - `src`: 返回视频嵌入链接的函数，接受视频的唯一标识符 `id` 作为参数。
- * - `title`: 视频播放器的名称。
+ * 提供复制文本到剪贴板的功能，并显示复制状态。
+ *
+ * @returns 包含 `copied` 状态和 `copyLink` 函数的组合对象。
+ */
+export const useCopyLink = () => {
+  const copied = ref(false)
+
+  const copyLink = async (text: string) => {
+    try {
+      if (!navigator.clipboard) {
+        alert('当前浏览器不支持自动复制，请手动复制。')
+        return
+      }
+      await navigator.clipboard.writeText(text)
+      copied.value = true
+      setTimeout(() => (copied.value = false), 2000)
+    } catch (error) {
+      console.error('复制失败:', error)
+      alert('复制失败，请手动复制。')
+    }
+  }
+
+  return { copied, copyLink }
+}
+
+/**
+ * 支持的视频平台播放器配置。
+ *
+ * 每个平台提供一个 `src` 函数用于生成嵌入链接，以及播放器名称。
  */
 export const video = {
   bilibili: {
-    src: (id: string) => `https://player.bilibili.com/player.html?aid=${id}`,
+    src: (id: VideoProps['id']) =>
+      `https://player.bilibili.com/player.html?bvid=${id}&autoplay=0`,
     title: 'Bilibili video player'
   },
   tencent: {
-    src: (id: string) => `https://v.qq.com/txp/iframe/player.html?vid=${id}`,
+    src: (id: VideoProps['id']) =>
+      `https://v.qq.com/txp/iframe/player.html?vid=${id}`,
     title: 'Tencent Video player'
   },
   youku: {
-    src: (id: string) => `https://player.youku.com/embed/${id}`,
+    src: (id: VideoProps['id']) => `https://player.youku.com/embed/${id}`,
     title: 'Youku video player'
   },
   youtube: {
-    src: (id: string) => `https://www.youtube-nocookie.com/embed/${id}`,
+    src: (id: VideoProps['id']) =>
+      `https://www.youtube-nocookie.com/embed/${id}`,
     title: 'YouTube video player'
   },
   vimeo: {
-    src: (id: string) => `https://player.vimeo.com/video/${id}`,
+    src: (id: VideoProps['id']) => `https://player.vimeo.com/video/${id}`,
     title: 'Vimeo video player'
   },
   xigua: {
-    src: (id: string) => `https://www.ixigua.com/iframe/${id}`,
+    src: (id: VideoProps['id']) => `https://www.ixigua.com/iframe/${id}`,
     title: 'XiGua video player'
   }
 }
 
 /**
- * 动态返回对应的视频配置或自定义链接
- * @param props - 包含视频相关参数的配置对象
- * @param props.to - 视频平台的名称（可选）
- * @param props.id - 视频的唯一标识符（可选）
- * @param props.src - 自定义视频链接（可选）
- * @returns 视频配置对象，包括 `src` 和 `title`
+ * 获取对应视频平台的嵌入配置或自定义视频信息。
+ *
+ * @param props - 视频参数，包括平台标识 `is`、视频 ID、以及自定义 `src`。
+ * @returns 视频播放器配置对象。
  */
-export const getVideoConfig = (props: VideoProps) => {
-  /**
-   * 如果同时传递了 `to` 和 `id`，返回对应视频平台的配置。
-   * @example
-   * getVideoConfig({ to: 'bilibili', id: '12345' });
-   * // 返回 { src: 'https://player.bilibili.com/player.html?aid=12345', title: 'Bilibili video player' }
-   */
-  if (props.to && props.id) {
-    return video[props.to]
+export const getVideo = (props: VideoProps) => {
+  if (props.is && props.id) return video[props.is]
+  if (props.id) return video.youtube
+  return { src: props.src || '', title: 'Custom video player' }
+}
+
+/**
+ * 基于当前路由生成页面分享链接。
+ *
+ * @returns 当前页面完整的分享链接。
+ */
+export function useShareLink(): ComputedRef<string> {
+  const router = useRouter()
+  return computed(() => {
+    if (typeof window === 'undefined') return ''
+    return `${window.location.origin}${router.route.path}`
+  })
+}
+
+/**
+ * 处理预设链接点击事件：支持跳转或复制内容。
+ *
+ * @param event - 鼠标点击事件。
+ * @param prelink - `Prelink` 对象，包含跳转链接、复制文本等字段。
+ */
+export function handleClick(
+  event: MouseEvent,
+  prelink: Prelink | undefined
+): void {
+  if (!prelink?.copy) return // 非复制操作，直接 return
+
+  event.preventDefault()
+
+  const textToCopy = prelink.install?.trim()
+  if (!textToCopy) {
+    alert('没有提供可复制的内容')
+    return
   }
 
-  /**
-   * 如果只有 `id` 存在，则返回默认的 YouTube 视频配置。
-   * @example
-   * getVideoConfig({ id: 'abcd1234' });
-   * // 返回 { src: 'https://www.youtube-nocookie.com/embed/abcd1234', title: 'YouTube video player' }
-   */
-  if (props.id) {
-    return video.youtube
+  if (!navigator.clipboard) {
+    alert('当前浏览器不支持复制，请手动复制。')
+    return
   }
 
-  /**
-   * 如果没有 `to` 和 `id`，且提供了自定义的 `src`，返回自定义视频配置。
-   * 如果 `src` 为空，则返回空链接。
-   * @example
-   * getVideoConfig({ src: 'https://example.com/custom-video.mp4' });
-   * // 返回 { src: 'https://example.com/custom-video.mp4', title: 'Custom video player' }
-   */
-  return {
-    src: props.src || '',
-    title: 'Custom video player'
-  }
+  navigator.clipboard
+    .writeText(textToCopy)
+    .then(() => {
+      console.log('[Announcement] 已复制到剪贴板:', textToCopy)
+    })
+    .catch((err) => {
+      console.error('[Announcement] 复制失败:', err)
+    })
 }

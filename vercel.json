@@ -8,9 +8,24 @@
       "headers": {
         "Cache-Control": "max-age=31536000, immutable"
       }
+    },
+    {
+      "src": "/llms.md",
+      "status": 301,
+      "headers": {
+        "Location": "/llms.txt"
+      }
+    },
+    {
+      "src": "/llms-full.md",
+      "status": 301,
+      "headers": {
+        "Location": "/llms-full.txt"
+      }
     }
   ],
   "env": {
-    "NODE_VERSION": "22"
+    "NODE_VERSION": "22",
+    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
   }
 }

@@ -1,30 +1,87 @@
 <script setup lang="ts">
-import { BoxItem, isExternalLink, Icon } from '../types'
+import { BoxItem, Icon, isExternal } from '../types'
 
 const props = defineProps<{ items: BoxItem[] }>()
 </script>
 
 <template>
-  <div class="box-container">
+  <div class="container">
     <a
       v-for="(box, index) in props.items"
       :key="box.link + index"
+      class="link"
       :href="box.link"
-      :title="box.name"
-      class="box"
-      :target="isExternalLink(box.link) ? '_blank' : '_self'"
-      rel="noopener"
+      :target="isExternal(box.link) ? '_blank' : '_self'"
+      rel="noreferrer"
     >
       <template v-if="box.icon">
-        <Icon :icon="box.icon" class="iconify" :style="{ color: box.color }" />
+        <Icon
+          v-if="typeof box.icon === 'object'"
+          class="iconify light-only"
+          :icon="box.icon.light"
+          :color="typeof box.color === 'object' ? box.color.light : box.color"
+          :ssr="true"
+          :inline="true"
+          :aria-label="box.alt"
+          width="38"
+          height="38"
+        />
+        <Icon
+          v-if="typeof box.icon === 'object'"
+          class="iconify dark-only"
+          :icon="box.icon.dark"
+          :color="typeof box.color === 'object' ? box.color.dark : box.color"
+          :ssr="true"
+          :inline="true"
+          :aria-label="box.alt"
+          width="38"
+          height="38"
+        />
+        <Icon
+          v-else
+          class="iconify"
+          :icon="box.icon"
+          :color="typeof box.color === 'string' ? box.color : ''"
+          :ssr="true"
+          :inline="true"
+          :aria-label="box.alt"
+          width="38"
+          height="38"
+        />
       </template>
       <template v-else-if="box.image">
-        <img v-if="typeof box.image === 'object'" :src="box.image.light" alt="Icon" class="icon light-only" />
-        <img v-if="typeof box.image === 'object'" :src="box.image.dark" alt="Icon" class="icon dark-only" />
-        <img v-else :src="box.image" alt="Icon" class="icon" />
+        <img
+          v-if="typeof box.image === 'object'"
+          class="light-only"
+          :src="box.image.light"
+          :alt="box.alt"
+          loading="lazy"
+          decoding="async"
+          width="38"
+          height="38"
+        />
+        <img
+          v-if="typeof box.image === 'object'"
+          class="dark-only"
+          :src="box.image.dark"
+          :alt="box.alt"
+          loading="lazy"
+          decoding="async"
+          width="38"
+          height="38"
+        />
+        <img
+          v-else
+          :src="box.image"
+          :alt="box.alt"
+          loading="lazy"
+          decoding="async"
+          width="38"
+          height="38"
+        />
       </template>
       <span class="name">{{ box.name }}</span>
-      <span v-if="box.tag" class="tag">{{ box.tag }}</span>
+      <p v-if="box.tag" class="tag">{{ box.tag }}</p>
     </a>
   </div>
 </template>
@@ -38,80 +95,85 @@ const props = defineProps<{ items: BoxItem[] }>()
   display: none;
 }
 
-.box-container {
+.container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.5em;
 }
 
-.box {
-  position: relative;
-  border: 1px solid var(--vp-c-bg-alt);
-  background-color: var(--vp-c-bg-alt);
-  padding: 0 1.6rem;
-  border-radius: 0.8rem;
-  width: 14rem;
-  height: 3.5rem;
+.link {
   display: flex;
-  text-decoration: none !important;
+  position: relative;
   align-items: center;
+  gap: 1em;
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid var(--Box-border);
+  border-radius: 0.8em;
+  background-color: var(--Box-bg);
+  padding: 0 1.6em;
+  width: 14em;
+  height: 3.5em;
+  text-decoration: none !important;
 }
 
-.box:hover {
-  border-color: var(--vp-c-brand-1);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.link:hover {
+  transform: var(--Box-transform-hover);
+  box-shadow: var(--Box-boxshadow-hover);
+  border-color: var(--Box-border-hover);
+  background-color: var(--Box-bg-hover);
+}
+
+.link:active {
+  transform: var(--Box-transform-active);
+}
+
+.link::after {
+  display: none !important;
 }
 
 @media (max-width: 1024px) {
-  .box {
-    flex: 1 1 calc(50% - 0.5rem);
-    max-width: calc(50% - 0.5rem);
+  .link {
+    flex: 1 1 calc(50% - 0.5em);
+    max-width: calc(50% - 0.5em);
   }
 }
 
 @media (max-width: 768px) {
-  .box {
-    flex: 1 1 calc(50% - 0.5rem);
-    max-width: calc(50% - 0.5rem);
+  .link {
+    flex: 1 1 calc(50% - 0.5em);
+    max-width: calc(50% - 0.5em);
   }
 }
 
 .tag {
-  line-height: 1;
+  display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
-  background-color: var(--vp-c-brand-3);
-  color: var(--vp-c-brand-text);
-  font-size: 0.625rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0 0.7rem 0 0.7rem;
   z-index: 1;
-}
-
-.icon {
-  height: 2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  border-radius: 0 0.7em 0 0.7em;
+  background-color: var(--Box-tag-bg);
+  padding: 0.25em 0.5em;
+  pointer-events: none;
+  color: var(--Box-tag);
+  font-weight: 500;
+  font-size: 0.625em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .iconify {
-  font-size: 2.4em;
-  flex-shrink: 0; /* 禁止图标在 flex 布局中因空间不足被压缩。 */
-  margin: 0 -0.1em 0 -0.1em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--vp-c-text-1);
+  flex-shrink: 0;
+  color: var(--iconify-defaultcolor);
 }
 
 .name {
-  margin-left: 1rem;
-  font-size: 0.875rem;
   overflow: hidden;
+  color: var(--Box-name);
+  font-weight: 500;
+  font-size: 0.875em;
+  letter-spacing: 0.05em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
