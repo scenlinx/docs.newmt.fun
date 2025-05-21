@@ -87,7 +87,7 @@ export const head: HeadConfig[] = [
     'meta',
     {
       name: 'google-site-verification',
-      content: 'bOXLe1lrqePxxyksBSbMgqbELMkTX9Q_FkyEuVwTobI'
+      content: '1UZ494BTZTo2f-VijC69XdHQgZ_EIbNDm3WkgRg4uKI'
     }
   ]
 ]
