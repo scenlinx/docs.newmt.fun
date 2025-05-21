@@ -38,7 +38,7 @@ export default {
   enhanceApp: ({ app }) => {
     umamiAnalytics({
       id: 'ede95de6-e37d-4364-b1cb-bc4af35b5318',
-      src: 'https://ai.wantr.cn/script.js'
+      src: 'https://docs.newmt.fun/script.js'
     })
     app.component('Home', HomeUnderline)
     app.component('Pill', DocPill)

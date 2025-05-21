@@ -13,7 +13,7 @@ import {
   transformPageData
 } from './configs'
 
-const baseUrl = 'https://ai.wantr.cn'
+const baseUrl = 'https://docs.newmt.fun'
 
 // 导出默认配置
 export default defineConfig({

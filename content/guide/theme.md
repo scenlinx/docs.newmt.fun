@@ -107,36 +107,36 @@ export default DefaultTheme
 **输入**
 
 ```md
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 ::: info
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: tip
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: warning
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: danger
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: details
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
@@ -144,36 +144,36 @@ export default DefaultTheme
 
 **输出**
 
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 ::: info
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: tip
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: warning
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: danger
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: details
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
@@ -184,7 +184,7 @@ export default DefaultTheme
 
 ````md
 ::: danger STOP
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 :::
 
 ::: details Click me to view the code
@@ -198,7 +198,7 @@ console.log('Hello, VitePress!')
 
 **输出**
 ::: danger STOP
-[这是一个链接](https://ai.wantr.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 :::
 
 ::: details Click me to view the code
@@ -216,31 +216,31 @@ console.log('Hello, VitePress!')
 ```md
 > [!NOTE]
 >
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!TIP]
 >
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!IMPORTANT]
 >
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!WARNING]
 >
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!CAUTION]
 >
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 ```
@@ -249,31 +249,31 @@ console.log('Hello, VitePress!')
 
 > [!NOTE]
 >
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!TIP]
 >
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!IMPORTANT]
 >
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!WARNING]
 >
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!CAUTION]
 >
-> [这是一个链接](https://ai.wantr.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 

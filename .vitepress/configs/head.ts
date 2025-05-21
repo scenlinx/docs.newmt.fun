@@ -23,20 +23,20 @@ export const head: HeadConfig[] = [
     'link',
     { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }
   ],
-  ['meta', { name: 'apple-mobile-web-app-title', content: 'AI-Wantr-Docs' }],
+  ['meta', { name: 'apple-mobile-web-app-title', content: 'NewMT-Docs' }],
   ['link', { rel: 'manifest', href: '/site.webmanifest' }],
   ['meta', { name: 'author', content: 'Scenlinx' }],
   ['meta', { name: 'copyright', content: 'Scenlinx' }],
   ['meta', { property: 'og:type', content: 'website' }],
   ['meta', { property: 'og:locale', content: 'zh-Hans' }],
-  ['meta', { property: 'og:site_name', content: 'AI.Wantr知识分享' }],
-  ['meta', { property: 'og:title', content: 'AI.Wantr知识分享' }],
-  ['meta', { property: 'og:url', content: 'https://ai.wantr.cn/' }],
+  ['meta', { property: 'og:site_name', content: ' NewMT百万知识库' }],
+  ['meta', { property: 'og:title', content: ' NewMT百万知识库' }],
+  ['meta', { property: 'og:url', content: 'https://docs.newmt.fun/' }],
   [
     'meta',
     {
       property: 'og:image',
-      content: '/logo/AI-Wantr-Docs-og.webp'
+      content: '/logo/Docs-og.webp'
     }
   ],
   [
@@ -44,7 +44,7 @@ export const head: HeadConfig[] = [
     {
       property: 'og:description',
       content:
-        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
+        '集成 Vue 功能组件和主题美化的 VitePress 插件'
     }
   ],
   [
@@ -52,26 +52,26 @@ export const head: HeadConfig[] = [
     {
       name: 'description',
       content:
-        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
+        '集成 Vue 功能组件和主题美化的 VitePress 插件'
     }
   ],
   ['meta', { name: 'format-detection', content: 'telephone=no' }],
   ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
   ['meta', { name: 'twitter:site', content: '@Scenlinx' }],
-  ['meta', { name: 'twitter:title', content: 'AI-Wantr-Docs' }],
+  ['meta', { name: 'twitter:title', content: 'NewMT-Docs' }],
   [
     'meta',
     {
       name: 'twitter:description',
       content:
-        '流媒体森林是一个全方位的流媒体观影指南，提供国内外主流流媒体平台（Netflix、Disney+、HBO Max、Spotify、YouTube、Premium、奈飞、青云梯、HBO Max、Spotify、奈飞小铺、银河录像局）的解锁、线路、机场、服务、教程等内容，致力于为广大用户提供最全面、最快捷的流媒体解锁服务。'
+        '集成 Vue 功能组件和主题美化的 VitePress 插件'
     }
   ],
   [
     'meta',
     {
       name: 'twitter:image',
-      content: '/logo/AI-Wantr-Docs-og.webp'
+      content: '/logo/Docs-og.webp'
     }
   ],
   [

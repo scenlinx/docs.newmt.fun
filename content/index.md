@@ -45,7 +45,7 @@ hero:
 
     - theme: brand
       text: ❤️ 成为赞助
-      link: /logo/index.html
+      link: /logo/sponsor.webp
 
     - theme: alt
       text: 玄学中医
