@@ -8,11 +8,6 @@ export const nav: DefaultTheme.NavItem[] = [
     activeMatch: '^/guide/'
   },
   {
-    text: '<iconify-icon class="i-mr" icon="heroicons:currency-dollar-solid" style="color:#20c997"></iconify-icon>副业学习',
-    link: '/moneys/',
-    activeMatch: '^/moneys/'
-  },
-  {
     text: '<iconify-icon class="i-mr" icon="heroicons:archive-box-solid" style="color:#fd7e14"></iconify-icon>资源合集',
     link: '/sources/',
     activeMatch: '^/sources/'
@@ -32,6 +27,10 @@ export const nav: DefaultTheme.NavItem[] = [
       },
     ],
     activeMatch: '/it-serve/'
+  },
+  {
+    text: '<iconify-icon class="i-mr" icon="heroicons:currency-dollar-solid" style="color:#20c997"></iconify-icon>副业学习',
+    link: 'https://ai.wantr.cn/moneys/',
   },
   { 
     text: '<iconify-icon class="i-mr" icon="heroicons:cloud-arrow-down-solid" style="color:#17a2b8"></iconify-icon>网盘资源', 
