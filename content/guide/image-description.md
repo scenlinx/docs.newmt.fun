@@ -10,7 +10,7 @@ head:
       content: VitePress 图片描述 Markdown 图片标题 figcaption @mdit/plugin-figure @scenlinx 图片样式 CSS light/dark模式 明暗模式 图片配置 VitePress插件 图片注解
 ---
 
-![效果图|100x0](/logo/Logo.webp '效果图')
+![效果图|100x0](/logo/announcement-dark.webp '效果图')
 
 ## 导入添加样式
 
@@ -23,7 +23,7 @@ head:
 ## 使用
 
 ```md
-![效果图](/logo/Logo.webp)
+![效果图](/logo/announcement-dark.webp)
 
 ![浅色模式1{.light-only}](/logo/github.svg)
 
@@ -34,7 +34,7 @@ head:
 ![浅色模式2](/logo/github.svg#light)
 ```
 
-![效果图](/logo/Logo.webp)
+![效果图](/logo/announcement-dark.webp)
 
 ![浅色模式1{.light-only}](/logo/github.svg)
 
