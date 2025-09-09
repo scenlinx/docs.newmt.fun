@@ -1,176 +1,241 @@
-export interface IconImageMode {
-  /** 浅色模式下的图标和图片 */
-  light: string
-  /** 深色模式下的图标和图片 */
-  dark: string
-}
+import type { WalineProps } from '@waline/client/full'
 
-/** DocBox 接口 */
-export interface BoxItem {
-  /** DocBox 名称。 */
-  name: string
-  /** DocBox 链接。 */
-  link: string
-  /** DocBox 标签。 */
-  tag?: string
-  /** 图标的颜色。 */
-  color?: string | IconImageMode
-  /** 图标名称（支持 iconify） */
-  icon?: string | IconImageMode
-  /** 图片路径（支持 light 和 dark 模式） */
-  image?: string | IconImageMode
-  /** 图片的 alt 文本 */
-  alt?: string
-}
+/** 图标和图片的类型 */
+export type IconMode = string | { light: string; dark: string }
+/** 尺寸类型 */
+export type SizeType = null | string | number
+/** 链接类型 */
+export type LinkType = string | undefined
+/** Rel 属性类型 */
+export type RelType = string | undefined
+/** 目标类型 */
+export type TargetType = string | undefined
 
-/** DocPill 接口 */
-export interface Pill {
-  /** Pill 名称。 */
-  name: string
-  /** Pill 链接。 */
-  link?: string
-  /** 图标名称（支持 iconify） */
-  icon?: string | IconImageMode
-  /** 图标的颜色。 */
-  color?: string | IconImageMode
-  /** 图片路径（支持 light 和 dark 模式） */
-  image?: string | IconImageMode
-  /** 图片的 alt 文本 */
-  alt?: string
-}
+export type IconType =
+  | string
+  | { icon: string; color?: IconMode }
+  | { light: string; dark: string; color?: IconMode }
+  | { svg: IconMode }
 
-/** DocLinks 接口 */
+export type ImageType =
+  | string
+  | { src: string; crop?: boolean; [prop: string]: any }
+  | { light: string; dark: string; crop?: boolean; [prop: string]: any }
+
+/** Links */
 export interface LinkItem {
-  /** DocLinks 名称。 */
+  /** 名称 */
   name: string
-  /** DocLinks 描述。 */
+  /** 描述 */
   desc?: string
-  /** DocLinks 链接。 */
-  link: string
-  /** 图标的颜色。 */
-  color?: string | IconImageMode
-  /** 图标名称（支持 iconify） */
-  icon?: string | IconImageMode
-  /** 图片路径（支持 light 和 dark 模式） */
-  image?: string | IconImageMode
-  /** 图片的 alt 文本 */
-  alt?: string
+  /** 链接 */
+  link?: LinkType
+  /** 链接地址描述文本 */
+  linkText?: string
+  /** Rel 属性 */
+  rel?: RelType
+  /** 链接的目标 */
+  target?: TargetType
+  /** 图标配置 */
+  icon?: IconType
+  /** 图片配置 */
+  image?: ImageType
+  /** 图片和图标大小 @default '32' */
+  size?: SizeType
 }
 
-/** BoxCube 接口 */
-export interface BoxCubeItem {
-  /** BoxCube 名称。 */
-  name: string
-  /** BoxCube 链接。 */
-  link: string
-  /** BoxCube 描述。 */
-  desc?: string
-  /** BoxCube 标签。 */
-  tag?: string
-  /** 图标的颜色。 */
-  color?: string | IconImageMode
-  /** 图标名称（支持 iconify） */
-  icon?: string | IconImageMode
-  /** 图片路径（支持 light 和 dark 模式） */
-  image?: string | IconImageMode
-  /** 图片的 alt 文本 */
-  alt?: string
+/** Promo ：表示一个具有活动性质的推广项 */
+export interface Promo {
+  /** 活动标题 */
+  promo: string
+  /** 跳转链接 */
+  link?: LinkType
+  /** Rel 属性 */
+  rel?: RelType
+  /** 链接的目标 */
+  target?: TargetType
+  /** 附加信息1 */
+  info1?: string
+  /** 附加信息2 */
+  info2?: string
+  /** 图标配置 */
+  icon?: IconType
+  /** 图片配置 */
+  image?: ImageType
+  /** 图片和图标大小 @default '32' */
+  size?: SizeType
 }
 
-/** Announcement 接口 */
-export interface Prelink {
-  /** 链接的 URL。 */
-  link?: string
-  /** 链接的标题。 */
+/** Normal ：表示普通链接项 */
+export interface Normal {
+  /** 名称标题 */
+  name: string
+  /** 跳转链接 */
+  link?: LinkType
+  /** Rel 属性 */
+  rel?: RelType
+  /** 链接的目标 */
+  target?: TargetType
+  /** 隐藏信息1（可用于鼠标悬停显示） */
+  hide1?: string
+  /** 隐藏信息2 */
+  hide2?: string
+  /** 图标配置 */
+  icon?: IconType
+  /** 图片配置 */
+  image?: ImageType
+  /** 图片和图标大小 @default '32' */
+  size?: SizeType
+}
+
+/** Notice */
+export interface NoticeItem {
+  /** 链接 */
+  link?: LinkType
+  /** Rel 属性 */
+  rel?: RelType
+  /** 链接的目标 */
+  target?: TargetType
+  /** 链接的标题 */
   title: string
-  /** 链接的内容。 */
-  content?: string
+  /** 链接的内容 */
+  desc?: string
   /** 日期 */
   date?: string
   /** 日期文本 */
   dateText?: string
-  /** 日期图标 */
-  dateIcon?: string
-  /** 复制开关 */
-  copy?: boolean
-  /** 复制的内容 */
-  install?: string
-  /** 图片的 alt 文本 */
-  alt?: string
+  /** 日期图标 @default 'heroicons:calendar-days' */
+  dateIcon?: IconType
+  /** 日期图片 */
+  dateImage?: ImageType
 }
 
-/** HomeFooter 接口 */
+/** Waline 配置数据类型 */
+export interface WalineData {
+  serverURL: WalineProps['serverURL']
+  path?: string
+  lang?: WalineProps['lang']
+  locale?: WalineProps['locale']
+  emoji?: WalineProps['emoji']
+  commentSorting?: WalineProps['commentSorting']
+  meta?: WalineProps['meta']
+  requiredMeta?: WalineProps['requiredMeta']
+  login?: WalineProps['login']
+  wordLimit?: WalineProps['wordLimit']
+  pageSize?: WalineProps['pageSize']
+  imageUploader?: WalineProps['imageUploader']
+  highlighter?: WalineProps['highlighter']
+  texRenderer?: WalineProps['texRenderer']
+  search?: WalineProps['search']
+  noCopyright?: WalineProps['noCopyright']
+  recaptchaV3Key?: WalineProps['recaptchaV3Key']
+  turnstileKey?: WalineProps['turnstileKey']
+  reaction?: WalineProps['reaction']
+}
+
+/** Footer */
 export interface FooterData {
-  /** 链接分组数组。 */
+  i18n?: Record<string, Partial<Omit<FooterData, 'i18n'>>>
+  /** 链接分组数组 */
   group?: Group[]
-  /** 备案信息。 */
+  /** 备案信息 */
   beian?: Beian
-  /** 作者信息。 */
+  /** 作者信息 */
   author?: Author
+  /** 外部链接图标开关 */
+  noIcon?: boolean
 }
 
-/** HomeFooter Group 接口 */
+/** Footer_Group */
 export interface Group {
-  /** 图标名称（支持 iconify） */
-  icon?: string
-  /** 图标样式 */
-  color?: string
+  /** 图标配置 */
+  icon?: IconType
+  /** 图片配置 */
+  image?: ImageType
+  /** 外部链接图标开关 */
+  noIcon?: boolean
   /** 分组标题 */
   title: string
   /** 链接数组 */
   links: Link[]
-  /** 无障碍描述 */
-  alt?: string
 }
 
-/** HomeFooter Beian 接口 */
+/** Footer_Beian */
 export interface Beian {
-  /** ICP 备案号 */
-  icp?: string
-  /** ICP 图标，@default 'fluent:globe-shield-48-filled' */
-  icpIcon?: string
-  /** 无障碍描述 */
-  icpalt?: string
-  /** 公安备案号 */
-  police?: string
-  /** 公安备案图标，@default 'fluent:shield-checkmark-48-filled' */
-  policeIcon?: string
-  /** 无障碍描述 */
-  policealt?: string
+  /** ICP 备案 */
+  icp?: Icp
+  /** 公安备案 */
+  police?: Police
   /** 是否显示图标 */
   showIcon?: boolean
 }
 
-/** HomeFooter Author 接口 */
+/** Footer_Beian_Icp */
+export interface Icp {
+  /** ICP 备案号 */
+  number?: string
+  /** ICP 图标 */
+  icon?: IconType
+  /** 图片配置 */
+  image?: ImageType
+  /** ICP网站或自定义链接 */
+  link?: LinkType
+  /** Rel 属性 */
+  rel?: RelType
+  /** 链接的目标 */
+  target?: TargetType
+}
+
+/** Footer_Beian_Police */
+export interface Police {
+  /** 公安备案号 */
+  number?: string
+  /** 公安备案图标 */
+  icon?: IconType
+  /** 图片配置 */
+  image?: ImageType
+  /** 公安备案网站或自定义链接 */
+  link?: LinkType
+  /** Rel 属性 */
+  rel?: RelType
+  /** 链接的目标 */
+  target?: TargetType
+}
+
+/** Footer_Author */
 export interface Author {
+  /** 版权图标配置 @default 'ri:copyright-line' */
+  icon?: IconType
+  /** 版权图片配置 */
+  image?: ImageType
+  /** 版权起始年份 */
+  startYear?: number
   /** 作者姓名 */
   name?: string
   /** 作者链接 */
-  link?: string
-  /** 无障碍描述 */
-  alt?: string
+  link?: LinkType
+  /** Rel 属性 */
+  rel?: RelType
+  /** 链接的目标 */
+  target?: TargetType
+  /** 版权文本 */
+  text?: string
 }
 
-/** HomeFooter Link 接口 */
+/** Footer_Link */
 export interface Link {
   /** 链接图标 */
-  icon?: string
-  /** 链接样式 */
-  color?: string
+  icon?: IconType
+  /** 图片配置 */
+  image?: ImageType
+  /** 外部链接图标开关 */
+  noIcon?: boolean
   /** 链接名称 */
   name: string
   /** 链接地址 */
-  link: string
-  /** 无障碍描述 */
-  alt?: string
-}
-
-/** DocVideoLink 接口 */
-export interface VideoProps {
-  /** 可选的 id，当选择平台时需要使用 id */
-  id?: string
-  /** 可选的平台类型 */
-  is?: 'youtube' | 'bilibili' | 'tencent' | 'youku' | 'vimeo' | 'xigua'
-  /** 自定义视频链接，只有在 `is` 和`id` 不存在时才需要提供。 */
-  src?: string
+  link: LinkType
+  /** Rel 属性 */
+  rel?: RelType
+  /** 链接的目标 */
+  target?: TargetType
 }

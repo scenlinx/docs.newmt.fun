@@ -1,55 +1,56 @@
+/// <reference types="vite/client" />
 import { useRoute } from 'vitepress'
-
 import imageViewer from 'vitepress-plugin-image-viewer'
 import DefaultTheme from 'vitepress/theme'
-
 import { h } from 'vue'
-
 import {
-  Announcement,
-  DocBox,
-  DocBoxCube,
-  DocLinks,
-  DocPill,
-  DocVideoLink,
-  HomeFooter,
-  HomeUnderline,
-  backtotop,
+  Notice,
+  Footer,
+  Links,
+  Underline,
+  Backtotop,
+  VideoLink,
   umamiAnalytics
 } from './types/index.js'
-import './styles/all.css'
-
+import './style/all.css'
 import { Footer_Data } from '../data'
-
 import 'viewerjs/dist/viewer.min.css'
 import 'virtual:group-icons.css'
 
 export default {
   extends: DefaultTheme,
+
   Layout() {
     return h(DefaultTheme.Layout, null, {
-      'home-hero-info-before': () => h(Announcement),
-      'layout-bottom': () => h(HomeFooter, { Footer_Data }),
+      'home-hero-info-before': () => h(Notice),
+      'layout-bottom': () => h(Footer, { Footer_Data }),
       'doc-after': () => h('div', [
-        h(backtotop)
+        h(Backtotop)
       ])
     })
   },
+
   enhanceApp: ({ app }) => {
     umamiAnalytics({
-      id: 'ede95de6-e37d-4364-b1cb-bc4af35b5318',
-      src: 'https://docs.newmt.fun/script.js'
+      id: import.meta.env.VITE_UMAMI_ID,
+      src: import.meta.env.VITE_UMAMI_SRC,
+      domains: 'pro.wantr.cn'
     })
-    app.component('Home', HomeUnderline)
-    app.component('Pill', DocPill)
-    app.component('Box', DocBox)
-    app.component('Links', DocLinks)
-    app.component('BoxCube', DocBoxCube)
-    app.component('Vid', DocVideoLink)
-    app.component('BackTop', backtotop)
+    app.component('Home', Underline)
+    app.component('Links', Links)
+    app.component('Vid', VideoLink)
   },
+
   setup() {
     const route = useRoute()
-    imageViewer(route)
+    imageViewer(route, '.vp-doc', {
+      navbar: true,
+      toolbar: true,
+      filter: (img: HTMLImageElement) => {
+        const noViewer = !img.hasAttribute('data-no-viewer')
+        if (noViewer) img.style.cursor = 'zoom-in'
+        return noViewer
+      }
+    })
   }
 }

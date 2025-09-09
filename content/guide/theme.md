@@ -1,142 +1,122 @@
 ---
-title: 主题配置文件
-order: 2  # 新增的排序字段
-head:
-  - - meta
-    - name: description
-      content: 了解如何配置和自定义 @scenlinx VitePress 主题。本指南包括主题CSS导入（全部或部分）、Iconify图标支持配置、CSS变量覆盖方法，并展示了容器、徽章和明暗模式图片等内置样式示例。
-  - - meta
-    - name: keywords
-      content: VitePress 主题配置 @scenlinx CSS导入 Iconify 自定义CSS CSS变量 容器样式 徽章 明暗模式 light/dark模式 VitePress插件 主题美化 UI组件 样式定制
+title: 配置主题
+description: 了解如何配置和自定义 @theojs/lumen VitePress 主题。本指南包括主题CSS导入（全部或部分）、Iconify图标支持配置、CSS变量覆盖方法，并展示了容器、徽章和明暗模式图片等内置样式示例。
 ---
+
+# 配置主题
+
+## 主题样式导入
 
 ::: code-group
 
-```ts [所有主题]
-// theme/index.ts
-import '@scenlinx/theme'
+```ts [全量导入]
+// .vitepress/theme/index.ts
+import '@theojs/lumen/style'
 ```
 
-```ts [部分主题]
-// theme/index.ts
+```ts [按需导入]
+// .vitepress/theme/index.ts
 /* 徽章样式 */
-import '@scenlinx/badge'
-/* 按钮 */
-import '@scenlinx/button'
-/* 配色 */
-import '@scenlinx/colors'
-/* 文档样式 */
-import '@scenlinx/doc'
-/* 容器样式 */
-import '@scenlinx/doc-blocks'
-/* 首页样式 */
-import '@scenlinx/home'
+import '@theojs/lumen/badge'
 /* 首页按钮 */
-import '@scenlinx/home-blocks'
-/* 图标 */
-import '@scenlinx/icon'
+import '@theojs/lumen/button'
+/* 主题配色 */
+import '@theojs/lumen/colors'
+/* 文档基础样式 */
+import '@theojs/lumen/doc'
+/* 容器样式（警告、提示块等） */
+import '@theojs/lumen/doc-blocks'
+/* 首页样式 */
+import '@theojs/lumen/home'
+/* 图标样式 */
+import '@theojs/lumen/icon'
 /* 图片样式 */
-import '@scenlinx/pic'
+import '@theojs/lumen/pic'
 ```
 
 :::
 
-## 图标支持
+## 图标支持 <Pill :icon="{ icon: 'line-md:iconify2-static', color: '#1769AA' }" name="查看图标库" link="https://icon-sets.iconify.design/" />
 
-:::details 使用 `iconify-icon` 时报错 `[Vue warn]: Failed to resolve component: iconify-icon`
-
-```ts [.vitepress/config.mts]
-import { defineConfig } from 'vitepress'
-
-export default defineConfig({
-  vue: { // [!code ++]
-    template: { // [!code ++]
-      compilerOptions: { isCustomElement: (tag) => tag === 'iconify-icon' } // [!code ++]
-    } // [!code ++]
-  } // [!code ++]
-  ...
-})
-```
-
-:::
-<Pill name="使用方法查看: https://iconify.design/docs/iconify-icon/" link="https://iconify.design/docs/iconify-icon/" icon="line-md:iconify2-static" color="#1769AA" alt="iconify icon" />
+### 示例
 
 ```vue-html
 <iconify-icon icon="simple-icons:fontawesome"></iconify-icon>
 <iconify-icon icon="line-md:iconify2-static"></iconify-icon>
-<iconify-icon icon="cil:locomotive" height="36"></iconify-icon>
 <iconify-icon icon="cil:paper-plane" width="36"></iconify-icon>
-<iconify-icon icon="cil:truck" style="font-size: 18px" height="2em"></iconify-icon>
 ```
 
 <iconify-icon icon="simple-icons:fontawesome"></iconify-icon>
 <iconify-icon icon="line-md:iconify2-static"></iconify-icon>
-<iconify-icon icon="cil:locomotive" height="36"></iconify-icon>
 <iconify-icon icon="cil:paper-plane" width="36"></iconify-icon>
-<iconify-icon icon="cil:truck" style="font-size: 18px" height="2em"></iconify-icon>
 
 ## 自定义组件 CSS
 
-可以通过覆盖根级别的 CSS 变量来自定义默认主题的 CSS：
+默认使用 CSS 变量来管理样式。你可以通过覆盖根级 CSS 变量，轻松实现主题颜色及样式的个性化定制。
+
+### 在主题入口导入自定义变量文件
 
 ```ts
 // .vitepress/theme/index.ts
 import DefaultTheme from 'vitepress/theme'
-
-import '@scenlinx/theme'
-import './var.css' // [!code ++]
+import '@theojs/lumen/style'
+// [!code ++]
+import './var.css'
 
 export default DefaultTheme
-..
 ```
+
+### 在 `var.css` 中覆盖变量
 
 ```css
 /* .vitepress/theme/var.css */
 :root {
-  --Announcement-bg: var(--vp-button-alt-bg);
-  --Announcement-bg-hover: var(--vp-c-brand-soft);
+  --lm-Notice-bg: var(--vp-button-alt-bg);
+  --lm-Notice-bg-hover: var(--vp-c-brand-soft);
 }
 ```
 
-查看<Pill name="默认组件 CSS 变量" link="/theme/styles/components-var.css" icon="unjs:theme-colors" alt="iconify icon" />内容来获取可以被覆盖的变量。
+查看<Pill icon="unjs:theme-colors" name="默认组件 CSS 变量" link="https://github.com/s-theo/lumen/blob/main/src/style/components-var.css" /> 文件中查看所有可用变量，方便针对性覆盖。
 
-## 示例
+## 内置样式示例
 
-### 容器
+### 1. 容器
+
+容器用于显示信息提示、警告、注意事项等内容，支持多种内置类型：
 
 **输入**
 
 ```md
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
 ::: info
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 
 这是一段文字
 :::
 
 ::: tip
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 
 这是一段文字
 :::
 
 ::: warning
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 
 这是一段文字
 :::
 
 ::: danger
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 
 这是一段文字
 :::
 
 ::: details
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 
 这是一段文字
 :::
@@ -144,47 +124,47 @@ export default DefaultTheme
 
 **输出**
 
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
 ::: info
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 
 这是一段文字
 :::
 
 ::: tip
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 
 这是一段文字
 :::
 
 ::: warning
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 
 这是一段文字
 :::
 
 ::: danger
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 
 这是一段文字
 :::
 
 ::: details
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 
 这是一段文字
 :::
 
-### 自定义容器
+### 2. 自定义容器
 
 **输入**
 
 ````md
 ::: danger STOP
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 :::
 
 ::: details Click me to view the code
@@ -198,7 +178,7 @@ console.log('Hello, VitePress!')
 
 **输出**
 ::: danger STOP
-[这是一个链接](https://docs.newmt.fun/)
+[这是一个链接](https://doc.theojs.cn/)
 :::
 
 ::: details Click me to view the code
@@ -209,38 +189,38 @@ console.log('Hello, VitePress!')
 
 :::
 
-### GitHub 风格容器
+### 3. GitHub 风格容器
 
 **输入**
 
 ```md
 > [!NOTE]
 >
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
 > [!TIP]
 >
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
 > [!IMPORTANT]
 >
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
 > [!WARNING]
 >
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
 > [!CAUTION]
 >
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 ```
@@ -249,42 +229,49 @@ console.log('Hello, VitePress!')
 
 > [!NOTE]
 >
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
 > [!TIP]
 >
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
 > [!IMPORTANT]
 >
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
 > [!WARNING]
 >
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
 > [!CAUTION]
 >
-> [这是一个链接](https://docs.newmt.fun/)
+> [这是一个链接](https://doc.theojs.cn/)
 >
 > 这是一段文字
 
-### 徽章
+### 4. Badge 组件
 
-```vue
+```vue-html
 <Badge type="info" text="default" />
 <Badge type="tip" text="^1.9.0" />
 <Badge type="warning" text="beta" />
 <Badge type="danger" text="caution" />
 <Badge type="info">custom element</Badge>
+
+<!-- 或者是 small-->
+<Badge type="info small" text="default" />
+<Badge type="tip small" text="^1.9.0" />
+<Badge type="warning small" text="beta" />
+<Badge type="danger small" text="caution" />
+<Badge type="info small">custom element</Badge>
 ```
 
 <Badge type="info" text="default" />
@@ -293,64 +280,131 @@ console.log('Hello, VitePress!')
 <Badge type="danger" text="caution" />
 <Badge type="info">custom element</Badge>
 
-### 图片浅色与深色模式
+<Badge type="info small" text="default" />
+<Badge type="tip small" text="^1.9.0" />
+<Badge type="warning small" text="beta" />
+<Badge type="danger small" text="caution" />
+<Badge type="info small">custom element</Badge>
+
+### 5. 图片的浅色和深色模式支持
 
 **输入**
 
-```md [深浅模式图片]
-<!-- 浅色模式 -->
+```md
+![浅色模式](https://i.theojs.cn/logo/github.svg){.light-only}
 
-![](/logo/github.svg){.light-only}
+![深色模式](https://i.theojs.cn/logo/github-dark.svg){.dark-only}
 
-<!-- 深色模式 -->
+![深色模式](https://i.theojs.cn/logo/github-dark.svg#dark)
 
-![](/logo/github-dark.svg){.dark-only}
-
-<!-- 深色模式 -->
-
-![](/logo/github-dark.svg#dark)
-
-<!-- 浅色模式 -->
-
-![](/logo/github.svg#light)
+![浅色模式](https://i.theojs.cn/logo/github.svg#light)
 ```
 
 **输出**
 
-<!-- 浅色模式 -->
+![浅色模式](https://i.theojs.cn/logo/github.svg){.light-only}
 
-![](/logo/github.svg){.light-only}
+![深色模式](https://i.theojs.cn/logo/github-dark.svg){.dark-only}
 
-<!-- 深色模式 -->
+![深色模式](https://i.theojs.cn/logo/github-dark.svg#dark)
 
-![](/logo/github-dark.svg){.dark-only}
+![浅色模式](https://i.theojs.cn/logo/github.svg#light)
 
-<!-- 深色模式 -->
+### 6. 首页 actions 添加图片
 
-![](/logo/github-dark.svg#dark)
+查看 [自定义组件 css](#自定义组件-css) 将下方的内容更换为自己的图片链接
 
-<!-- 浅色模式 -->
-
-![](/logo/github.svg#light)
-
-<!-- 浅色模式 -->
-
-```md [带描述的深浅模式图片]
-![浅色模式{.light-only}](/logo/github.svg)
-
-![深色模式{.dark-only}](/logo/github-dark.svg)
-
-![深色模式](/logo/github-dark.svg#dark)
-
-![浅色模式](/logo/github.svg#light)
+```css [.vitepress/theme/var.css]
+:root {
+  --lm-button-author: url('https://i.theojs.cn/logo/avatar-mini.webp');
+  --lm-button-logo: url('https://i.theojs.cn/logo/lumen-logo-mini.svg');
+}
 ```
 
-**输出**
+```yaml [.vitepress/index.md]
+---
+layout: home
 
-![浅色模式{.light-only}](/logo/github.svg)
+hero:
+  actions:
+    - theme: brand author
+      text: Theo-Docs
+      link: https://doc.theojs.cn/
 
-![深色模式{.dark-only}](/logo/github-dark.svg)
+    - theme: alt author
+      text: Theo-Docs
+      link: https://doc.theojs.cn/
 
-![深色模式](/logo/github-dark.svg#dark)
+    - theme: brand logo
+      text: Lumen
+      link: hhttps://lumen.theojs.cn/
 
-![浅色模式](/logo/github.svg#light)
+    - theme: alt logo
+      text: Lumen
+      link: https://lumen.theojs.cn/
+
+features: ...
+---
+```
+
+## 解决方案
+
+### 导入主题时报错: `does not provide an export named 'load'`
+
+查看 [解决方式](./comment.md##安装依赖)
+
+### 使用 `iconify-icon` 时报错: `[Vue warn]: Failed to resolve component: iconify-icon`
+
+```ts [.vitepress/config.mts]
+import { defineConfig } from 'vitepress'
+
+export default defineConfig({
+  // [!code ++]
+  vue: {
+    // [!code ++]
+    template: {
+      // [!code ++]
+      compilerOptions: { isCustomElement: (tag) => tag === 'iconify-icon' }
+    } // [!code ++]
+  } // [!code ++]
+})
+```
+
+### 使用 [vitepress-plugin-image-viewer](https://www.npmjs.com/package/vitepress-plugin-image-viewer) 时排除组件内的图像
+
+```ts [.vitepress/theme/index.ts]
+// [!code ++]
+import { useRoute } from 'vitepress'
+// [!code ++]
+import imageViewer from 'vitepress-plugin-image-viewer'
+import DefaultTheme from 'vitepress/theme'
+// [!code ++]
+import 'viewerjs/dist/viewer.min.css'
+
+export default {
+  // [!code ++]
+  setup() {
+    const route = useRoute() // [!code ++]
+    // [!code ++]
+    imageViewer(route, '.vp-doc', {
+      filter: (img: HTMLImageElement) => !img.hasAttribute('data-no-viewer') // [!code ++]
+    }) // [!code ++]
+  } // [!code ++]
+}
+```
+
+### 组件图像默认加载行为
+
+在组件中，图像默认使用 `loading="lazy"`，即图片会在接近视口时才开始加载，以优化页面加载速度和性能。
+
+**如果需要修改默认行为**
+
+如果你希望图像在页面加载时立即加载，你可以显式地在组件中设置 `loading="eager"`。
+
+```vue-html
+<Pill
+  :image="{ src: 'https://www.example.com/image.jpg', loading: 'eager' }"
+  name="示例图片"
+  link="https://www.example.com"
+/>
+```

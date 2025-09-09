@@ -1,3 +1,6 @@
+<script setup lang="ts">
+</script>
+
 <template>
   <Transition name="fade">
     <div v-show="showBackTop" class="vitepress-backTop-main" title="返回顶部" @click="scrollToTop()">

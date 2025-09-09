@@ -30,14 +30,14 @@ export const nav: DefaultTheme.NavItem[] = [
   },
   {
     text: '<iconify-icon class="i-mr" icon="heroicons:currency-dollar-solid" style="color:#20c997"></iconify-icon>副业学习',
-    link: 'https://ai.wantr.cn/moneys/',
+    link: 'https://pro.wantr.cn/moneys/',
   },
   { 
     text: '<iconify-icon class="i-mr" icon="heroicons:cloud-arrow-down-solid" style="color:#17a2b8"></iconify-icon>网盘资源', 
-    link: 'https://pan.newmt.fun/' 
+    link: 'https://panws.top/' 
   },
   { 
     text: '<iconify-icon class="i-mr" icon="heroicons:map-solid" style="color:#28a745"></iconify-icon>百万导航', 
-    link: 'https://nav.newmt.fun/' 
+    link: 'https://www.newmt.fun/' 
   }
 ]

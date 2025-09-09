@@ -1,42 +1,34 @@
 import { defineConfig } from 'vitepress'
-
 import { groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 import llmstxt from 'vitepress-plugin-llms'
+import { head, markdown, nav, search, sidebar, socialLinks, transformPageData } from './configs'
 
-import {
-  head,
-  markdown,
-  nav,
-  search,
-  sidebar,
-  socialLinks,
-  transformPageData
-} from './configs'
-
-const baseUrl = 'https://docs.newmt.fun'
-
-// 导出默认配置
 export default defineConfig({
   // 站点名称
   title: 'DOCS.NewMT',
+
   // 站点语言
   lang: 'zh-Hans',
+
   // 站点介绍
   description:
-    '网络技术,VPS,ESXi,OpenWrt,青龙面板,风水玄学,picgo,github,图床,梅林固件,华硕,fancyss,科学上网,clash,独角数卡,homebrew,git,docker,linux,markdown,甲骨文,谷歌云,防火墙,流媒体,京东,阿里云,YouTube,Premium,机场,流媒体,解锁,线路,科学上网,梯子,特殊服务,出国服务,奈飞,Netflix,迪士尼,YouTube,油管,hulu,FlyingBird,青云梯,HBO Max,Spotify,奈飞小铺,银河录像局',
+    '专注AI软件与大模型应用、副业赚钱实战（网盘拉新/流量卡代理）、新媒体运营（短视频/直播）的干货分享！提供最新行业趋势、变现技巧与工具推荐，助你快速入门高收益领域，玩转AI+副业+新媒体矩阵！',
   // 网站头部
   head,
+
   //'force-dark'强制开启深色模式 false强制开启浅色模式
   // appearance: 'force-dark',
 
+  // 是否将 meta 信息提取为单独的 chunk
   metaChunk: true,
 
   // 站点地图
-  sitemap: { hostname: baseUrl },
+  sitemap: { hostname: 'https://docs.newmt.fun' },
 
   // markdown-it插件配置
   markdown,
 
+  // 动态生成 meta 标签和 JSON-LD 数据
   transformPageData,
 
   // 源目录
@@ -48,16 +40,17 @@ export default defineConfig({
   // 开启后网址后缀无'html'
   cleanUrls: true,
 
-  // vue配置
+  // vue 配置
   vue: {
     template: {
       compilerOptions: { isCustomElement: (tag) => tag === 'iconify-icon' }
     }
   },
 
-  // vite插件
+  // vite 配置
   vite: {
     plugins: [
+      // @ts-ignore: 使用 rolldown-vite 时类型不兼容 vite，但运行正常
       groupIconVitePlugin({
         customIcon: {
           debian: 'vscode-icons:file-type-debian',
@@ -70,21 +63,19 @@ export default defineConfig({
           rhel: 'logos:redhat-icon',
           android: 'logos:android-icon'
         }
-      }),
+      }), // @ts-ignore
       llmstxt({})
-    ],
-    build: {
-      chunkSizeWarningLimit: 1000
-    }
+    ]
   },
 
   themeConfig: {
     // logo
     logo: {
-      src: '/logo/avatar-mini.webp',
+      src: '/avatar.webp',
       width: 24,
       height: 24,
-      alt: 'avatar'
+      alt: 'avatar',
+      fetchpriority: 'high'
     },
 
     // 社交链接
@@ -99,19 +90,11 @@ export default defineConfig({
 
     // 上次更新
     lastUpdated: {
-      text: '最后更新于',
-      formatOptions: {
-        dateStyle: 'full',
-        timeStyle: 'full',
-        hourCycle: 'h24'
-      }
+      text: '最后更新于'
     },
 
     // 文章翻页
-    docFooter: {
-      prev: '上一篇',
-      next: '下一篇'
-    },
+    docFooter: { prev: '上一篇', next: '下一篇' },
 
     // 移动端 - 返回顶部
     returnToTopLabel: '返回顶部',
@@ -137,13 +120,10 @@ export default defineConfig({
     // 侧边栏
     sidebar,
 
-    // 本地搜索
-    search: {
-      provider: 'local',
-      options: search
-    },
+    // 搜索配置
+    search: { provider: 'local', options: search },
 
-    // 404
+    // 404 配置
     notFound: {
       title: '找不到页面',
       quote: '页面不见了，也许它去找寻新的冒险了！',

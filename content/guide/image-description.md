@@ -1,45 +1,90 @@
 ---
-title: 图片描述
-order: 7  # 新增的排序字段
-head:
-  - - meta
-    - name: description
-      content: 了解如何在 VitePress 中为图片添加描述或figcaption。本指南将引导你安装和配置 @mdit/plugin-figure 插件，并应用 @scenlinx 的样式，以支持图片标题和在明暗模式下显示不同的图片。
-  - - meta
-    - name: keywords
-      content: VitePress 图片描述 Markdown 图片标题 figcaption @mdit/plugin-figure @scenlinx 图片样式 CSS light/dark模式 明暗模式 图片配置 VitePress插件 图片注解
+title: 图片描述 - Markdown 图片标题
+description: 了解如何在 VitePress 中为图片添加描述或figcaption。本指南将引导你安装和配置 @mdit/plugin-figure 插件，并应用 @theojs/lumen 的样式，以支持图片标题和在明暗模式下显示不同的图片。
 ---
 
-![效果图|100x0](/logo/announcement-dark.webp '效果图')
+# 图片描述 - Markdown 图片标题
 
-## 导入添加样式
+![效果图|200x0](https://i.theojs.cn/logo/lumen-logo-large.svg '效果图')
 
-```md
-<<< @/../.vitepress/theme/styles/picture.css
+## 安装 `@mdit/plugin-figure` 插件
+
+::: code-group
+
+```sh [pnpm]
+pnpm add -D @mdit/plugin-figure
 ```
 
-<<< @/../.vitepress/theme/styles/picture.css
+```sh [npm]
+npm install -D @mdit/plugin-figure
 
-## 使用
-
-```md
-![效果图](/logo/announcement-dark.webp)
-
-![浅色模式1{.light-only}](/logo/github.svg)
-
-![深色模式1{.dark-only}](/logo/github-dark.svg)
-
-![深色模式2](/logo/github-dark.svg#dark)
-
-![浅色模式2](/logo/github.svg#light)
 ```
 
-![效果图](/logo/announcement-dark.webp)
+```sh [yarn]
+yarn add -D @mdit/plugin-figure
+```
 
-![浅色模式1{.light-only}](/logo/github.svg)
+:::
 
-![深色模式1{.dark-only}](/logo/github-dark.svg)
+## 配置插件选项
 
-![深色模式2](/logo/github-dark.svg#dark)
+```ts [.vitepress/config.mts]
+import { defineConfig } from 'vitepress'
+// [!code ++]
+import { figure } from '@mdit/plugin-figure'
 
-![浅色模式2](/logo/github.svg#light)
+export default defineConfig({
+  // [!code ++]
+  markdown: {
+    // [!code ++]
+    config: (md) => {
+      // [!code ++]
+      md.use(figure)
+    } // [!code ++]
+  } // [!code ++]
+})
+```
+
+## 导入主题
+
+::: code-group
+
+```ts [全量导入]
+// theme/index.ts
+import '@theojs/lumen/style'
+```
+
+```ts [单独导入]
+// theme/index.ts
+import '@theojs/lumen/pic'
+```
+
+:::
+
+### 也可以单独添加样式
+
+<<< @/../src/style/picture.css
+
+## 使用示例
+
+```md
+![效果图](https://i.theojs.cn/logo/lumen-logo-mini.svg)
+
+![浅色模式](https://i.theojs.cn/logo/github.svg){.light-only}
+
+![深色模式](https://i.theojs.cn/logo/github-dark.svg){.dark-only}
+
+![深色模式](https://i.theojs.cn/logo/github-dark.svg#dark)
+
+![浅色模式](https://i.theojs.cn/logo/github.svg#light)
+```
+
+![效果图](https://i.theojs.cn/logo/lumen-logo-mini.svg)
+
+![浅色模式](https://i.theojs.cn/logo/github.svg){.light-only}
+
+![深色模式](https://i.theojs.cn/logo/github-dark.svg){.dark-only}
+
+![深色模式](https://i.theojs.cn/logo/github-dark.svg#dark)
+
+![浅色模式](https://i.theojs.cn/logo/github.svg#light)
