@@ -5,6 +5,21 @@ description: 了解如何使用 @theojs/lumen 的 CopyText 组件来实现点击
 
 # 复制按钮组件 - CopyText
 
+## 引入组件
+
+```ts [.vitepress/theme/index.ts]
+import DefaultTheme from 'vitepress/theme'
+// [!code ++]
+import { CopyText } from '@theojs/lumen'
+
+export default {
+  // [!code ++]
+  enhanceApp: ({ app }) => {
+    app.component('Copy', CopyText) // [!code ++]
+  } // [!code ++]
+}
+```
+
 ## 使用示例
 
 **输入**
