@@ -1,5 +1,6 @@
 ---
 title: 评论组件 - Waline
+order: 20  # 新增的排序字段
 description: 了解如何通过 @theojs/lumen 插件将 Waline 评论系统集成到你的 VitePress 网站中。本指南包括数据配置、组件引入以及在文档页和首页启用评论功能的步骤，帮助你轻松为站点添加互动评论区。
 ---
 

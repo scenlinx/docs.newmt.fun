@@ -1,5 +1,6 @@
 ---
 title: 复制按钮组件 - CopyText
+order: 9  # 新增的排序字段
 description: 了解如何使用 @theojs/lumen 的 CopyText 组件来实现点击复制文本功能。该组件支持自定义图标、提示信息和位置，适用于各种场景，如代码片段、链接等。
 ---
 

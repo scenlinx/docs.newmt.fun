@@ -1,5 +1,6 @@
 ---
 title: 首页下划线组件 - Underline
+order: 4  # 新增的排序字段
 description: 学习如何使用 @theojs/lumen 插件的 Underline 组件，为 VitePress 网站首页的hero区域标题文本添加美观的动态下划线效果。本指南包含组件引入、属性配置及在首页布局中使用的详细步骤，提升首页视觉吸引力和用户体验。
 head:
   - - meta

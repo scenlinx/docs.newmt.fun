@@ -1,5 +1,6 @@
 ---
 title: 侧边栏链接组件 - Aside
+order: 6  # 新增的排序字段
 description: 学习如何使用 @theojs/lumen 插件的 Aside 组件，在 VitePress 站点的侧边栏添加自定义链接、推广信息或品牌Logo。本指南将引导你配置数据并集成组件，以丰富侧边栏内容和提升用户体验。
 head:
   - - meta

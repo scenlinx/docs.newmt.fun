@@ -1,5 +1,6 @@
 ---
 title: 首页公告栏组件 - Notice
+order: 3  # 新增的排序字段
 description: 了解如何使用 @theojs/lumen 插件，为你的 VitePress 网站首页添加一个引人注目的公告栏组件。轻松配置和展示活动信息、重要通知或快速安装命令，有效提升首页互动性和信息传递效率。
 head:
   - - meta
