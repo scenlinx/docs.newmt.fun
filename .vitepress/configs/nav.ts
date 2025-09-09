@@ -17,8 +17,9 @@ export const nav: DefaultTheme.NavItem[] = [
       },
       { 
         text: '玄学中医', 
-        link: '/classics/index', 
-        activeMatch: '^/classics/' 
+        link: 'https://doc.panws.top/03learn/xuanxue'
+//      link: '/classics/index', 
+//      activeMatch: '^/classics/' 
       },
     ],
     activeMatch: '/it-serve/'
