@@ -42,7 +42,7 @@ hero:
 
     - theme: brand
       text: 百万资源
-      link: https://docs.panws.top
+      link: https://doc.panws.top
 
 features:
   - title: '<iconify-icon class="i-mr" icon="heroicons:puzzle-piece" style="color:#ff9800"></iconify-icon>开箱即用的主题配色'
