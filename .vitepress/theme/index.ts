@@ -9,7 +9,6 @@ import {
   Links,
   Underline,
   Backtotop,
-  VideoLink,
   umamiAnalytics
 } from './types/index.js'
 import './style/all.css'
@@ -38,7 +37,6 @@ export default {
     })
     app.component('Home', Underline)
     app.component('Links', Links)
-    app.component('Vid', VideoLink)
   },
 
   setup() {
