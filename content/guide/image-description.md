@@ -63,7 +63,9 @@ import '@theojs/lumen/pic'
 
 ### 也可以单独添加样式
 
+```md
 <<< @/../src/style/picture.css
+```
 
 ## 使用示例
 
