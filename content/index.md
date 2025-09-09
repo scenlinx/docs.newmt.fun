@@ -22,7 +22,7 @@ hero:
     desc: |
       · <span class="promo-text"> 250G流量 </span> 低至 <span class="promo-text"> 19元/月 </span>
       · <span class="promo-text"> 250G流量 </span> 低至 <span class="promo-text"> 19元/月 </span>
-    date: '9月30号23点59分'
+    date: '12月31号23点59分'
     dateText: '活动截止至'
     link: https://10086.wantr.cn
     rel: sponsored noreferrer
