@@ -1,11 +1,11 @@
 ---
 layout: home
 
-title: AI知识库
+title: 百万知识库
 titleTemplate: 一个探索AI，新媒体，副业赚钱等最新行业玩法，分享流量卡代理和网盘拉新技巧的网站
 
 hero:
-  name: wantr AI
+  name: 百万知识库
   text: '知识 & 技能 '
   textsuffix: '& 财富'
   tagline: 探索AI/新媒体/副业赚钱等最新行业玩法
