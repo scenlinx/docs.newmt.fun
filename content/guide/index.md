@@ -12,7 +12,7 @@ order: 1  # 新增的排序字段
     //图片
     {
       name: '支付宝',
-      link: '/docs/202405201752089.jpg',
+      link: '#',
       image: '/logo/alipay.svg'
     },
     //深浅模式的图片
@@ -674,7 +674,7 @@ import { VPTeamMembers } from 'vitepress/theme'
 
 const members = [
   {
-    avatar: 'avatar.webp',
+    avatar: '/logo/avatar.webp',
     name: 'scenlinx',
     title: 'Author',
     links: [{ icon: 'github', link: 'https://github.com/scenlinx' }]
@@ -692,7 +692,7 @@ import { VPTeamMembers } from 'vitepress/theme'
 
 const members = [
   {
-    avatar: 'avatar.webp',
+    avatar: '/logo/avatar.webp',
     name: 'scenlinx',
     title: 'Author',
     links: [
