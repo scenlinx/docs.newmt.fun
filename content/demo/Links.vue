@@ -74,17 +74,17 @@
     :items="[
       // 普通图片
       {
-        image: 'https://i.theojs.cn/logo/alipay.svg',
+        image: '/logo/alipay.svg',
         name: '支付宝',
         desc: '移动支付平台，提供便捷的在线支付和转账服务',
-        link: 'https://i.theojs.cn/alipay.webp',
+        link: '/logo/alipay.webp',
         linkText: '立即查看'
       },
       // 深浅模式图片
       {
         image: {
-          light: 'https://i.theojs.cn/logo/github.svg',
-          dark: 'https://i.theojs.cn/logo/github-dark.svg',
+          light: '/logo/github.svg',
+          dark: '/logo/github-dark.svg',
           crop: true
         },
         name: 'GitHub',

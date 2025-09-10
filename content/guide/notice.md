@@ -5,14 +5,14 @@ description: 了解如何使用 @theojs/lumen 插件，为你的 VitePress 网�
 head:
   - - meta
     - property: og:image
-      content: https://i.theojs.cn/docs/announcement-light.webp
+      content: /logo/announcement-light.webp
 ---
 
 # 首页公告栏组件 - Notice
 
-![首页公告栏 - 效果图|550x0](https://i.theojs.cn/docs/announcement-light.webp#light '首页公告栏 - 效果图')
+![首页公告栏 - 效果图|550x0](/logo/announcement-light.webp#light '首页公告栏 - 效果图')
 
-![首页公告栏 - 效果图|550x0](https://i.theojs.cn/docs/announcement-dark.webp#dark '首页公告栏 - 效果图')
+![首页公告栏 - 效果图|550x0](/logo/announcement-dark.webp#dark '首页公告栏 - 效果图')
 
 ## 引入组件
 

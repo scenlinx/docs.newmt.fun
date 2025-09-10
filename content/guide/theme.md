@@ -292,24 +292,24 @@ console.log('Hello, VitePress!')
 **输入**
 
 ```md
-![浅色模式](https://i.theojs.cn/logo/github.svg){.light-only}
+![浅色模式](/logo/github.svg){.light-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg){.dark-only}
+![深色模式](/logo/github-dark.svg){.dark-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg#dark)
+![深色模式](/logo/github-dark.svg#dark)
 
-![浅色模式](https://i.theojs.cn/logo/github.svg#light)
+![浅色模式](/logo/github.svg#light)
 ```
 
 **输出**
 
-![浅色模式](https://i.theojs.cn/logo/github.svg){.light-only}
+![浅色模式](/logo/github.svg){.light-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg){.dark-only}
+![深色模式](/logo/github-dark.svg){.dark-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg#dark)
+![深色模式](/logo/github-dark.svg#dark)
 
-![浅色模式](https://i.theojs.cn/logo/github.svg#light)
+![浅色模式](/logo/github.svg#light)
 
 ### 6. 首页 actions 添加图片
 
@@ -317,8 +317,8 @@ console.log('Hello, VitePress!')
 
 ```css [.vitepress/theme/var.css]
 :root {
-  --lm-button-author: url('https://i.theojs.cn/logo/avatar-mini.webp');
-  --lm-button-logo: url('https://i.theojs.cn/logo/lumen-logo-mini.svg');
+  --lm-button-author: url('/logo/avatar-mini.webp');
+  --lm-button-logo: url('/logo/lumen-logo-mini.svg');
 }
 ```
 
