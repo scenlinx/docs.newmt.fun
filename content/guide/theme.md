@@ -1,7 +1,7 @@
 ---
 title: 配置主题
 order: 3  # 新增的排序字段
-description: 了解如何配置和自定义 @theojs/lumen VitePress 主题。本指南包括主题CSS导入（全部或部分）、Iconify图标支持配置、CSS变量覆盖方法，并展示了容器、徽章和明暗模式图片等内置样式示例。
+description: 了解如何配置和自定义VitePress 主题。本指南包括主题CSS导入（全部或部分）、Iconify图标支持配置、CSS变量覆盖方法，并展示了容器、徽章和明暗模式图片等内置样式示例。
 ---
 
 # 配置主题
@@ -12,27 +12,27 @@ description: 了解如何配置和自定义 @theojs/lumen VitePress 主题。本
 
 ```ts [全量导入]
 // .vitepress/theme/index.ts
-import '@theojs/lumen/style'
+import './types/index.js/style'
 ```
 
 ```ts [按需导入]
 // .vitepress/theme/index.ts
 /* 徽章样式 */
-import '@theojs/lumen/badge'
+import './types/index.js/badge'
 /* 首页按钮 */
-import '@theojs/lumen/button'
+import './types/index.js/button'
 /* 主题配色 */
-import '@theojs/lumen/colors'
+import './types/index.js/colors'
 /* 文档基础样式 */
-import '@theojs/lumen/doc'
+import './types/index.js/doc'
 /* 容器样式（警告、提示块等） */
-import '@theojs/lumen/doc-blocks'
+import './types/index.js/doc-blocks'
 /* 首页样式 */
-import '@theojs/lumen/home'
+import './types/index.js/home'
 /* 图标样式 */
-import '@theojs/lumen/icon'
+import './types/index.js/icon'
 /* 图片样式 */
-import '@theojs/lumen/pic'
+import './types/index.js/pic'
 ```
 
 :::
@@ -60,7 +60,7 @@ import '@theojs/lumen/pic'
 ```ts
 // .vitepress/theme/index.ts
 import DefaultTheme from 'vitepress/theme'
-import '@theojs/lumen/style'
+import './types/index.js/style'
 // [!code ++]
 import './var.css'
 
@@ -77,7 +77,7 @@ export default DefaultTheme
 }
 ```
 
-查看<Pill icon="unjs:theme-colors" name="默认组件 CSS 变量" link="https://github.com/s-theo/lumen/blob/main/src/style/components-var.css" /> 文件中查看所有可用变量，方便针对性覆盖。
+查看<Links icon="unjs:theme-colors" name="默认组件 CSS 变量 /style/components-var.css" /> 文件中查看所有可用变量，方便针对性覆盖。
 
 ## 内置样式示例
 
@@ -88,36 +88,36 @@ export default DefaultTheme
 **输入**
 
 ```md
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 ::: info
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: tip
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: warning
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: danger
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: details
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
@@ -125,36 +125,36 @@ export default DefaultTheme
 
 **输出**
 
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 ::: info
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: tip
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: warning
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: danger
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
 
 ::: details
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 
 这是一段文字
 :::
@@ -165,7 +165,7 @@ export default DefaultTheme
 
 ````md
 ::: danger STOP
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 :::
 
 ::: details Click me to view the code
@@ -179,7 +179,7 @@ console.log('Hello, VitePress!')
 
 **输出**
 ::: danger STOP
-[这是一个链接](https://doc.theojs.cn/)
+[这是一个链接](https://docs.newmt.fun/)
 :::
 
 ::: details Click me to view the code
@@ -197,31 +197,31 @@ console.log('Hello, VitePress!')
 ```md
 > [!NOTE]
 >
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!TIP]
 >
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!IMPORTANT]
 >
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!WARNING]
 >
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!CAUTION]
 >
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 ```
@@ -230,31 +230,31 @@ console.log('Hello, VitePress!')
 
 > [!NOTE]
 >
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!TIP]
 >
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!IMPORTANT]
 >
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!WARNING]
 >
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
 > [!CAUTION]
 >
-> [这是一个链接](https://doc.theojs.cn/)
+> [这是一个链接](https://docs.newmt.fun/)
 >
 > 这是一段文字
 
@@ -292,24 +292,24 @@ console.log('Hello, VitePress!')
 **输入**
 
 ```md
-![浅色模式](https://i.theojs.cn/logo/github.svg){.light-only}
+![浅色模式](/logo/github.svg){.light-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg){.dark-only}
+![深色模式](/logo/github-dark.svg){.dark-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg#dark)
+![深色模式](/logo/github-dark.svg#dark)
 
-![浅色模式](https://i.theojs.cn/logo/github.svg#light)
+![浅色模式](/logo/github.svg#light)
 ```
 
 **输出**
 
-![浅色模式](https://i.theojs.cn/logo/github.svg){.light-only}
+![浅色模式](/logo/github.svg){.light-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg){.dark-only}
+![深色模式](/logo/github-dark.svg){.dark-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg#dark)
+![深色模式](/logo/github-dark.svg#dark)
 
-![浅色模式](https://i.theojs.cn/logo/github.svg#light)
+![浅色模式](/logo/github.svg#light)
 
 ### 6. 首页 actions 添加图片
 
@@ -317,8 +317,8 @@ console.log('Hello, VitePress!')
 
 ```css [.vitepress/theme/var.css]
 :root {
-  --lm-button-author: url('https://i.theojs.cn/logo/avatar-mini.webp');
-  --lm-button-logo: url('https://i.theojs.cn/logo/lumen-logo-mini.svg');
+  --lm-button-author: url('/logo/avatar-mini.webp');
+  --lm-button-logo: url('/logo/logo-mini.svg');
 }
 ```
 
@@ -329,20 +329,20 @@ layout: home
 hero:
   actions:
     - theme: brand author
-      text: Theo-Docs
-      link: https://doc.theojs.cn/
+      text: DOCS.NewMT
+      link: https://docs.newmt.fun/
 
     - theme: alt author
-      text: Theo-Docs
-      link: https://doc.theojs.cn/
+      text: DOCS.NewMT
+      link: https://docs.newmt.fun/
 
     - theme: brand logo
-      text: Lumen
-      link: hhttps://lumen.theojs.cn/
+      text: NewMT
+      link: https://docs.newmt.fun/
 
     - theme: alt logo
-      text: Lumen
-      link: https://lumen.theojs.cn/
+      text: NewMT
+      link: https://docs.newmt.fun/
 
 features: ...
 ---

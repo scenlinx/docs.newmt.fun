@@ -1,25 +1,25 @@
 ---
 title: 首页下划线组件 - Underline
 order: 4  # 新增的排序字段
-description: 学习如何使用 @theojs/lumen 插件的 Underline 组件，为 VitePress 网站首页的hero区域标题文本添加美观的动态下划线效果。本指南包含组件引入、属性配置及在首页布局中使用的详细步骤，提升首页视觉吸引力和用户体验。
+description: 学习如何使用插件的 Underline 组件，为 VitePress 网站首页的hero区域标题文本添加美观的动态下划线效果。本指南包含组件引入、属性配置及在首页布局中使用的详细步骤，提升首页视觉吸引力和用户体验。
 head:
   - - meta
     - property: og:image
-      content: https://i.theojs.cn/docs/homeunderline-light.webp
+      content: /logo/homeunderline-light.webp
 ---
 
 # 首页下划线组件 - Underline
 
-![首页下划线 - 效果图|688x0](https://i.theojs.cn/docs/homeunderline-light.webp#light '首页下划线 - 效果图')
+![首页下划线 - 效果图|688x0](/logo/homeunderline-light.webp#light '首页下划线 - 效果图')
 
-![首页下划线 - 效果图|688x0](https://i.theojs.cn/docs/homeunderline-dark.webp#dark '首页下划线 - 效果图')
+![首页下划线 - 效果图|688x0](/logo/homeunderline-dark.webp#dark '首页下划线 - 效果图')
 
 ## 引入组件
 
 ```ts [.vitepress/theme/index.ts]
 import DefaultTheme from 'vitepress/theme'
 // [!code ++]
-import { Underline } from '@theojs/lumen'
+import { Underline } from './types/index.js'
 
 export default {
   // [!code ++]
@@ -39,7 +39,7 @@ export default {
 layout: home
 
 hero:
-  name: Lumen
+  name: NewMT
   text: Enhanced # [!code ++] 副标题文本前半部分，下划线会作用于这里
   textsuffix: Theme # [!code ++] 副标题文本后半部分
   tagline: ✨ 专为 VitePress 打造的主题美化与 Vue 扩展组件库

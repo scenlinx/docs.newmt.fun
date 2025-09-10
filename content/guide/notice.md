@@ -1,18 +1,18 @@
 ---
 title: 首页公告栏组件 - Notice
 order: 5  # 新增的排序字段
-description: 了解如何使用 @theojs/lumen 插件，为你的 VitePress 网站首页添加一个引人注目的公告栏组件。轻松配置和展示活动信息、重要通知或快速安装命令，有效提升首页互动性和信息传递效率。
+description: 了解如何使用插件，为你的 VitePress 网站首页添加一个引人注目的公告栏组件。轻松配置和展示活动信息、重要通知或快速安装命令，有效提升首页互动性和信息传递效率。
 head:
   - - meta
     - property: og:image
-      content: https://i.theojs.cn/docs/announcement-light.webp
+      content: /logo/announcement-light.webp
 ---
 
 # 首页公告栏组件 - Notice
 
-![首页公告栏 - 效果图|550x0](https://i.theojs.cn/docs/announcement-light.webp#light '首页公告栏 - 效果图')
+![首页公告栏 - 效果图|550x0](/logo/announcement-light.webp#light '首页公告栏 - 效果图')
 
-![首页公告栏 - 效果图|550x0](https://i.theojs.cn/docs/announcement-dark.webp#dark '首页公告栏 - 效果图')
+![首页公告栏 - 效果图|550x0](/logo/announcement-dark.webp#dark '首页公告栏 - 效果图')
 
 ## 引入组件
 
@@ -21,7 +21,7 @@ import DefaultTheme from 'vitepress/theme'
 // [!code ++]
 import { h } from 'vue'
 // [!code ++]
-import { Notice } from '@theojs/lumen'
+import { Notice } from './types/index.js'
 
 export default {
   extends: DefaultTheme,
@@ -45,12 +45,12 @@ hero:
   Notice:
     title: '🎉 活动不停歇，青云梯四周年双旦特惠'
     desc: | # 支持 YAML 的换行符，保持多行格式
-      · 月/季/半年付 <span class="promo-text">85折: wuyi85</span>
-      · 年付以上 <span class="promo-text">64折: wuyi80</span>
+      · 月/季/半年付 <span class="promo-text">85折: 123</span>
+      · 年付以上 <span class="promo-text">64折: 1233</span>
     date: '2025年1月7日23时59分'
     dateIcon: 'mdi:calendar-star'
     dateText: '活动截止日期'
-    link: 'https://itheo.top/qyt'
+    link: 'https://xxxxxx'
 ---
 ```
 

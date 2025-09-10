@@ -1,7 +1,7 @@
 ---
 title: 站点统计组件 - Analytics
 order: 11  # 新增的排序字段
-description: 探索如何使用 @theojs/lumen 插件，在你的 VitePress 站点中无缝集成谷歌分析 (Google Analytics)、百度统计 (Baidu Analytics) 及 Umami Analytics。本指南将帮助你快速配置和管理站点统计，有效追踪和分析网站数据。
+description: 探索如何使用插件，在你的 VitePress 站点中无缝集成谷歌分析 (Google Analytics)、百度统计 (Baidu Analytics) 及 Umami Analytics。本指南将帮助你快速配置和管理站点统计，有效追踪和分析网站数据。
 ---
 
 # 站点统计组件
@@ -13,7 +13,7 @@ description: 探索如何使用 @theojs/lumen 插件，在你的 VitePress 站�
 ```ts [.vitepress/theme/index.ts]
 import DefaultTheme from 'vitepress/theme'
 // [!code ++]
-import { googleAnalytics } from '@theojs/lumen'
+import { googleAnalytics } from './types/index.js'
 
 export default {
   // [!code ++]
@@ -41,7 +41,7 @@ export default {
 ```ts [.vitepress/theme/index.ts]
 import DefaultTheme from 'vitepress/theme'
 // [!code ++]
-import { baiduAnalytics, trackPageview } from '@theojs/lumen'
+import { baiduAnalytics, trackPageview } from './types/index.js'
 
 export default {
   // [!code ++]
@@ -70,7 +70,7 @@ export default {
 ```ts [.vitepress/theme/index.ts]
 import DefaultTheme from 'vitepress/theme'
 // [!code ++]
-import { umamiAnalytics } from '@theojs/lumen'
+import { umamiAnalytics } from './types/index.js'
 
 export default {
   // [!code ++]

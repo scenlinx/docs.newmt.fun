@@ -1,7 +1,7 @@
 ---
 title: 评论组件 - Waline
 order: 10  # 新增的排序字段
-description: 了解如何通过 @theojs/lumen 插件将 Waline 评论系统集成到你的 VitePress 网站中。本指南包括数据配置、组件引入以及在文档页和首页启用评论功能的步骤，帮助你轻松为站点添加互动评论区。
+description: 了解如何通过插件将 Waline 评论系统集成到你的 VitePress 网站中。本指南包括数据配置、组件引入以及在文档页和首页启用评论功能的步骤，帮助你轻松为站点添加互动评论区。
 ---
 
 # 评论组件 - Waline
@@ -59,7 +59,7 @@ export default defineConfig({
 在 `.vitepress/data/Waline.ts` 文件中创建评论配置：
 
 ```ts [.vitepress/data/Waline.ts]
-import type { WalineData } from '@theojs/lumen'
+import type { WalineData } from './types/index.js'
 
 export const Waline_Data: WalineData = {
   serverURL: 'https://xxxxxx', // 替换为你的 waline 服务地址     [!code ++]
@@ -85,7 +85,7 @@ import DefaultTheme from 'vitepress/theme'
 // [!code ++]
 import { h } from 'vue'
 // [!code ++]
-import { Waline } from '@theojs/lumen'
+import { Waline } from './types/index.js'
 // [!code ++]
 import { Waline_Data } from '../data'
 
@@ -111,7 +111,7 @@ import DefaultTheme from 'vitepress/theme'
 // [!code ++]
 import { h } from 'vue'
 // [!code ++]
-import { Waline } from '@theojs/lumen'
+import { Waline } from './types/index.js'
 
 export default {
   // [!code ++]
@@ -128,7 +128,7 @@ export default {
 layout: home
 
 hero:
-  name: Lumen
+  name: NewMT
   text: 'Enhanced '
   textsuffix: 'Theme'
   tagline: ✨ 专为 VitePress 打造的主题美化与 Vue 扩展组件库
@@ -141,4 +141,4 @@ hero:
 
 ### CSS 变量
 
-已预设 <Pill icon="unjs:theme-colors" name="部分 CSS 变量" link="https://github.com/s-theo/lumen/blob/main/src/style/components-var.css" />，如需进一步自定义，可参考 <Pill image="https://waline.js.org/logo.png" name="Waline 官方文档" link="https://waline.js.org/reference/client/style.html" /> 通过覆盖样式实现个性化调整。
+已预设 <Links icon="unjs:theme-colors" name="部分 CSS 变量 /style/components-var.css" />，如需进一步自定义，可参考 <Links image="https://waline.js.org/logo.png" name="Waline 官方文档" link="https://waline.js.org/reference/client/style.html" /> 通过覆盖样式实现个性化调整。

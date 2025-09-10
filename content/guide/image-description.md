@@ -1,12 +1,12 @@
 ---
 title: 图片描述 - Markdown 图片标题
 order: 7  # 新增的排序字段
-description: 了解如何在 VitePress 中为图片添加描述或figcaption。本指南将引导你安装和配置 @mdit/plugin-figure 插件，并应用 @theojs/lumen 的样式，以支持图片标题和在明暗模式下显示不同的图片。
+description: 了解如何在 VitePress 中为图片添加描述或figcaption。本指南将引导你安装和配置 @mdit/plugin-figure 插件，并应用的样式，以支持图片标题和在明暗模式下显示不同的图片。
 ---
 
 # 图片描述 - Markdown 图片标题
 
-![效果图|200x0](https://i.theojs.cn/logo/lumen-logo-large.svg '效果图')
+![效果图|200x0](/logo/logo-large.svg '效果图')
 
 ## 安装 `@mdit/plugin-figure` 插件
 
@@ -52,12 +52,12 @@ export default defineConfig({
 
 ```ts [全量导入]
 // theme/index.ts
-import '@theojs/lumen/style'
+import './types/index.js/style'
 ```
 
 ```ts [单独导入]
 // theme/index.ts
-import '@theojs/lumen/pic'
+import './types/index.js/pic'
 ```
 
 :::
@@ -71,23 +71,23 @@ import '@theojs/lumen/pic'
 ## 使用示例
 
 ```md
-![效果图](https://i.theojs.cn/logo/lumen-logo-mini.svg)
+![效果图](/logo/logo-mini.svg)
 
-![浅色模式](https://i.theojs.cn/logo/github.svg){.light-only}
+![浅色模式](/logo/github.svg){.light-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg){.dark-only}
+![深色模式](/logo/github-dark.svg){.dark-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg#dark)
+![深色模式](/logo/github-dark.svg#dark)
 
-![浅色模式](https://i.theojs.cn/logo/github.svg#light)
+![浅色模式](/logo/github.svg#light)
 ```
 
-![效果图](https://i.theojs.cn/logo/lumen-logo-mini.svg)
+![效果图](/logo/logo-mini.svg)
 
-![浅色模式](https://i.theojs.cn/logo/github.svg){.light-only}
+![浅色模式](/logo/github.svg){.light-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg){.dark-only}
+![深色模式](/logo/github-dark.svg){.dark-only}
 
-![深色模式](https://i.theojs.cn/logo/github-dark.svg#dark)
+![深色模式](/logo/github-dark.svg#dark)
 
-![浅色模式](https://i.theojs.cn/logo/github.svg#light)
+![浅色模式](/logo/github.svg#light)

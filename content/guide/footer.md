@@ -1,7 +1,7 @@
 ---
 title: 页脚组件 - Footer
 order: 9  # 新增的排序字段
-description: 了解如何使用 @theojs/lumen 插件的 Footer 组件自定义 VitePress 网站的页脚。本指南包含数据配置（链接分组、备案信息、作者）和组件集成步骤，助你打造个性化且信息丰富的网站底部。
+description: 了解如何使用插件的 Footer 组件自定义 VitePress 网站的页脚。本指南包含数据配置（链接分组、备案信息、作者）和组件集成步骤，助你打造个性化且信息丰富的网站底部。
 head:
   - - meta
     - property: og:image
@@ -29,7 +29,7 @@ import DefaultTheme from 'vitepress/theme'
 // [!code ++]
 import { h } from 'vue'
 // [!code ++]
-import { Footer } from '@theojs/lumen'
+import { Footer } from './types/index.js'
 // [!code ++]
 import { Footer_Data } from '../data/footerData'
 
