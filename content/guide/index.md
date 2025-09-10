@@ -674,7 +674,7 @@ import { VPTeamMembers } from 'vitepress/theme'
 
 const members = [
   {
-    avatar: '/index/home.png',
+    avatar: 'avatar.webp',
     name: 'scenlinx',
     title: 'Author',
     links: [{ icon: 'github', link: 'https://github.com/scenlinx' }]
@@ -692,7 +692,7 @@ import { VPTeamMembers } from 'vitepress/theme'
 
 const members = [
   {
-    avatar: '/index/home.png',
+    avatar: 'avatar.webp',
     name: 'scenlinx',
     title: 'Author',
     links: [
