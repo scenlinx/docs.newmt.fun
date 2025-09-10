@@ -13,7 +13,9 @@ head:
 ## 创建数据 (点击打开查看)
 
 ::: details 在`.vitepress`目录下新建`data/FooterData.ts`文件，并添加以下内容：
+```md
 <<< ../demo/FooterData.ts[.vitepress/data/FooterData.ts]
+```
 :::
 
 ## 引入组件

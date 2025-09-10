@@ -28,16 +28,19 @@ export default {
 
 **输入**
 ::: code-group
+```md
 <<< ../demo/Links.vue#iconify{vue-html}[Iconify]
 <<< ../demo/Links.vue#svg{vue-html}[svg]
 <<< ../demo/Links.vue#image{vue-html}[image]
+```
 :::
 
 **输出**
-
+```md
 <!--@include: ../demo/Links.vue#iconify-->
 <!--@include: ../demo/Links.vue#svg-->
 <!--@include: ../demo/Links.vue#image-->
+```
 
 ### 参数说明
 
