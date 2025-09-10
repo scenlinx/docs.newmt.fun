@@ -123,6 +123,13 @@ export default defineConfig({
     // 搜索配置
     search: { provider: 'local', options: search },
 
+    // 评论配置
+    vite: {
+      optimizeDeps: {
+        include: ['recaptcha-v3']
+      } 
+    },
+
     // 404 配置
     notFound: {
       title: '找不到页面',

@@ -9,10 +9,11 @@ import {
   Links,
   Underline,
   Backtotop,
-  umamiAnalytics
+  umamiAnalytics,
+  Waline
 } from './types/index.js'
 import './style/all.css'
-import { Footer_Data } from '../data'
+import { Footer_Data, Waline_Data } from '../data'
 import 'viewerjs/dist/viewer.min.css'
 import 'virtual:group-icons.css'
 
@@ -24,6 +25,7 @@ export default {
       'home-hero-info-before': () => h(Notice),
       'layout-bottom': () => h(Footer, { Footer_Data }),
       'doc-after': () => h('div', [
+        h(Waline, { Waline_Data }),
         h(Backtotop)
       ])
     })
