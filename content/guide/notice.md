@@ -1,18 +1,18 @@
 ---
 title: 首页公告栏组件 - Notice
-order: 3  # 新增的排序字段
+order: 5  # 新增的排序字段
 description: 了解如何使用 @theojs/lumen 插件，为你的 VitePress 网站首页添加一个引人注目的公告栏组件。轻松配置和展示活动信息、重要通知或快速安装命令，有效提升首页互动性和信息传递效率。
 head:
   - - meta
     - property: og:image
-      content: /logo/announcement-light.webp
+      content: https://i.theojs.cn/docs/announcement-light.webp
 ---
 
 # 首页公告栏组件 - Notice
 
-![首页公告栏 - 效果图|550x0](/logo/announcement-light.webp#light '首页公告栏 - 效果图')
+![首页公告栏 - 效果图|550x0](https://i.theojs.cn/docs/announcement-light.webp#light '首页公告栏 - 效果图')
 
-![首页公告栏 - 效果图|550x0](/logo/announcement-dark.webp#dark '首页公告栏 - 效果图')
+![首页公告栏 - 效果图|550x0](https://i.theojs.cn/docs/announcement-dark.webp#dark '首页公告栏 - 效果图')
 
 ## 引入组件
 
@@ -67,5 +67,3 @@ hero:
 | `dateText`  | `string`     | 活动时间的文字说明，默认为 `活动时间: 即日至`，可自定义显示文案。                                                                                                                                | <Badge text="可选" /> |
 | `dateIcon`  | `IconType`   | 图标配置，支持字符串或对象，支持深浅色模式和颜色配置。与 `dateImage` 互斥。若 `dateIcon` 和 `dateImage` 都未定义，组件会显示默认图标 `'heroicons:calendar-days'`。详情查看 [IconType](#IconType) | <Badge text="可选" /> |
 | `dateImage` | `ImageType`  | 图片配置，支持字符串或对象，支持深浅色模式和裁剪。与 `dateIcon` 互斥。若 `dateIcon` 和 `dateImage` 都未定义，组件会显示默认图标 `'heroicons:calendar-days'`。详情查看 [ImageType](#ImageType)    | <Badge text="可选" /> |
-
-<!--@include: ../demo/type.md-->

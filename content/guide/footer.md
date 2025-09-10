@@ -1,6 +1,6 @@
 ---
 title: 页脚组件 - Footer
-order: 5  # 新增的排序字段
+order: 9  # 新增的排序字段
 description: 了解如何使用 @theojs/lumen 插件的 Footer 组件自定义 VitePress 网站的页脚。本指南包含数据配置（链接分组、备案信息、作者）和组件集成步骤，助你打造个性化且信息丰富的网站底部。
 head:
   - - meta
@@ -22,10 +22,6 @@ head:
 
 ::: details 在`.vitepress`目录下新建`data/FooterData.ts`文件，并添加以下内容：
 <<< ../demo/FooterData.ts[.vitepress/data/FooterData.ts]
-:::
-
-::: details 或者支持 `i18n`
-<<< ../demo/FooterData_i18n.ts[.vitepress/data/FooterData_i18n.ts]
 :::
 
 ## 引入组件
@@ -146,5 +142,3 @@ export default {
 | `rel`       | `RelType`    | 设置链接的 `rel` 属性，常见如 `noopener noreferrer`，用于安全性或 SEO 考虑。                                                             | <Badge text="可选" /> |
 | `target`    | `TargetType` | 链接的目标窗口。默认根据链接地址判断：外部链接默认在新标签页打开（`_blank`），内部链接无默认值（`即当前页打开`）。可自定义覆盖该行为。   | <Badge text="可选" /> |
 | `text`      | `string`     | 版权声明尾句，显示在作者名称后。可自定义该文本，默认值为 `All Rights Reserved.`。                                                        | <Badge text="可选" /> |
-
-<!--@include: ../demo/type.md-->
