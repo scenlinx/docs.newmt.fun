@@ -1,7 +1,7 @@
 import type { WalineData } from '../theme/types/index.js'
 
 export const Waline_Data: WalineData = {
-  serverURL: 'https://docsnewmtwaline.vercel.app/',
+  serverURL: 'https://waline.newmt.fun/',
   lang: 'zh-CN',
   noCopyright: true,
   imageUploader: async (file) => {
