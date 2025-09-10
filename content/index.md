@@ -11,7 +11,7 @@ hero:
   tagline: 探索AI/新媒体/副业赚钱等最新行业玩法
 
   image:
-    src: index/home.webp
+    src: home.webp
     alt: home
     fetchpriority: high
     width: 320
