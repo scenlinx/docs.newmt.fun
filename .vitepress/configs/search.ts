@@ -1,10 +1,10 @@
 import type { DefaultTheme } from 'vitepress'
 
 export const search: DefaultTheme.AlgoliaSearchOptions = {
-  appId: 'PXT7X48Z31',
-  apiKey: '8675d8e9d7f36c6f1dc5f1b68e3cf344',
-  indexName: 'theojs',
-  askAi: 'joWgbfd6Qgna',
+  appId: 'O0AOLCI560',
+  apiKey: 'cc81a03af31537cc0f1406b45132af36',
+  indexName: 'instantsearch-app',
+  askAi: '',
   insights: true,
   locales: {
     root: {
