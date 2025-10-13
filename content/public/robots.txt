@@ -3,4 +3,4 @@ Disallow:
 
 Sitemap: https://docs.newmt.fun/sitemap.xml
 
-# Algolia-Crawler-Verif: 505E4D84C557B8DC
+# Algolia-Crawler-Verif: 40D63447D0E2C716
