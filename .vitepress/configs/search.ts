@@ -1,8 +1,8 @@
 import type { DefaultTheme } from 'vitepress'
 
 export const search: DefaultTheme.AlgoliaSearchOptions = {
-  appId: 'O0AOLCI560',
-  apiKey: 'cc81a03af31537cc0f1406b45132af36',
+  appId: '7HQ87K8XPY',
+  apiKey: '470fea0d4e64a2d570077e96350daa50',
   indexName: '',
   askAi: '',
   insights: true,
