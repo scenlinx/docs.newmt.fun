@@ -17,7 +17,6 @@ export const head: HeadConfig[] = [
   ['meta', { name: 'author', content: 'scenlinx' }],
   ['meta', { name: 'copyright', content: 'scenlinx' }],
   ['meta', { name: 'apple-mobile-web-app-title', content: 'DOCS.NewMT' }],
-  ['meta', { name: "algolia-site-verification", content: "505E4D84C557B8DC" }],
 
   // Open Graph
   ['meta', { property: 'og:type', content: 'website' }],
