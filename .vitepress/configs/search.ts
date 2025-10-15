@@ -1,9 +1,9 @@
 import type { DefaultTheme } from 'vitepress'
 
 export const search: DefaultTheme.AlgoliaSearchOptions = {
-  appId: '7HQ87K8XPY',
-  apiKey: '470fea0d4e64a2d570077e96350daa50',
-  indexName: 'docs_newmt_fun_7hq87k8xpy_pages',
+  appId: 'ZMLXSOPJ2B',
+  apiKey: 'e351dd33dc561d6a8bb9372b6ce43ee8',
+  indexName: 'docs-newmt',
   askAi: '',
   insights: true,
   locales: {
