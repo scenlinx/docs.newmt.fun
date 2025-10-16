@@ -3,7 +3,7 @@ import type { DefaultTheme } from 'vitepress'
 export const search: DefaultTheme.AlgoliaSearchOptions = {
   appId: 'ZMLXSOPJ2B',
   apiKey: 'e351dd33dc561d6a8bb9372b6ce43ee8',
-  indexName: 'docs-newmt',
+  indexName: 'docs.newmt.fun',
   askAi: '',
   insights: true,
   locales: {
