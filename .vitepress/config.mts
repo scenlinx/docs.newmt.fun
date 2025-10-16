@@ -120,12 +120,13 @@ export default defineConfig({
     // 侧边栏
     sidebar,
 
-/*
     // 本地搜索
-    search: { provider: 'local', options: search },
-*/
+    search: { provider: 'local', options: search.local },
+
+/*
     // 搜索配置
     search: { provider: 'algolia', options: search },
+*/
 
     // 评论配置
     vite: {
