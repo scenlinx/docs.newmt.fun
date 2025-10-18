@@ -121,7 +121,7 @@ export default defineConfig({
     sidebar,
 
     // 本地搜索
-    search: { provider: 'local', options: search.local },
+    search: { provider: 'local', options: search },
 
 /*
     // 搜索配置
